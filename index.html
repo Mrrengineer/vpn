@@ -4,210 +4,92 @@
   <meta charset="UTF-8">
   <title>GoldenShine | گلدن شاین</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- فونت ایران یکان -->
-  <link href="https://cdn.fontcdn.ir/Font/Persian/IranYekan.css" rel="stylesheet">
+  <meta name="description" content="دسترسی به کانفیگ و پروکسی‌های گلدن شاین با رمز عبور.">
+  <link href="https://cdn.fontcdn.ir/Font/Persian/Farhang.css" rel="stylesheet">
   <style>
     body {
-      margin: 0;
-      font-family: 'IranYekan', sans-serif;
-      background: #0e0e0e;
-      color: #f1f5f9;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-    }
-
-    .card {
-      background: #1a1a1a;
-      padding: 2rem;
-      border-radius: 20px;
-      box-shadow: 0 0 40px rgba(255, 215, 0, 0.2);
-      max-width: 500px;
-      width: 100%;
+      font-family: 'Farhang', sans-serif;
+      background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+      color: white;
       text-align: center;
+      padding: 2rem;
+      animation: fadeIn 2s ease-in;
     }
-
-    h1 {
-      color: gold;
-      margin-bottom: 1rem;
-      font-size: 1.8rem;
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
-
-    input[type="password"] {
-      width: 100%;
-      padding: 0.8rem;
-      border-radius: 12px;
+    .hidden { display: none; }
+    input, textarea {
+      font-family: inherit;
       border: none;
-      margin-top: 1rem;
-      background: #2d2d2d;
-      color: #f1f5f9;
-      font-size: 1rem;
-    }
-
-    button {
-      margin-top: 1rem;
-      padding: 0.7rem 1.5rem;
-      border: none;
-      border-radius: 12px;
-      background: gold;
-      color: black;
-      font-weight: bold;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: 0.3s ease;
-    }
-
-    button:hover {
-      background: #ffd700cc;
-    }
-
-    textarea {
-      width: 100%;
-      height: 160px;
-      margin-top: 1rem;
       border-radius: 10px;
       padding: 1rem;
-      resize: none;
-      border: none;
-      background: #2d2d2d;
-      color: #f1f5f9;
-      font-family: monospace;
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    .tabs {
-      display: flex;
-      justify-content: center;
       margin-top: 1rem;
+      width: 80%;
+      max-width: 400px;
     }
-
-    .tab {
-      padding: 0.5rem 1.5rem;
-      margin: 0 0.5rem;
-      background: #333;
-      border-radius: 8px;
-      cursor: pointer;
-      color: #aaa;
-      transition: 0.3s ease;
+    textarea {
+      height: 150px;
+      background: #222;
+      color: white;
     }
-
-    .tab.active {
+    button {
+      margin-top: 1rem;
+      padding: 0.7rem 2rem;
       background: gold;
       color: black;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
       font-weight: bold;
+      transition: transform 0.3s ease;
     }
-
-    .section {
+    button:hover {
+      transform: scale(1.05);
+    }
+    a {
+      color: gold;
+      text-decoration: none;
+      display: block;
       margin-top: 1rem;
     }
-
-    #loginMessage, #copyMessage1, #copyMessage2 {
-      margin-top: 0.5rem;
+    footer {
+      margin-top: 3rem;
       font-size: 0.9rem;
-    }
-
-    .success {
-      color: #22c55e;
-    }
-
-    .error {
-      color: #ef4444;
-    }
-
-    @media (max-width: 500px) {
-      .tab {
-        padding: 0.4rem 1rem;
-        font-size: 0.9rem;
-      }
-
-      h1 {
-        font-size: 1.5rem;
-      }
+      opacity: 0.7;
     }
   </style>
 </head>
 <body>
-
-<div class="card">
-  <div id="login">
-    <h1>🌟 GoldenShine</h1>
-    <p>برای دسترسی رمز عبور را وارد کنید</p>
-    <input type="password" id="password" placeholder="رمز عبور">
-    <button onclick="checkPassword()">ورود</button>
-    <p id="loginMessage"></p>
-  </div>
+  <h1 style="font-size: 2.5rem;">🌟 GoldenShine</h1>
+  <p>برای دسترسی رمز عبور را وارد کنید</p>
+  <input type="password" id="password" placeholder="رمز عبور"><br>
+  <button onclick="checkPassword()">ورود</button>
+  <p id="loginMessage"></p>
 
   <div id="content" class="hidden">
-    <h1>🌟 GoldenShine</h1>
-    <div class="tabs">
-      <div class="tab active" onclick="showTab('config')">📂 کانفیگ‌ها</div>
-      <div class="tab" onclick="showTab('proxy')">🌐 پروکسی‌ها</div>
-    </div>
-
-    <div id="config" class="section">
-      <textarea id="configText" readonly>
-vmess://eyJhZGQiOiJnb2xkZW4uY29tIiwidiI6IjIiLCJwIjoiNDQzIiwiaWQiOiIxMjMtYWJjIn0=
-trojan://pass@goldenshine.com:443
-      </textarea>
-      <button onclick="copyText('configText', 'copyMessage1')">📋 کپی کردن کانفیگ‌ها</button>
-      <p id="copyMessage1" class="success"></p>
-    </div>
-
-    <div id="proxy" class="section hidden">
-      <textarea id="proxyText" readonly>
-https://t.me/proxy?server=goldenshine.ir&port=443&type=mtproto&secret=abcdef123456
-https://t.me/proxy?server=proxy.goldenshine.com&type=socks5&port=1080
-      </textarea>
-      <button onclick="copyText('proxyText', 'copyMessage2')">📋 کپی کردن پروکسی‌ها</button>
-      <p id="copyMessage2" class="success"></p>
-    </div>
+    <h2>📂 کانفیگ‌ها</h2>
+    <textarea readonly>در این بخش فایل‌های آپلود شده توسط مدیر نمایش داده خواهند شد.</textarea>
+    <a href="/uploads/" target="_blank">مشاهده فایل‌های آپلود شده</a>
   </div>
-</div>
 
-<script>
-  const correctPassword = "1379";
+  <footer>
+    طراحی شده توسط تیم گلدن شاین
+  </footer>
 
-  function checkPassword() {
-    const input = document.getElementById("password").value;
-    const message = document.getElementById("loginMessage");
-    if (input === correctPassword) {
-      document.getElementById("login").classList.add("hidden");
-      document.getElementById("content").classList.remove("hidden");
-    } else {
-      message.textContent = "❌ رمز اشتباه است!";
-      message.className = "error";
+  <script>
+    const correctPassword = "12345";
+    function checkPassword() {
+      const input = document.getElementById("password").value;
+      const message = document.getElementById("loginMessage");
+      if (input === correctPassword) {
+        document.getElementById("content").classList.remove("hidden");
+        message.textContent = "";
+      } else {
+        message.textContent = "رمز اشتباه است!";
+      }
     }
-  }
-
-  function copyText(id, msgId) {
-    const text = document.getElementById(id);
-    text.select();
-    document.execCommand("copy");
-    const msg = document.getElementById(msgId);
-    msg.textContent = "✅ با موفقیت کپی شد!";
-    setTimeout(() => {
-      msg.textContent = "";
-    }, 2000);
-  }
-
-  function showTab(tab) {
-    const tabs = document.querySelectorAll('.tab');
-    const sections = ['config', 'proxy'];
-
-    tabs.forEach(t => t.classList.remove('active'));
-    document.querySelector(`.tab[onclick*="${tab}"]`).classList.add('active');
-
-    sections.forEach(s => {
-      document.getElementById(s).classList.add('hidden');
-    });
-
-    document.getElementById(tab).classList.remove('hidden');
-  }
-</script>
-
+  </script>
 </body>
 </html>
