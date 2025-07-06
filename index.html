@@ -1,95 +1,387 @@
 <!DOCTYPE html>
 <html lang="fa">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>GoldenShine | گلدن شاین</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="دسترسی به کانفیگ و پروکسی‌های گلدن شاین با رمز عبور.">
-  <link href="https://cdn.fontcdn.ir/Font/Persian/Farhang.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="دسترسی به کانفیگ و پروکسی‌های گلدن شاین با رمز عبور." />
+  <link href="https://cdn.fontcdn.ir/Font/Persian/Vazir.css" rel="stylesheet" />
   <style>
-    body {
-      font-family: 'Farhang', sans-serif;
-      background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
-      color: white;
-      text-align: center;
-      padding: 2rem;
-      animation: fadeIn 2s ease-in;
+    /* Reset */
+    * {
+      box-sizing: border-box;
     }
+    body {
+      margin: 0;
+      font-family: 'Vazir', sans-serif;
+      background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+      color: #f1f5f9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      overflow: hidden;
+      position: relative;
+      transition: background 0.5s, color 0.5s;
+    }
+
+    /* روز */
+    body.light {
+      background: linear-gradient(135deg, #fefefe, #ddd);
+      color: #222;
+    }
+
+    /* پس‌زمینه موجی */
+    .waves {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      background: linear-gradient(180deg, #111, #1c1c1c);
+      transition: background 0.5s;
+    }
+    body.light .waves {
+      background: linear-gradient(180deg, #eee, #ccc);
+    }
+
+    .wave {
+      position: absolute;
+      width: 200%;
+      height: 200px;
+      background: rgba(255, 215, 0, 0.1);
+      border-radius: 43%;
+      animation: wave 6s infinite linear;
+      filter: drop-shadow(0 0 3px rgba(255,215,0,0.3));
+    }
+    body.light .wave {
+      background: rgba(255, 215, 0, 0.15);
+      filter: drop-shadow(0 0 3px rgba(255,215,0,0.6));
+    }
+
+    .wave:nth-child(2) {
+      top: 100px;
+      animation-delay: 3s;
+      opacity: 0.4;
+    }
+
+    @keyframes wave {
+      0% {
+        transform: translateX(-50%) rotate(0deg);
+      }
+      100% {
+        transform: translateX(-50%) rotate(360deg);
+      }
+    }
+
+    .card {
+      background: rgba(26, 26, 26, 0.9);
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 0 40px rgba(255, 215, 0, 0.3);
+      max-width: 500px;
+      width: 100%;
+      text-align: center;
+      animation: fadeIn 2s ease-in-out;
+      transition: background 0.5s, color 0.5s;
+    }
+
+    body.light .card {
+      background: #fff;
+      color: #222;
+      box-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
+    }
+
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
+      from { opacity: 0; transform: translateY(30px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    .hidden { display: none; }
-    input, textarea {
-      font-family: inherit;
+
+    h1 {
+      color: gold;
+      margin-bottom: 1rem;
+      font-size: 1.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+    }
+
+    body.light h1 {
+      color: #b8860b;
+    }
+
+    input[type="password"], textarea {
+      width: 100%;
+      padding: 0.8rem;
+      border-radius: 12px;
       border: none;
-      border-radius: 10px;
-      padding: 1rem;
       margin-top: 1rem;
-      width: 80%;
-      max-width: 400px;
+      background: #2d2d2d;
+      color: #f1f5f9;
+      font-size: 1rem;
+      transition: background 0.5s, color 0.5s;
+      font-family: monospace;
     }
-    textarea {
-      height: 150px;
-      background: #222;
-      color: white;
+
+    body.light input[type="password"], body.light textarea {
+      background: #eee;
+      color: #222;
     }
+
     button {
       margin-top: 1rem;
-      padding: 0.7rem 2rem;
-      background: gold;
-      color: black;
+      padding: 0.7rem 1.5rem;
       border: none;
       border-radius: 12px;
-      cursor: pointer;
+      background: gold;
+      color: black;
       font-weight: bold;
-      transition: transform 0.3s ease;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: transform 0.3s ease, background 0.5s;
     }
+
     button:hover {
       transform: scale(1.05);
+      background: #ffd700cc;
     }
-    a {
-      color: gold;
-      text-decoration: none;
-      display: block;
+
+    .tabs {
+      display: flex;
+      justify-content: center;
       margin-top: 1rem;
     }
-    footer {
-      margin-top: 3rem;
+
+    .tab {
+      padding: 0.5rem 1.5rem;
+      margin: 0 0.5rem;
+      background: #333;
+      border-radius: 8px;
+      cursor: pointer;
+      color: #aaa;
+      transition: 0.3s ease;
+    }
+
+    body.light .tab {
+      background: #ddd;
+      color: #555;
+    }
+
+    .tab.active {
+      background: gold;
+      color: black;
+      font-weight: bold;
+    }
+
+    .section {
+      margin-top: 1rem;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    #loginMessage, #copyMessage1, #copyMessage2 {
+      margin-top: 0.5rem;
       font-size: 0.9rem;
-      opacity: 0.7;
+    }
+
+    .success {
+      color: #22c55e;
+    }
+
+    .error {
+      color: #ef4444;
+    }
+
+    footer {
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      opacity: 0.6;
+      user-select: none;
+    }
+
+    /* لوگوی متحرک طلایی */
+    .logo {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, gold, #b8860b);
+      box-shadow: 0 0 10px gold;
+      animation: spin 8s linear infinite;
+      display: inline-block;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg);}
+      100% { transform: rotate(360deg);}
+    }
+
+    /* دکمه حالت شب/روز */
+    .toggle-theme {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: gold;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      box-shadow: 0 0 10px gold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s;
+      font-size: 20px;
+      user-select: none;
+    }
+    .toggle-theme:hover {
+      background: #ffd700cc;
+    }
+
+    @media (max-width: 500px) {
+      .tab {
+        padding: 0.4rem 1rem;
+        font-size: 0.9rem;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      .toggle-theme {
+        top: 10px;
+        left: 10px;
+        width: 35px;
+        height: 35px;
+        font-size: 18px;
+      }
     }
   </style>
 </head>
 <body>
-  <h1 style="font-size: 2.5rem;">🌟 GoldenShine</h1>
-  <p>برای دسترسی رمز عبور را وارد کنید</p>
-  <input type="password" id="password" placeholder="رمز عبور"><br>
-  <button onclick="checkPassword()">ورود</button>
-  <p id="loginMessage"></p>
+  <button class="toggle-theme" id="toggleTheme" title="تغییر حالت شب/روز">🌙</button>
 
-  <div id="content" class="hidden">
-    <h2>📂 کانفیگ‌ها</h2>
-    <textarea readonly>در این بخش فایل‌های آپلود شده توسط مدیر نمایش داده خواهند شد.</textarea>
-    <a href="/uploads/" target="_blank">مشاهده فایل‌های آپلود شده</a>
+  <div class="waves">
+    <div class="wave"></div>
+    <div class="wave"></div>
   </div>
 
-  <footer>
-    طراحی شده توسط تیم گلدن شاین
-  </footer>
+  <div class="card">
+    <div id="login">
+      <h1><span class="logo"></span> GoldenShine</h1>
+      <p>برای دسترسی رمز عبور را وارد کنید</p>
+      <input type="password" id="password" placeholder="رمز عبور" />
+      <button onclick="checkPassword()">ورود</button>
+      <p id="loginMessage"></p>
+    </div>
 
-  <script>
-    const correctPassword = "12345";
-    function checkPassword() {
-      const input = document.getElementById("password").value;
-      const message = document.getElementById("loginMessage");
-      if (input === correctPassword) {
-        document.getElementById("content").classList.remove("hidden");
-        message.textContent = "";
-      } else {
-        message.textContent = "رمز اشتباه است!";
-      }
+    <div id="content" class="hidden">
+      <h1><span class="logo"></span> GoldenShine</h1>
+      <div class="tabs">
+        <div class="tab active" onclick="showTab('config')">📂 کانفیگ‌ها</div>
+        <div class="tab" onclick="showTab('proxy')">🌐 پروکسی‌ها</div>
+      </div>
+
+      <div id="config" class="section">
+        <textarea id="configText" readonly>
+vmess://eyJhZGQiOiJnb2xkZW4uY29tIiwidiI6IjIiLCJwIjoiNDQzIiwiaWQiOiIxMjMtYWJjIn0=
+trojan://pass@goldenshine.com:443
+        </textarea>
+        <button onclick="copyText('configText', 'copyMessage1')">📋 کپی کردن کانفیگ‌ها</button>
+        <p id="copyMessage1" class="success"></p>
+      </div>
+
+      <div id="proxy" class="section hidden">
+        <textarea id="proxyText" readonly>
+https://t.me/proxy?server=goldenshine.ir&port=443&type=mtproto&secret=abcdef123456
+https://t.me/proxy?server=proxy.goldenshine.com&type=socks5&port=1080
+        </textarea>
+        <button onclick="copyText('proxyText', 'copyMessage2')">📋 کپی کردن پروکسی‌ها</button>
+        <p id="copyMessage2" class="success"></p>
+      </div>
+    </div>
+    <footer>طراحی توسط تیم گلدن شاین</footer>
+  </div>
+
+<script>
+  const correctPassword = "12345";
+
+  function checkPassword() {
+    const input = document.getElementById("password").value;
+    const message = document.getElementById("loginMessage");
+    if (input === correctPassword) {
+      document.getElementById("login").classList.add("hidden");
+      document.getElementById("content").classList.remove("hidden");
+      message.textContent = "";
+    } else {
+      message.textContent = "❌ رمز اشتباه است!";
+      message.className = "error";
     }
-  </script>
+  }
+
+  function copyText(id, msgId) {
+    const text = document.getElementById(id);
+    text.select();
+    document.execCommand("copy");
+    const msg = document.getElementById(msgId);
+    msg.textContent = "✅ با موفقیت کپی شد!";
+    setTimeout(() => {
+      msg.textContent = "";
+    }, 2000);
+  }
+
+  function showTab(tab) {
+    const tabs = document.querySelectorAll('.tab');
+    const sections = ['config', 'proxy'];
+
+    tabs.forEach(t => t.classList.remove('active'));
+    document.querySelector(`.tab[onclick*="${tab}"]`).classList.add('active');
+
+    sections.forEach(s => {
+      document.getElementById(s).classList.add('hidden');
+    });
+
+    document.getElementById(tab).classList.remove('hidden');
+  }
+
+  // حالت شب/روز
+  const toggleBtn = document.getElementById('toggleTheme');
+  const body = document.body;
+
+  function setTheme(theme) {
+    if(theme === 'light') {
+      body.classList.add('light');
+      toggleBtn.textContent = '🌙';
+      localStorage.setItem('theme', 'light');
+    } else {
+      body.classList.remove('light');
+      toggleBtn.textContent = '☀️';
+      localStorage.setItem('theme', 'dark');
+    }
+  }
+
+  toggleBtn.addEventListener('click', () => {
+    if(body.classList.contains('light')) {
+      setTheme('dark');
+    } else {
+      setTheme('light');
+    }
+  });
+
+  // بارگذاری تم ذخیره شده
+  document.addEventListener('DOMContentLoaded', () => {
+    const savedTheme = localStorage.getItem('theme');
+    if(savedTheme === 'light') {
+      setTheme('light');
+    } else {
+      setTheme('dark');
+    }
+  });
+</script>
 </body>
 </html>
+
