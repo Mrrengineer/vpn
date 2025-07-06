@@ -7,7 +7,6 @@
   <meta name="description" content="دسترسی به کانفیگ و پروکسی‌های گلدن شاین با رمز عبور." />
   <link href="https://cdn.fontcdn.ir/Font/Persian/Vazir.css" rel="stylesheet" />
   <style>
-    /* Reset */
     * {
       box-sizing: border-box;
     }
@@ -25,13 +24,12 @@
       transition: background 0.5s, color 0.5s;
     }
 
-    /* روز */
     body.light {
       background: linear-gradient(135deg, #fefefe, #ddd);
       color: #222;
     }
 
-    /* پس‌زمینه موجی */
+    /* پس‌زمینه موجی با لایه‌های متحرک و متفاوت */
     .waves {
       position: absolute;
       width: 100%;
@@ -39,6 +37,7 @@
       top: 0;
       left: 0;
       z-index: -1;
+      overflow: hidden;
       background: linear-gradient(180deg, #111, #1c1c1c);
       transition: background 0.5s;
     }
@@ -49,29 +48,60 @@
     .wave {
       position: absolute;
       width: 200%;
-      height: 200px;
+      height: 180px;
       background: rgba(255, 215, 0, 0.1);
-      border-radius: 43%;
-      animation: wave 6s infinite linear;
-      filter: drop-shadow(0 0 3px rgba(255,215,0,0.3));
+      border-radius: 43% 57% 64% 36% / 46% 38% 62% 54%;
+      filter: drop-shadow(0 0 5px rgba(255,215,0,0.3));
+      animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
     }
     body.light .wave {
       background: rgba(255, 215, 0, 0.15);
-      filter: drop-shadow(0 0 3px rgba(255,215,0,0.6));
+      filter: drop-shadow(0 0 7px rgba(255,215,0,0.6));
     }
 
-    .wave:nth-child(2) {
+    .wave1 {
       top: 100px;
-      animation-delay: 3s;
-      opacity: 0.4;
+      animation: waveMove 8s infinite;
+      opacity: 0.3;
+      left: -40%;
+    }
+    .wave2 {
+      top: 150px;
+      animation: waveMoveReverse 12s infinite;
+      opacity: 0.2;
+      left: -60%;
+      background: rgba(255, 215, 0, 0.07);
+      border-radius: 37% 63% 55% 45% / 48% 42% 58% 52%;
+    }
+    .wave3 {
+      top: 130px;
+      animation: waveMove 10s infinite;
+      opacity: 0.25;
+      left: -50%;
+      background: rgba(255, 215, 0, 0.09);
+      border-radius: 60% 40% 50% 50% / 50% 50% 60% 40%;
     }
 
-    @keyframes wave {
+    @keyframes waveMove {
       0% {
-        transform: translateX(-50%) rotate(0deg);
+        transform: translateX(0) rotate(0deg);
+      }
+      50% {
+        transform: translateX(25%) rotate(10deg);
       }
       100% {
-        transform: translateX(-50%) rotate(360deg);
+        transform: translateX(0) rotate(0deg);
+      }
+    }
+    @keyframes waveMoveReverse {
+      0% {
+        transform: translateX(0) rotate(0deg);
+      }
+      50% {
+        transform: translateX(-25%) rotate(-12deg);
+      }
+      100% {
+        transform: translateX(0) rotate(0deg);
       }
     }
 
@@ -85,6 +115,8 @@
       text-align: center;
       animation: fadeIn 2s ease-in-out;
       transition: background 0.5s, color 0.5s;
+      position: relative;
+      z-index: 10;
     }
 
     body.light .card {
@@ -138,9 +170,11 @@
       background: gold;
       color: black;
       font-weight: bold;
-      font-size: 1rem;
+      font-size: 1.1rem;
       cursor: pointer;
       transition: transform 0.3s ease, background 0.5s;
+      font-family: 'Vazir', sans-serif;
+      user-select: none;
     }
 
     button:hover {
@@ -162,6 +196,7 @@
       cursor: pointer;
       color: #aaa;
       transition: 0.3s ease;
+      font-family: 'Vazir', sans-serif;
     }
 
     body.light .tab {
@@ -177,6 +212,7 @@
 
     .section {
       margin-top: 1rem;
+      position: relative;
     }
 
     .hidden {
@@ -231,15 +267,82 @@
       height: 40px;
       cursor: pointer;
       box-shadow: 0 0 10px gold;
+      font-size: 20px;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: background 0.3s;
-      font-size: 20px;
+      transition: background 0.3s ease;
       user-select: none;
+      z-index: 15;
     }
+
     .toggle-theme:hover {
       background: #ffd700cc;
+    }
+
+    /* مودال آموزش */
+    .modal {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      font-family: 'Vazir', sans-serif;
+      padding: 1rem;
+    }
+    .modal.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .modal-content {
+      background: #222;
+      border-radius: 15px;
+      max-width: 480px;
+      width: 100%;
+      padding: 1.5rem;
+      color: #eee;
+      overflow-y: auto;
+      max-height: 80vh;
+      position: relative;
+      box-shadow: 0 0 40px gold;
+    }
+
+    body.light .modal-content {
+      background: #fff;
+      color: #222;
+      box-shadow: 0 0 40px #b8860b;
+    }
+
+    .modal-content h2 {
+      margin-top: 0;
+      color: gold;
+      margin-bottom: 1rem;
+    }
+
+    .modal-content p {
+      line-height: 1.6;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 24px;
+      color: gold;
+      font-weight: bold;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    body.light .modal-close {
+      color: #b8860b;
     }
 
     @media (max-width: 500px) {
@@ -249,26 +352,26 @@
       }
 
       h1 {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
       }
 
-      .toggle-theme {
-        top: 10px;
-        left: 10px;
-        width: 35px;
-        height: 35px;
-        font-size: 18px;
+      button {
+        font-size: 1rem;
       }
     }
   </style>
 </head>
 <body>
-  <button class="toggle-theme" id="toggleTheme" title="تغییر حالت شب/روز">🌙</button>
 
+  <!-- پس زمینه موجی -->
   <div class="waves">
-    <div class="wave"></div>
-    <div class="wave"></div>
+    <div class="wave wave1"></div>
+    <div class="wave wave2"></div>
+    <div class="wave wave3"></div>
   </div>
+
+  <!-- دکمه حالت شب/روز -->
+  <button id="toggleTheme" class="toggle-theme" title="تغییر حالت شب/روز">🌙</button>
 
   <div class="card">
     <div id="login">
@@ -281,6 +384,7 @@
 
     <div id="content" class="hidden">
       <h1><span class="logo"></span> GoldenShine</h1>
+
       <div class="tabs">
         <div class="tab active" onclick="showTab('config')">📂 کانفیگ‌ها</div>
         <div class="tab" onclick="showTab('proxy')">🌐 پروکسی‌ها</div>
@@ -292,6 +396,7 @@ vmess://eyJhZGQiOiJnb2xkZW4uY29tIiwidiI6IjIiLCJwIjoiNDQzIiwiaWQiOiIxMjMtYWJjIn0=
 trojan://pass@goldenshine.com:443
         </textarea>
         <button onclick="copyText('configText', 'copyMessage1')">📋 کپی کردن کانفیگ‌ها</button>
+        <button onclick="showModal()" style="margin-top: 0.5rem;">ℹ️ نحوه وارد کردن کانفیگ‌ها</button>
         <p id="copyMessage1" class="success"></p>
       </div>
 
@@ -304,14 +409,26 @@ https://t.me/proxy?server=proxy.goldenshine.com&type=socks5&port=1080
         <p id="copyMessage2" class="success"></p>
       </div>
     </div>
+
     <footer>طراحی توسط تیم گلدن شاین</footer>
+  </div>
+
+  <!-- مودال آموزش -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="modal-close" onclick="closeModal()" title="بستن">×</span>
+      <h2>نحوه وارد کردن کانفیگ‌ها</h2>
+      <p><strong>iOS:</strong> از اپلیکیشن مربوطه وارد بخش وارد کردن کانفیگ شوید و لینک یا فایل کانفیگ را اضافه کنید.</p>
+      <p><strong>Android:</strong> در اپلیکیشن کانفیگ مورد نظر، گزینه‌ی "Import Config" یا "وارد کردن کانفیگ" را انتخاب و لینک یا فایل را بارگذاری کنید.</p>
+      <p><strong>Windows:</strong> کانفیگ را در نرم‌افزار کلاینت مربوطه (مانند V2RayN یا دیگر برنامه‌ها) وارد کنید.</p>
+    </div>
   </div>
 
 <script>
   const correctPassword = "12345";
 
   function checkPassword() {
-    const input = document.getElementById("password").value;
+    const input = document.getElementById("password").value.trim();
     const message = document.getElementById("loginMessage");
     if (input === correctPassword) {
       document.getElementById("login").classList.add("hidden");
@@ -326,62 +443,74 @@ https://t.me/proxy?server=proxy.goldenshine.com&type=socks5&port=1080
   function copyText(id, msgId) {
     const text = document.getElementById(id);
     text.select();
-    document.execCommand("copy");
-    const msg = document.getElementById(msgId);
-    msg.textContent = "✅ با موفقیت کپی شد!";
-    setTimeout(() => {
-      msg.textContent = "";
-    }, 2000);
+    navigator.clipboard.writeText(text.value).then(() => {
+      const msg = document.getElementById(msgId);
+      msg.textContent = "✅ با موفقیت کپی شد!";
+      setTimeout(() => {
+        msg.textContent = "";
+      }, 2000);
+    });
   }
 
   function showTab(tab) {
-    const tabs = document.querySelectorAll('.tab');
-    const sections = ['config', 'proxy'];
+    const tabs = document.querySelectorAll(".tab");
+    const sections = ["config", "proxy"];
 
-    tabs.forEach(t => t.classList.remove('active'));
-    document.querySelector(`.tab[onclick*="${tab}"]`).classList.add('active');
+    tabs.forEach((t) => t.classList.remove("active"));
+    document.querySelector(`.tab[onclick*="${tab}"]`).classList.add("active");
 
-    sections.forEach(s => {
-      document.getElementById(s).classList.add('hidden');
+    sections.forEach((s) => {
+      document.getElementById(s).classList.add("hidden");
     });
 
-    document.getElementById(tab).classList.remove('hidden');
+    document.getElementById(tab).classList.remove("hidden");
   }
 
   // حالت شب/روز
-  const toggleBtn = document.getElementById('toggleTheme');
+  const toggleBtn = document.getElementById("toggleTheme");
   const body = document.body;
 
   function setTheme(theme) {
-    if(theme === 'light') {
-      body.classList.add('light');
-      toggleBtn.textContent = '🌙';
-      localStorage.setItem('theme', 'light');
+    if (theme === "light") {
+      body.classList.add("light");
+      toggleBtn.textContent = "🌙";
+      localStorage.setItem("theme", "light");
     } else {
-      body.classList.remove('light');
-      toggleBtn.textContent = '☀️';
-      localStorage.setItem('theme', 'dark');
+      body.classList.remove("light");
+      toggleBtn.textContent = "☀️";
+      localStorage.setItem("theme", "dark");
     }
   }
 
-  toggleBtn.addEventListener('click', () => {
-    if(body.classList.contains('light')) {
-      setTheme('dark');
+  toggleBtn.addEventListener("click", () => {
+    if (body.classList.contains("light")) {
+      setTheme("dark");
     } else {
-      setTheme('light');
+      setTheme("light");
     }
   });
 
   // بارگذاری تم ذخیره شده
-  document.addEventListener('DOMContentLoaded', () => {
-    const savedTheme = localStorage.getItem('theme');
-    if(savedTheme === 'light') {
-      setTheme('light');
+  document.addEventListener("DOMContentLoaded", () => {
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "light") {
+      setTheme("light");
     } else {
-      setTheme('dark');
+      setTheme("dark");
     }
   });
+
+  // مودال آموزش
+  const modal = document.getElementById("modal");
+
+  function showModal() {
+    modal.classList.add("show");
+  }
+  function closeModal() {
+    modal.classList.remove("show");
+  }
 </script>
 </body>
 </html>
+
 
