@@ -1,132 +1,213 @@
-
 <!DOCTYPE html>
 <html lang="fa">
 <head>
   <meta charset="UTF-8">
-  <title>گلدشاین | فیلتر هوشمند</title>
-  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn&display=swap" rel="stylesheet">
+  <title>GoldenShine | گلدن شاین</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- فونت ایران یکان -->
+  <link href="https://cdn.fontcdn.ir/Font/Persian/IranYekan.css" rel="stylesheet">
   <style>
     body {
-      font-family: 'Vazirmatn', sans-serif;
-      direction: rtl;
+      margin: 0;
+      font-family: 'IranYekan', sans-serif;
+      background: #0e0e0e;
+      color: #f1f5f9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .card {
       background: #1a1a1a;
-      color: #fff;
-      margin: 0;
-      padding: 0;
-    }
-
-    header {
-      background: linear-gradient(to right, #d4af37, #b8860b);
-      padding: 30px 0;
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 0 40px rgba(255, 215, 0, 0.2);
+      max-width: 500px;
+      width: 100%;
       text-align: center;
-      color: #1a1a1a;
     }
 
-    header h1 {
-      margin: 0;
-      font-size: 2.5em;
+    h1 {
+      color: gold;
+      margin-bottom: 1rem;
+      font-size: 1.8rem;
+    }
+
+    input[type="password"] {
+      width: 100%;
+      padding: 0.8rem;
+      border-radius: 12px;
+      border: none;
+      margin-top: 1rem;
+      background: #2d2d2d;
+      color: #f1f5f9;
+      font-size: 1rem;
+    }
+
+    button {
+      margin-top: 1rem;
+      padding: 0.7rem 1.5rem;
+      border: none;
+      border-radius: 12px;
+      background: gold;
+      color: black;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      background: #ffd700cc;
+    }
+
+    textarea {
+      width: 100%;
+      height: 160px;
+      margin-top: 1rem;
+      border-radius: 10px;
+      padding: 1rem;
+      resize: none;
+      border: none;
+      background: #2d2d2d;
+      color: #f1f5f9;
+      font-family: monospace;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .tabs {
+      display: flex;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+
+    .tab {
+      padding: 0.5rem 1.5rem;
+      margin: 0 0.5rem;
+      background: #333;
+      border-radius: 8px;
+      cursor: pointer;
+      color: #aaa;
+      transition: 0.3s ease;
+    }
+
+    .tab.active {
+      background: gold;
+      color: black;
       font-weight: bold;
     }
 
-    .container {
-      max-width: 600px;
-      margin: 40px auto;
-      padding: 20px;
-      background: #2b2b2b;
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+    .section {
+      margin-top: 1rem;
     }
 
-    input[type="text"] {
-      width: 100%;
-      padding: 12px;
-      font-size: 18px;
-      border: 2px solid #d4af37;
-      border-radius: 8px;
-      background-color: #1a1a1a;
-      color: #fff;
-      margin-bottom: 20px;
-      outline: none;
-      transition: border 0.3s;
+    #loginMessage, #copyMessage1, #copyMessage2 {
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
     }
 
-    input[type="text"]:focus {
-      border-color: #ffd700;
+    .success {
+      color: #22c55e;
     }
 
-    ul {
-      list-style: none;
-      padding: 0;
+    .error {
+      color: #ef4444;
     }
 
-    li {
-      padding: 12px;
-      background: #3a3a3a;
-      margin-bottom: 10px;
-      border-radius: 8px;
-      transition: transform 0.2s, background 0.3s;
-    }
+    @media (max-width: 500px) {
+      .tab {
+        padding: 0.4rem 1rem;
+        font-size: 0.9rem;
+      }
 
-    li:hover {
-      background: #4a4a4a;
-      transform: scale(1.01);
-    }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      color: #aaa;
-      font-size: 14px;
-    }
-
-    .gold-text {
-      color: #ffd700;
+      h1 {
+        font-size: 1.5rem;
+      }
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>🌟 گلدشاین</h1>
-    <p>جستجوی سریع و هوشمند آیتم‌ها</p>
-  </header>
-
-  <div class="container">
-    <input type="text" id="searchInput" placeholder="جستجوی آیتم...">
-
-    <ul id="itemList">
-      <li>انگشتر طلا</li>
-      <li>دستبند طلا</li>
-      <li>گردنبند</li>
-      <li>ساعت لوکس</li>
-      <li>گوشواره</li>
-      <li>زنجیر</li>
-      <li>نیم‌ست طلایی</li>
-      <li>پابند</li>
-      <li>مدال طلا</li>
-      <li>حلقه ازدواج</li>
-    </ul>
+<div class="card">
+  <div id="login">
+    <h1>🌟 GoldenShine</h1>
+    <p>برای دسترسی رمز عبور را وارد کنید</p>
+    <input type="password" id="password" placeholder="رمز عبور">
+    <button onclick="checkPassword()">ورود</button>
+    <p id="loginMessage"></p>
   </div>
 
-  <footer>
-    طراحی شده توسط <span class="gold-text">گلدشاین</span> © 2025
-  </footer>
+  <div id="content" class="hidden">
+    <h1>🌟 GoldenShine</h1>
+    <div class="tabs">
+      <div class="tab active" onclick="showTab('config')">📂 کانفیگ‌ها</div>
+      <div class="tab" onclick="showTab('proxy')">🌐 پروکسی‌ها</div>
+    </div>
 
-  <script>
-    const input = document.getElementById("searchInput");
-    const items = document.querySelectorAll("#itemList li");
+    <div id="config" class="section">
+      <textarea id="configText" readonly>
+vmess://eyJhZGQiOiJnb2xkZW4uY29tIiwidiI6IjIiLCJwIjoiNDQzIiwiaWQiOiIxMjMtYWJjIn0=
+trojan://pass@goldenshine.com:443
+      </textarea>
+      <button onclick="copyText('configText', 'copyMessage1')">📋 کپی کردن کانفیگ‌ها</button>
+      <p id="copyMessage1" class="success"></p>
+    </div>
 
-    input.addEventListener("input", function () {
-      const filter = input.value.toLowerCase();
-      items.forEach(function (item) {
-        if (item.textContent.toLowerCase().includes(filter)) {
-          item.style.display = "";
-        } else {
-          item.style.display = "none";
-        }
-      });
+    <div id="proxy" class="section hidden">
+      <textarea id="proxyText" readonly>
+https://t.me/proxy?server=goldenshine.ir&port=443&type=mtproto&secret=abcdef123456
+https://t.me/proxy?server=proxy.goldenshine.com&type=socks5&port=1080
+      </textarea>
+      <button onclick="copyText('proxyText', 'copyMessage2')">📋 کپی کردن پروکسی‌ها</button>
+      <p id="copyMessage2" class="success"></p>
+    </div>
+  </div>
+</div>
+
+<script>
+  const correctPassword = "12345";
+
+  function checkPassword() {
+    const input = document.getElementById("password").value;
+    const message = document.getElementById("loginMessage");
+    if (input === correctPassword) {
+      document.getElementById("login").classList.add("hidden");
+      document.getElementById("content").classList.remove("hidden");
+    } else {
+      message.textContent = "❌ رمز اشتباه است!";
+      message.className = "error";
+    }
+  }
+
+  function copyText(id, msgId) {
+    const text = document.getElementById(id);
+    text.select();
+    document.execCommand("copy");
+    const msg = document.getElementById(msgId);
+    msg.textContent = "✅ با موفقیت کپی شد!";
+    setTimeout(() => {
+      msg.textContent = "";
+    }, 2000);
+  }
+
+  function showTab(tab) {
+    const tabs = document.querySelectorAll('.tab');
+    const sections = ['config', 'proxy'];
+
+    tabs.forEach(t => t.classList.remove('active'));
+    document.querySelector(`.tab[onclick*="${tab}"]`).classList.add('active');
+
+    sections.forEach(s => {
+      document.getElementById(s).classList.add('hidden');
     });
-  </script>
+
+    document.getElementById(tab).classList.remove('hidden');
+  }
+</script>
 
 </body>
 </html>
