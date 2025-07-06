@@ -382,6 +382,65 @@
         font-size: 1rem;
       }
     }
+
+    /* استایل‌های جدید برای آموزش و دانلود */
+    .instructions {
+      margin-top: 15px;
+      padding: 12px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      text-align: right;
+      line-height: 1.7;
+    }
+    body.light .instructions {
+      background: rgba(0, 0, 0, 0.05);
+      color: #222;
+    }
+    .download-container {
+      margin-top: 20px;
+    }
+    .download-title {
+      text-align: center;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+    .download-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .download-btn {
+      display: block;
+      text-align: center;
+      background: #4a90e2;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      font-size: 1rem;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background 0.3s;
+      box-shadow: 0 0 8px rgba(74, 144, 226, 0.5);
+    }
+    .download-btn:hover {
+      background: #357abf;
+    }
+    body.light .download-btn {
+      background: #1a73e8;
+      color: white;
+    }
+    .ios-btn {
+      background: #a154f2;
+      box-shadow: 0 0 8px rgba(161, 84, 242, 0.5);
+    }
+    .ios-btn:hover {
+      background: #8a3ffc;
+    }
+    body.light .ios-btn {
+      background: #8a3ffc;
+    }
   </style>
 </head>
 <body>
@@ -426,6 +485,25 @@
       <div id="configSection" class="section" role="tabpanel" aria-labelledby="tabConfig">
         <textarea id="configText" readonly aria-readonly="true" rows="6"></textarea>
         <button id="copyConfigBtn" aria-label="کپی کانفیگ">کپی کانفیگ</button>
+        
+        <!-- دکمه آموزش نحوه وارد کردن کانفیگ ها -->
+        <button id="howToImportBtn" style="margin-top: 10px;">آموزش نحوه وارد کردن کانفیگ ها</button>
+        <div id="howToImportInstructions" class="instructions" style="display: none;">
+          <p>۱.کانفیگ ها رو کپی کنید</p>
+          <p>۲.وارد کلاینت (نرم افزار ) مربوطه شوید .</p>
+          <p>۳. گزینه + رو بزنید سپس گزینه افزودن از طریف کلیپ بورد یا import from clipboard رو بزنید تا کانفیگ ها اضافه شوند .</p>
+        </div>
+        
+        <!-- دکمه های دانلود نرم افزار -->
+        <div class="download-container">
+          <h3 class="download-title">دانلود نرم افزار</h3>
+          <div class="download-buttons">
+            <a href="https://github.com/hiddify/hiddify-next/releases/tag/draft" target="_blank" class="download-btn">اندروید: دانلود نرم افزار hiddify</a>
+            <a href="https://github.com/2dust/v2rayNG/releases" target="_blank" class="download-btn">اندروید: دانلود نرم افزار v2ray</a>
+            <a href="https://apps.apple.com/app/id6450534064" target="_blank" class="download-btn ios-btn">iOS: دانلود نرم افزار streisand</a>
+            <a href="https://apps.apple.com/us/app/v2box-v2ray-client/id6446814690" target="_blank" class="download-btn ios-btn">iOS: دانلود نرم افزار v2box</a>
+          </div>
+        </div>
       </div>
 
       <div id="proxySection" class="section hidden" role="tabpanel" aria-labelledby="tabProxy">
@@ -437,7 +515,7 @@
 
   <script>
     (() => {
-      const correctPassword = '1379'; // رمز عبور صحیح
+      const correctPassword = '13791379'; // رمز عبور صحیح
       const loginBtn = document.getElementById('loginBtn');
       const passwordInput = document.getElementById('passwordInput');
       const loginError = document.getElementById('loginError');
@@ -452,6 +530,8 @@
       const copyProxyBtn = document.getElementById('copyProxyBtn');
       const toggleThemeBtn = document.getElementById('toggleThemeBtn');
       const languageSelect = document.getElementById('languageSelect');
+      const howToImportBtn = document.getElementById('howToImportBtn');
+      const howToImportInstructions = document.getElementById('howToImportInstructions');
 
       // نمونه متن‌ها (می‌توانید این‌ها را به صورت داینامیک جایگزین کنید)
       const configContent = `[Interface]
@@ -605,6 +685,7 @@ https://secureproxy.example.com:443`;
           document.getElementById('tabProxy').textContent = 'پروکسی';
           copyConfigBtn.textContent = 'کپی کانفیگ';
           copyProxyBtn.textContent = 'کپی پروکسی';
+          howToImportBtn.textContent = 'آموزش نحوه وارد کردن کانفیگ ها';
           toggleThemeBtn.title = document.body.classList.contains('light') ? 'حالت روز' : 'حالت شب';
           toggleThemeBtn.setAttribute('aria-label', document.body.classList.contains('light') ? 'تغییر به حالت روز' : 'تغییر به حالت شب');
           languageSelect.title = 'انتخاب زبان';
@@ -618,6 +699,7 @@ https://secureproxy.example.com:443`;
           document.getElementById('tabProxy').textContent = 'Proxy';
           copyConfigBtn.textContent = 'Copy Config';
           copyProxyBtn.textContent = 'Copy Proxy';
+          howToImportBtn.textContent = 'How to import configs';
           toggleThemeBtn.title = document.body.classList.contains('light') ? 'Light Mode' : 'Dark Mode';
           toggleThemeBtn.setAttribute('aria-label', document.body.classList.contains('light') ? 'Switch to light mode' : 'Switch to dark mode');
           languageSelect.title = 'Select language';
@@ -634,11 +716,19 @@ https://secureproxy.example.com:443`;
           loginBtn.click();
         }
       });
+      
+      // نمایش آموزش نحوه وارد کردن کانفیگ
+      howToImportBtn.addEventListener('click', () => {
+        if (howToImportInstructions.style.display === 'none') {
+          howToImportInstructions.style.display = 'block';
+        } else {
+          howToImportInstructions.style.display = 'none';
+        }
+      });
     })();
   </script>
 </body>
 </html>
-
 
 
 
