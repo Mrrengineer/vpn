@@ -3,24 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ورود به صفحه کانفیگ و پروکسی</title>
+  <title>گلدن شاین</title>
+  <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css" rel="stylesheet" type="text/css" />
   <style>
-    /* فونت و ریست */
-    @import url('https://fonts.googleapis.com/css2?family=Vazirmatn&family=Roboto&display=swap');
+    /* فونت و پایه */
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: 'Vazir', sans-serif;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 15px;
+      transition: background 0.5s, color 0.5s;
+      direction: rtl;
 
-    :root {
-      --color-bg-light: #f0f4f8;
-      --color-bg-dark: #121212;
-      --color-primary: #4a90e2;
-      --color-accent: #e94e77;
-      --color-text-light: #222;
-      --color-text-dark: #eee;
-      --transition-speed: 0.3s;
-      --radius: 8px;
+      /* پس زمینه ملایم‌تر و انیمیشنی‌تر */
+      background: linear-gradient(270deg, #1a1a1a, #3c3a36, #1a1a1a);
+      background-size: 600% 600%;
+      animation: backgroundGradient 20s ease infinite;
     }
-
-    /* انیمیشن پس‌زمینه گرادیانت ملایم */
-    @keyframes gradientAnimation {
+    @keyframes backgroundGradient {
       0% {
         background-position: 0% 50%;
       }
@@ -32,681 +37,608 @@
       }
     }
 
-    body {
-      margin: 0;
-      font-family: 'Vazirmatn', 'Roboto', sans-serif;
-      background: linear-gradient(270deg, #6a11cb, #2575fc, #6a11cb, #2575fc);
-      background-size: 800% 800%;
-      animation: gradientAnimation 25s ease infinite;
-      color: var(--color-text-light);
-      direction: rtl;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      transition: background-color var(--transition-speed), color var(--transition-speed);
+    body.light {
+      background: linear-gradient(270deg, #ffe66d, #fabf6f, #ffe66d);
+      background-size: 600% 600%;
+      animation: backgroundGradient 20s ease infinite;
+      color: #222;
     }
 
-    /* حالت شب */
-    body.dark {
-      background: linear-gradient(270deg, #1f1c2c, #928dab, #1f1c2c, #928dab);
-      background-size: 800% 800%;
-      animation: gradientAnimation 30s ease infinite;
-      color: var(--color-text-dark);
+    /* کارت اصلی */
+    .card {
+      background: rgba(0, 0, 0, 0.85);
+      border-radius: 20px;
+      max-width: 440px;
+      width: 100%;
+      padding: 30px 25px 35px;
+      box-shadow: 0 0 15px gold;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.5s, color 0.5s;
+    }
+    body.light .card {
+      background: #fff7e1;
+      color: #222;
+      box-shadow: 0 0 15px #e6c150;
     }
 
-    header {
-      padding: 1rem 1.5rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: rgba(255 255 255 / 0.15);
-      backdrop-filter: blur(8px);
-      box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      border-radius: 0 0 var(--radius) var(--radius);
-    }
-
-    body.dark header {
-      background: rgba(0 0 0 / 0.25);
-      box-shadow: 0 2px 12px rgb(0 0 0 / 0.6);
-    }
-
-    header h1 {
-      margin: 0;
-      font-weight: 700;
-      font-size: 1.4rem;
-      color: inherit;
-    }
-
-    /* دکمه حالت شب/روز شناور سمت راست بالا */
-    .toggle-theme {
-      position: fixed;
-      top: 1rem;
-      right: 1rem;
-      background: var(--color-primary);
-      border: none;
+    /* لوگوی دایره‌ای متحرک */
+    .logo {
+      display: inline-block;
+      vertical-align: middle;
+      width: 36px;
+      height: 36px;
+      margin-left: 10px;
       border-radius: 50%;
-      width: 42px;
-      height: 42px;
-      cursor: pointer;
-      font-size: 1.4rem;
-      color: white;
-      box-shadow: 0 2px 8px rgb(0 0 0 / 0.25);
-      transition: background-color var(--transition-speed), transform 0.2s;
+      background: linear-gradient(45deg, gold, orange, gold);
+      animation: shine 3s linear infinite;
+      box-shadow: 0 0 10px gold;
+    }
+    @keyframes shine {
+      0% {
+        filter: brightness(1);
+        transform: rotate(0deg);
+      }
+      50% {
+        filter: brightness(1.8);
+        transform: rotate(180deg);
+      }
+      100% {
+        filter: brightness(1);
+        transform: rotate(360deg);
+      }
+    }
+
+    /* عنوان */
+    h1 {
+      font-size: 2.4rem;
+      font-weight: 900;
+      margin: 0 0 25px;
+      user-select: none;
       display: flex;
       align-items: center;
       justify-content: center;
-      user-select: none;
-      z-index: 1100;
     }
-    .toggle-theme:hover {
-      background: var(--color-accent);
-      transform: scale(1.1);
+    body.light h1 {
+      color: #b27500;
     }
 
-    /* سوئیچ زبان */
-    .language-select {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-weight: 600;
-      color: inherit;
-      user-select: none;
+    /* ورودی و دکمه ورود */
+    #loginSection {
+      margin-bottom: 25px;
     }
-    .language-select select {
-      font-family: inherit;
-      font-size: 1rem;
-      border-radius: var(--radius);
-      border: 1.8px solid var(--color-primary);
-      background: transparent;
-      color: inherit;
-      padding: 0.2rem 0.6rem;
-      cursor: pointer;
-      transition: border-color var(--transition-speed), color var(--transition-speed);
-    }
-    .language-select select:hover, .language-select select:focus {
-      border-color: var(--color-accent);
-      outline: none;
-    }
-
-    main {
-      flex-grow: 1;
-      padding: 2rem 1rem;
-      max-width: 900px;
-      margin: 0 auto;
-      background: rgba(255 255 255 / 0.25);
-      backdrop-filter: blur(15px);
-      border-radius: var(--radius);
-      box-shadow: 0 4px 20px rgb(0 0 0 / 0.15);
-      transition: background-color var(--transition-speed);
-    }
-    body.dark main {
-      background: rgba(30 30 30 / 0.6);
-      box-shadow: 0 6px 30px rgb(0 0 0 / 0.7);
-    }
-
-    /* فرم ورود */
-    .login-section {
-      max-width: 400px;
-      margin: 0 auto 2rem auto;
-      text-align: center;
-    }
-
-    .login-section label {
-      font-weight: 700;
-      font-size: 1.1rem;
+    label {
       display: block;
-      margin-bottom: 0.5rem;
+      margin-bottom: 7px;
+      font-weight: 600;
     }
-    .login-section input[type="password"] {
+    input[type="password"] {
       width: 100%;
-      padding: 0.6rem 0.9rem;
-      font-size: 1rem;
-      border-radius: var(--radius);
-      border: 2px solid var(--color-primary);
-      transition: border-color var(--transition-speed);
-      outline-offset: 2px;
-    }
-    .login-section input[type="password"]:focus {
-      border-color: var(--color-accent);
-      outline: none;
-      box-shadow: 0 0 6px var(--color-accent);
-    }
-    .login-section button {
-      margin-top: 1rem;
-      padding: 0.6rem 1.4rem;
+      padding: 10px 14px;
       font-size: 1.1rem;
-      font-weight: 700;
-      background: var(--color-primary);
-      color: white;
+      border-radius: 10px;
       border: none;
-      border-radius: var(--radius);
-      cursor: pointer;
-      transition: background-color var(--transition-speed), transform 0.2s;
+      outline: none;
+      box-sizing: border-box;
+      font-family: 'Vazir', sans-serif;
+      background: #222;
+      color: white;
+      transition: background 0.3s;
     }
-    .login-section button:hover:not(:disabled) {
-      background: var(--color-accent);
-      transform: scale(1.05);
+    body.light input[type="password"] {
+      background: #f5f5f5;
+      color: #222;
+      border: 1px solid #ccc;
     }
-    .login-section button:disabled {
-      background: #999;
+    input[type="password"]:disabled {
+      background: #555;
+      color: #ccc;
       cursor: not-allowed;
-      transform: none;
-    }
-    .login-message {
-      margin-top: 0.8rem;
-      font-weight: 600;
-      min-height: 1.4rem;
-      color: #b00020;
-      user-select: none;
-    }
-    .login-message.success {
-      color: #0f9d58;
     }
 
-    /* محتوای کانفیگ و پروکسی */
-    #contentSection {
-      display: none;
-      margin-top: 1rem;
+    button {
+      margin-top: 15px;
+      background: gold;
+      color: black;
+      border: none;
+      padding: 10px 18px;
+      font-size: 1.1rem;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 700;
+      width: 100%;
+      transition: background 0.3s;
+      box-shadow: 0 0 12px gold;
+      user-select: none;
+      font-family: 'Vazir', sans-serif;
     }
-    #contentSection.active {
-      display: block;
+    button:hover:not(:disabled) {
+      background: #d4af37;
+    }
+    button:disabled {
+      background: #a38800;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    .error {
+      color: #f44336;
+      margin-top: 8px;
+      font-weight: 600;
+    }
+    .success {
+      color: #4caf50;
+      margin-top: 8px;
+      font-weight: 600;
+    }
+
+    /* بخش محتوا بعد از ورود */
+    #contentSection {
+      display: flex;
+      flex-direction: column;
+    }
+    #contentSection.hidden {
+      display: none;
     }
 
     /* تب‌ها */
     .tabs {
       display: flex;
-      border-bottom: 2.5px solid var(--color-primary);
-      margin-bottom: 1rem;
-      user-select: none;
-      gap: 0.4rem;
+      margin-bottom: 15px;
+      gap: 15px;
       justify-content: center;
     }
     .tab {
-      padding: 0.7rem 1.5rem;
-      font-weight: 700;
-      font-size: 1.1rem;
-      border-radius: var(--radius) var(--radius) 0 0;
+      padding: 10px 20px;
+      border-radius: 12px;
+      background: #333;
       cursor: pointer;
-      background: rgba(255 255 255 / 0.5);
-      color: var(--color-text-light);
-      transition: background-color var(--transition-speed), color var(--transition-speed);
-      box-shadow: 0 3px 10px rgb(0 0 0 / 0.1);
-    }
-    .tab.active, .tab:focus {
-      background: var(--color-primary);
-      color: white;
+      user-select: none;
+      font-weight: 700;
+      box-shadow: 0 0 8px #222;
+      transition: background 0.3s, color 0.3s;
       outline: none;
-      box-shadow: 0 4px 14px var(--color-primary);
+      font-family: 'Vazir', sans-serif;
     }
-    body.dark .tab {
-      background: rgba(255 255 255 / 0.1);
-      color: var(--color-text-dark);
-      box-shadow: none;
+    .tab.active {
+      background: gold;
+      color: black;
+      box-shadow: 0 0 12px gold;
     }
-    body.dark .tab.active {
-      background: var(--color-accent);
-      box-shadow: 0 4px 14px var(--color-accent);
+    .tab:focus-visible {
+      outline: 2px solid gold;
+      outline-offset: 3px;
+    }
+    body.light .tab {
+      background: #f0e68c;
+      color: #222;
+      box-shadow: 0 0 8px #d4af37;
+    }
+    body.light .tab.active {
+      background: #d4af37;
+      color: black;
+      box-shadow: 0 0 12px #b8860b;
     }
 
-    /* textarea */
+    /* بخش هر تب */
+    .section {
+      background: #222;
+      border-radius: 14px;
+      padding: 15px 20px;
+      min-height: 140px;
+      box-sizing: border-box;
+      font-family: 'Vazir', sans-serif;
+      font-size: 1rem;
+      color: white;
+      position: relative;
+    }
+    body.light .section {
+      background: #fff9e6;
+      color: #222;
+      box-shadow: inset 0 0 10px #d4af37;
+    }
+    .hidden {
+      display: none;
+    }
+
+    /* textarea فقط خواندنی */
     textarea {
       width: 100%;
-      min-height: 180px;
       resize: vertical;
-      border-radius: var(--radius);
-      border: 2px solid var(--color-primary);
-      padding: 1rem;
-      font-family: monospace;
+      font-family: 'Vazir', monospace, monospace;
       font-size: 1rem;
-      background: rgba(255 255 255 / 0.85);
-      color: var(--color-text-light);
-      transition: border-color var(--transition-speed);
-    }
-    textarea:focus {
-      border-color: var(--color-accent);
-      outline: none;
-      box-shadow: 0 0 6px var(--color-accent);
-      background: white;
-    }
-    body.dark textarea {
-      background: rgba(0 0 0 / 0.65);
-      color: var(--color-text-dark);
-      border-color: var(--color-accent);
-    }
-    body.dark textarea:focus {
-      background: rgba(20 20 20 / 0.9);
-      box-shadow: 0 0 8px var(--color-accent);
-    }
-
-    /* دکمه کپی */
-    button.copy-btn {
-      margin-top: 0.6rem;
-      padding: 0.5rem 1.2rem;
-      font-weight: 600;
-      border-radius: var(--radius);
+      border-radius: 10px;
+      padding: 10px;
       border: none;
-      background: var(--color-primary);
-      color: white;
+      background: #111;
+      color: #eee;
+      box-sizing: border-box;
+      min-height: 120px;
+      transition: background 0.3s, color 0.3s;
+    }
+    body.light textarea {
+      background: #faf8f2;
+      color: #222;
+      border: 1px solid #d4af37;
+    }
+
+    /* دکمه‌های کپی */
+    #copyConfigBtn, #copyProxyBtn {
+      margin-top: 10px;
+      width: auto;
+      padding: 8px 15px;
+      font-size: 1rem;
+      font-weight: 700;
+      border-radius: 12px;
+      background: #ffbf00;
+      color: black;
       cursor: pointer;
-      transition: background-color var(--transition-speed), transform 0.2s;
+      box-shadow: 0 0 8px #d4af37;
       user-select: none;
+      font-family: 'Vazir', sans-serif;
+      border: none;
+      transition: background 0.3s;
     }
-    button.copy-btn:hover {
-      background: var(--color-accent);
-      transform: scale(1.05);
-    }
-    button.copy-btn:disabled {
-      background: #999;
-      cursor: not-allowed;
-      transform: none;
-    }
-
-    /* پیام کپی */
-    .copy-message {
-      margin-top: 0.3rem;
-      min-height: 1.2rem;
-      font-weight: 600;
-      user-select: none;
-      color: var(--color-accent);
-    }
-    .copy-message.error {
-      color: #b00020;
-    }
-
-    /* بخش آموزش کانفیگ */
-    #configInstructions {
-      margin-top: 1rem;
-      font-size: 0.9rem;
-      line-height: 1.4;
-      color: var(--color-text-light);
-    }
-    body.dark #configInstructions {
-      color: var(--color-text-dark);
-    }
-
-    /* بخش دانلود نرم افزار */
-    #downloadButtons {
-      margin-top: 1.5rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      justify-content: center;
-    }
-    #downloadButtons a {
-      background: var(--color-primary);
+    #copyConfigBtn:hover, #copyProxyBtn:hover {
+      background: #b8860b;
       color: white;
-      padding: 0.5rem 1.2rem;
-      border-radius: var(--radius);
-      text-decoration: none;
-      font-weight: 600;
-      transition: background-color var(--transition-speed);
-      user-select: none;
-      box-shadow: 0 2px 8px rgb(0 0 0 / 0.15);
-    }
-    #downloadButtons a:hover {
-      background: var(--color-accent);
-    }
-    body.dark #downloadButtons a {
-      box-shadow: 0 2px 12px rgb(0 0 0 / 0.7);
+      box-shadow: 0 0 10px #b8860b;
     }
 
-    /* بخش محتوا */
-    .section {
-      margin-top: 1rem;
+    /* دکمه‌های کپی در حالت غیر فعال */
+    #copyConfigBtn:disabled, #copyProxyBtn:disabled {
+      background: #999;
+      color: #444;
+      cursor: not-allowed;
+      box-shadow: none;
     }
 
-    /* مخفی */
-    .hidden {
-      display: none !important;
-    }
-
-    /* واکنش‌گرا */
-    @media (max-width: 600px) {
-      main {
-        padding: 1rem 0.5rem;
-        border-radius: 0;
-        box-shadow: none;
+    /* لودینگ انیمیشن روی دکمه ورود */
+    @keyframes loadingDots {
+      0%, 20% {
+        content: '.';
       }
-      #downloadButtons {
-        flex-direction: column;
-        gap: 0.6rem;
+      40% {
+        content: '..';
+      }
+      60% {
+        content: '...';
+      }
+      80%, 100% {
+        content: '';
+      }
+    }
+    button.loading::after {
+      content: '';
+      animation: loadingDots 1s steps(1, end) infinite;
+      display: inline-block;
+      margin-left: 5px;
+      font-weight: 700;
+    }
+
+    /* دکمه حالت شب/روز */
+    #toggleThemeBtn {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      z-index: 9999;
+      background: gold;
+      border: none;
+      border-radius: 50%;
+      width: 42px;
+      height: 42px;
+      font-size: 1.4rem;
+      cursor: pointer;
+      box-shadow: 0 0 12px gold;
+      transition: background 0.3s;
+      user-select: none;
+      font-family: 'Vazir', sans-serif;
+    }
+    #toggleThemeBtn:hover {
+      background: #d4af37;
+    }
+    body.light #toggleThemeBtn {
+      background: #b8860b;
+      color: #fff;
+      box-shadow: 0 0 12px #b8860b;
+    }
+
+    /* دکمه انتخاب زبان */
+    #languageSelect {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      z-index: 9999;
+      background: #222;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      padding: 7px 15px;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 0 10px #444;
+      font-family: 'Vazir', sans-serif;
+      transition: background 0.3s, color 0.3s;
+    }
+    #languageSelect:hover {
+      background: #555;
+    }
+    body.light #languageSelect {
+      background: #b8860b;
+      color: #fff;
+      box-shadow: 0 0 12px #b8860b;
+    }
+
+    /* ریسپانسیو */
+    @media (max-width: 480px) {
+      .card {
+        max-width: 100%;
+        padding: 25px 20px 30px;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      button, #copyConfigBtn, #copyProxyBtn {
+        font-size: 1rem;
       }
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1 id="pageTitle">صفحه ورود</h1>
-    <div class="language-select" aria-label="انتخاب زبان">
-      <label for="langSelect" id="langLabel">زبان:</label>
-      <select id="langSelect" aria-labelledby="langLabel">
-        <option value="fa" selected>فارسی</option>
-        <option value="en">English</option>
-      </select>
-    </div>
-  </header>
+  <!-- دکمه حالت شب/روز -->
+  <button id="toggleThemeBtn" aria-label="تغییر حالت شب/روز" title="تغییر حالت شب/روز">🌙</button>
 
-  <button class="toggle-theme" aria-label="تغییر حالت شب و روز" title="تغییر حالت شب و روز">🌙</button>
+  <!-- انتخاب زبان -->
+  <select id="languageSelect" aria-label="انتخاب زبان" title="انتخاب زبان">
+    <option value="fa" selected>فارسی</option>
+    <option value="en">English</option>
+  </select>
 
-  <main>
-    <section class="login-section" aria-label="فرم ورود">
-      <label for="passwordInput" id="passwordLabel">رمز ورود را وارد کنید:</label>
+  <div class="card" role="main" aria-live="polite">
+    <h1>
+      گلدن شاین
+      <span class="logo" aria-hidden="true"></span>
+    </h1>
+
+    <!-- بخش ورود -->
+    <section id="loginSection">
+      <label for="passwordInput" id="passwordLabel">رمز عبور را وارد کنید:</label>
       <input
         type="password"
         id="passwordInput"
         aria-labelledby="passwordLabel"
         autocomplete="current-password"
-        placeholder="••••••••"
+        aria-required="true"
+        aria-describedby="loginError"
       />
-      <button id="loginBtn" aria-describedby="loginMessage" aria-label="ورود">ورود</button>
-      <div id="loginMessage" class="login-message" aria-live="assertive" role="alert"></div>
+      <button id="loginBtn" aria-live="polite" aria-pressed="false">ورود</button>
+      <div id="loginError" class="error" role="alert" aria-live="assertive" style="display:none;"></div>
     </section>
 
-    <section id="contentSection" aria-label="محتوای کانفیگ و پروکسی" class="hidden">
-      <div role="tablist" class="tabs" aria-label="تب‌های کانفیگ و پروکسی">
-        <div
-          class="tab active"
-          role="tab"
-          tabindex="0"
-          aria-selected="true"
-          aria-controls="configTabContent"
-          id="configTab"
-        >کانفیگ‌ها</div>
-        <div
-          class="tab"
-          role="tab"
-          tabindex="-1"
-          aria-selected="false"
-          aria-controls="proxyTabContent"
-          id="proxyTab"
-        >پروکسی</div>
+    <!-- بخش محتوا پس از ورود -->
+    <section id="contentSection" class="hidden" tabindex="0" aria-label="محتوای پس از ورود">
+
+      <div class="tabs" role="tablist" aria-label="انتخاب تب‌ها">
+        <button class="tab active" role="tab" aria-selected="true" aria-controls="configSection" id="tabConfig" tabindex="0">کانفیگ</button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="proxySection" id="tabProxy" tabindex="-1">پروکسی</button>
       </div>
 
-      <div
-        id="configTabContent"
-        class="section"
-        role="tabpanel"
-        aria-labelledby="configTab"
-        tabindex="0"
-      >
-        <textarea
-          id="configArea"
-          readonly
-          aria-label="متن کانفیگ‌ها"
-          spellcheck="false"
-        ></textarea>
-        <button class="copy-btn" id="copyConfigBtn" aria-live="polite" aria-atomic="true" aria-describedby="copyMessage1">
-          کپی کانفیگ‌ها
-        </button>
-        <div id="copyMessage1" class="copy-message" aria-live="assertive" role="alert"></div>
-
-        <div id="configInstructions" tabindex="0" aria-label="آموزش نحوه وارد کردن کانفیگ‌ها">
-          ۱. کانفیگ‌ها را کپی کنید<br />
-          ۲. وارد نرم‌افزار کلاینت شوید.<br />
-          ۳. گزینه + یا افزودن را بزنید و گزینه «افزودن از کلیپ بورد» را انتخاب کنید.
-        </div>
-
-        <div
-          id="downloadButtons"
-          aria-label="دانلود نرم‌افزارهای اندروید و آی‌او‌اس"
-        >
-          <a
-            href="https://github.com/hiddify/hiddify-next/releases/tag/draft"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="دانلود نرم افزار hiddify برای اندروید"
-            >دانلود hiddify (Android)</a
-          >
-          <a
-            href="https://github.com/2dust/v2rayNG/releases"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="دانلود نرم افزار v2ray برای اندروید"
-            >دانلود v2ray (Android)</a
-          >
-          <a
-            href="https://apps.apple.com/app/id6450534064"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="دانلود نرم افزار streisand برای آی‌او‌اس"
-            >دانلود streisand (iOS)</a
-          >
-          <a
-            href="https://apps.apple.com/us/app/v2box-v2ray-client/id6446814690"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="دانلود نرم افزار v2box برای آی‌او‌اس"
-            >دانلود v2box (iOS)</a
-          >
-        </div>
+      <div id="configSection" class="section" role="tabpanel" aria-labelledby="tabConfig">
+        <textarea id="configText" readonly aria-readonly="true" rows="6"></textarea>
+        <button id="copyConfigBtn" aria-label="کپی کانفیگ">کپی کانفیگ</button>
       </div>
 
-      <div
-        id="proxyTabContent"
-        class="section hidden"
-        role="tabpanel"
-        aria-labelledby="proxyTab"
-        tabindex="0"
-      >
-        <textarea
-          id="proxyArea"
-          readonly
-          aria-label="متن پروکسی"
-          spellcheck="false"
-        ></textarea>
-        <button class="copy-btn" id="copyProxyBtn" aria-live="polite" aria-atomic="true" aria-describedby="copyMessage2">
-          کپی پروکسی
-        </button>
-        <div id="copyMessage2" class="copy-message" aria-live="assertive" role="alert"></div>
+      <div id="proxySection" class="section hidden" role="tabpanel" aria-labelledby="tabProxy">
+        <textarea id="proxyText" readonly aria-readonly="true" rows="6"></textarea>
+        <button id="copyProxyBtn" aria-label="کپی پروکسی">کپی پروکسی</button>
       </div>
     </section>
-  </main>
+  </div>
 
   <script>
     (() => {
-      const password = '1379'; // رمز ورود واقعی خودت را اینجا بگذار
+      const correctPassword = '1379'; // رمز عبور صحیح
       const loginBtn = document.getElementById('loginBtn');
       const passwordInput = document.getElementById('passwordInput');
-      const loginMessage = document.getElementById('loginMessage');
+      const loginError = document.getElementById('loginError');
+      const loginSection = document.getElementById('loginSection');
       const contentSection = document.getElementById('contentSection');
-      const configArea = document.getElementById('configArea');
-      const proxyArea = document.getElementById('proxyArea');
+      const tabs = document.querySelectorAll('.tab');
+      const configSection = document.getElementById('configSection');
+      const proxySection = document.getElementById('proxySection');
+      const configText = document.getElementById('configText');
+      const proxyText = document.getElementById('proxyText');
       const copyConfigBtn = document.getElementById('copyConfigBtn');
       const copyProxyBtn = document.getElementById('copyProxyBtn');
-      const copyMessage1 = document.getElementById('copyMessage1');
-      const copyMessage2 = document.getElementById('copyMessage2');
-      const tabs = document.querySelectorAll('.tab');
-      const configTabContent = document.getElementById('configTabContent');
-      const proxyTabContent = document.getElementById('proxyTabContent');
-      const toggleThemeBtn = document.querySelector('.toggle-theme');
-      const langSelect = document.getElementById('langSelect');
-      const pageTitle = document.getElementById('pageTitle');
+      const toggleThemeBtn = document.getElementById('toggleThemeBtn');
+      const languageSelect = document.getElementById('languageSelect');
 
-      // داده‌های نمونه کانفیگ و پروکسی (بجای داده واقعی خودت بگذار)
-      const data = {
-        fa: {
-          pageTitle: 'صفحه ورود',
-          passwordLabel: 'رمز ورود را وارد کنید:',
-          loginBtn: 'ورود',
-          loginFailed: 'رمز اشتباه است.',
-          loginSuccess: 'ورود موفق!',
-          configTab: 'کانفیگ‌ها',
-          proxyTab: 'پروکسی',
-          copyConfigBtn: 'کپی کانفیگ‌ها',
-          copyProxyBtn: 'کپی پروکسی',
-          configInstructions: '۱. کانفیگ‌ها را کپی کنید<br>۲. وارد نرم‌افزار کلاینت شوید.<br>۳. گزینه + یا افزودن را بزنید و گزینه «افزودن از کلیپ بورد» را انتخاب کنید.',
-          downloadHiddify: 'دانلود hiddify (Android)',
-          downloadV2ray: 'دانلود v2ray (Android)',
-          downloadStreisand: 'دانلود streisand (iOS)',
-          downloadV2box: 'دانلود v2box (iOS)',
-          langLabel: 'زبان:',
-          toggleThemeTitle: 'تغییر حالت شب و روز',
-          copySuccess: 'کپی با موفقیت انجام شد!',
-          copyError: 'کپی انجام نشد، لطفا دستی کپی کنید.',
-        },
-        en: {
-          pageTitle: 'Login Page',
-          passwordLabel: 'Enter Password:',
-          loginBtn: 'Login',
-          loginFailed: 'Incorrect password.',
-          loginSuccess: 'Login successful!',
-          configTab: 'Configs',
-          proxyTab: 'Proxy',
-          copyConfigBtn: 'Copy Configs',
-          copyProxyBtn: 'Copy Proxy',
-          configInstructions: '1. Copy the configs.<br>2. Open your client app.<br>3. Tap "+" or Add, then select "Paste from clipboard".',
-          downloadHiddify: 'Download hiddify (Android)',
-          downloadV2ray: 'Download v2ray (Android)',
-          downloadStreisand: 'Download streisand (iOS)',
-          downloadV2box: 'Download v2box (iOS)',
-          langLabel: 'Language:',
-          toggleThemeTitle: 'Toggle dark/light mode',
-          copySuccess: 'Copied successfully!',
-          copyError: 'Copy failed, please copy manually.',
-        }
-      };
+      // نمونه متن‌ها (می‌توانید این‌ها را به صورت داینامیک جایگزین کنید)
+      const configContent = `[Interface]
+PrivateKey = YOUR_PRIVATE_KEY
+Address = 10.0.0.2/24
+DNS = 1.1.1.1
 
-      // مقدار اولیه داده کانفیگ و پروکسی
-      const configText = `# Sample Config\naddress: example.com\nport: 443\nid: 12345`;
-      const proxyText = `# Sample Proxy\nsocks5://127.0.0.1:1080`;
+[Peer]
+PublicKey = SERVER_PUBLIC_KEY
+AllowedIPs = 0.0.0.0/0, ::/0
+Endpoint = your.server.com:51820
+PersistentKeepalive = 25`;
 
-      // مقداردهی اولیه به تکست‌اریا
-      configArea.textContent = configText;
-      proxyArea.textContent = proxyText;
+      const proxyContent = `socks5://127.0.0.1:1080
+http://proxy.example.com:8080
+https://secureproxy.example.com:443`;
+
+      // بارگذاری متن‌ها
+      configText.value = configContent;
+      proxyText.value = proxyContent;
 
       // ورود
-      function doLogin() {
-        if (passwordInput.value === password) {
-          loginMessage.textContent = data[langSelect.value].loginSuccess;
-          loginMessage.classList.remove('error');
-          loginMessage.classList.add('success');
-          contentSection.classList.remove('hidden');
-          passwordInput.disabled = true;
+      function setLoading(loading) {
+        if (loading) {
           loginBtn.disabled = true;
+          passwordInput.disabled = true;
+          loginBtn.textContent = 'در حال بررسی';
+          loginBtn.classList.add('loading');
+          loginBtn.setAttribute('aria-busy', 'true');
         } else {
-          loginMessage.textContent = data[langSelect.value].loginFailed;
-          loginMessage.classList.remove('success');
-          loginMessage.classList.add('error');
+          loginBtn.disabled = false;
+          passwordInput.disabled = false;
+          loginBtn.textContent = languageSelect.value === 'fa' ? 'ورود' : 'Login';
+          loginBtn.classList.remove('loading');
+          loginBtn.removeAttribute('aria-busy');
         }
       }
 
-      loginBtn.addEventListener('click', doLogin);
+      loginBtn.addEventListener('click', () => {
+        loginError.style.display = 'none';
+        const entered = passwordInput.value.trim();
+        if (!entered) {
+          loginError.textContent = languageSelect.value === 'fa' ? 'لطفاً رمز عبور را وارد کنید.' : 'Please enter the password.';
+          loginError.style.display = 'block';
+          return;
+        }
 
-      passwordInput.addEventListener('keypress', e => {
-        if (e.key === 'Enter') doLogin();
+        setLoading(true);
+
+        setTimeout(() => {
+          setLoading(false);
+          if (entered === correctPassword) {
+            loginSection.style.display = 'none';
+            contentSection.classList.remove('hidden');
+            passwordInput.value = '';
+            passwordInput.disabled = false;
+            loginBtn.disabled = false;
+            loginError.style.display = 'none';
+            loginBtn.setAttribute('aria-pressed', 'true');
+            contentSection.focus();
+          } else {
+            loginError.textContent = languageSelect.value === 'fa' ? 'رمز عبور اشتباه است.' : 'Incorrect password.';
+            loginError.style.display = 'block';
+            passwordInput.focus();
+          }
+        }, 1500);
       });
 
-      // تب‌ها
+      // فعال/غیرفعال تب‌ها
       tabs.forEach(tab => {
         tab.addEventListener('click', () => {
           tabs.forEach(t => {
             t.classList.remove('active');
             t.setAttribute('aria-selected', 'false');
-            t.setAttribute('tabindex', '-1');
+            document.getElementById(t.getAttribute('aria-controls')).classList.add('hidden');
+            t.tabIndex = -1;
           });
           tab.classList.add('active');
           tab.setAttribute('aria-selected', 'true');
-          tab.setAttribute('tabindex', '0');
-
-          if (tab.id === 'configTab') {
-            configTabContent.classList.remove('hidden');
-            proxyTabContent.classList.add('hidden');
-          } else {
-            proxyTabContent.classList.remove('hidden');
-            configTabContent.classList.add('hidden');
-          }
+          document.getElementById(tab.getAttribute('aria-controls')).classList.remove('hidden');
+          tab.tabIndex = 0;
+          tab.focus();
         });
 
-        tab.addEventListener('keydown', e => {
-          if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
-            let currentIndex = Array.from(tabs).indexOf(document.activeElement);
-            if (e.key === 'ArrowRight') currentIndex++;
-            else currentIndex--;
-            if (currentIndex < 0) currentIndex = tabs.length - 1;
-            if (currentIndex >= tabs.length) currentIndex = 0;
-            tabs[currentIndex].focus();
+        // پشتیبانی کیبورد
+        tab.addEventListener('keydown', (e) => {
+          let idx = Array.from(tabs).indexOf(e.target);
+          if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+            e.preventDefault();
+            const prev = idx === 0 ? tabs.length - 1 : idx - 1;
+            tabs[prev].focus();
+          } else if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+            e.preventDefault();
+            const next = idx === tabs.length - 1 ? 0 : idx + 1;
+            tabs[next].focus();
           }
         });
       });
 
-      // کپی متن
-      function copyText(text, messageEl) {
-        navigator.clipboard
-          .writeText(text)
-          .then(() => {
-            messageEl.textContent = data[langSelect.value].copySuccess;
-            setTimeout(() => (messageEl.textContent = ''), 2500);
-          })
-          .catch(() => {
-            messageEl.textContent = data[langSelect.value].copyError;
-            messageEl.classList.add('error');
-            setTimeout(() => {
-              messageEl.textContent = '';
-              messageEl.classList.remove('error');
-            }, 4000);
-          });
+      // کپی به کلیپ‌بورد
+      function copyText(text, button) {
+        navigator.clipboard.writeText(text).then(() => {
+          const originalText = button.textContent;
+          button.textContent = languageSelect.value === 'fa' ? 'کپی شد!' : 'Copied!';
+          button.disabled = true;
+          setTimeout(() => {
+            button.textContent = originalText;
+            button.disabled = false;
+          }, 1500);
+        }).catch(() => {
+          alert(languageSelect.value === 'fa' ? 'کپی انجام نشد.' : 'Copy failed.');
+        });
       }
 
       copyConfigBtn.addEventListener('click', () => {
-        copyText(configArea.value || configArea.textContent, copyMessage1);
+        copyText(configText.value, copyConfigBtn);
       });
       copyProxyBtn.addEventListener('click', () => {
-        copyText(proxyArea.value || proxyArea.textContent, copyMessage2);
+        copyText(proxyText.value, copyProxyBtn);
       });
 
-      // حالت شب/روز
-      function updateThemeIcon() {
-        toggleThemeBtn.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
-        toggleThemeBtn.title = data[langSelect.value].toggleThemeTitle;
+      // تغییر حالت شب/روز
+      function updateThemeButton() {
+        if (document.body.classList.contains('light')) {
+          toggleThemeBtn.textContent = '🌙';
+          toggleThemeBtn.title = languageSelect.value === 'fa' ? 'حالت شب' : 'Dark Mode';
+          toggleThemeBtn.setAttribute('aria-label', languageSelect.value === 'fa' ? 'تغییر به حالت شب' : 'Switch to dark mode');
+        } else {
+          toggleThemeBtn.textContent = '☀️';
+          toggleThemeBtn.title = languageSelect.value === 'fa' ? 'حالت روز' : 'Light Mode';
+          toggleThemeBtn.setAttribute('aria-label', languageSelect.value === 'fa' ? 'تغییر به حالت روز' : 'Switch to light mode');
+        }
       }
       toggleThemeBtn.addEventListener('click', () => {
-        document.body.classList.toggle('dark');
-        updateThemeIcon();
+        document.body.classList.toggle('light');
+        updateThemeButton();
       });
-      updateThemeIcon();
+      updateThemeButton();
 
       // تغییر زبان
       function updateLanguage() {
-        const lang = langSelect.value;
-        document.documentElement.lang = lang;
-        document.documentElement.dir = lang === 'fa' ? 'rtl' : 'ltr';
-        pageTitle.textContent = data[lang].pageTitle;
-        document.getElementById('passwordLabel').textContent = data[lang].passwordLabel;
-        loginBtn.textContent = data[lang].loginBtn;
-        document.getElementById('configTab').textContent = data[lang].configTab;
-        document.getElementById('proxyTab').textContent = data[lang].proxyTab;
-        copyConfigBtn.textContent = data[lang].copyConfigBtn;
-        copyProxyBtn.textContent = data[lang].copyProxyBtn;
-        document.getElementById('configInstructions').innerHTML = data[lang].configInstructions;
-        document.querySelector('.language-select label').textContent = data[lang].langLabel;
-
-        // لینک دانلود ها
-        const dl = document.getElementById('downloadButtons');
-        dl.children[0].textContent = data[lang].downloadHiddify;
-        dl.children[1].textContent = data[lang].downloadV2ray;
-        dl.children[2].textContent = data[lang].downloadStreisand;
-        dl.children[3].textContent = data[lang].downloadV2box;
-
-        updateThemeIcon();
-
-        // ریست پیام‌ها و ورودی
-        loginMessage.textContent = '';
-        passwordInput.value = '';
-        passwordInput.disabled = false;
-        loginBtn.disabled = false;
-        contentSection.classList.add('hidden');
+        const lang = languageSelect.value;
+        if (lang === 'fa') {
+          document.documentElement.lang = 'fa';
+          document.body.dir = 'rtl';
+          // متن‌های ثابت
+          document.getElementById('passwordLabel').textContent = 'رمز عبور را وارد کنید:';
+          loginBtn.textContent = 'ورود';
+          loginError.style.display = 'none';
+          document.getElementById('tabConfig').textContent = 'کانفیگ';
+          document.getElementById('tabProxy').textContent = 'پروکسی';
+          copyConfigBtn.textContent = 'کپی کانفیگ';
+          copyProxyBtn.textContent = 'کپی پروکسی';
+          toggleThemeBtn.title = document.body.classList.contains('light') ? 'حالت روز' : 'حالت شب';
+          toggleThemeBtn.setAttribute('aria-label', document.body.classList.contains('light') ? 'تغییر به حالت روز' : 'تغییر به حالت شب');
+          languageSelect.title = 'انتخاب زبان';
+        } else {
+          document.documentElement.lang = 'en';
+          document.body.dir = 'ltr';
+          document.getElementById('passwordLabel').textContent = 'Enter password:';
+          loginBtn.textContent = 'Login';
+          loginError.style.display = 'none';
+          document.getElementById('tabConfig').textContent = 'Config';
+          document.getElementById('tabProxy').textContent = 'Proxy';
+          copyConfigBtn.textContent = 'Copy Config';
+          copyProxyBtn.textContent = 'Copy Proxy';
+          toggleThemeBtn.title = document.body.classList.contains('light') ? 'Light Mode' : 'Dark Mode';
+          toggleThemeBtn.setAttribute('aria-label', document.body.classList.contains('light') ? 'Switch to light mode' : 'Switch to dark mode');
+          languageSelect.title = 'Select language';
+        }
       }
-
-      langSelect.addEventListener('change', updateLanguage);
-
+      languageSelect.addEventListener('change', () => {
+        updateLanguage();
+      });
       updateLanguage();
+
+      // اجازه بده اینتر هم ورود کنه
+      passwordInput.addEventListener('keydown', e => {
+        if (e.key === 'Enter') {
+          loginBtn.click();
+        }
+      });
     })();
   </script>
 </body>
 </html>
+
 
 
 
