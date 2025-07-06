@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="fa">
 <head>
   <meta charset="UTF-8">
   <title>GoldenShine | گلدن شاین</title>
@@ -9,198 +9,187 @@
     body {
       margin: 0;
       font-family: 'Vazir', sans-serif;
-      background: linear-gradient(-45deg, #1c1c1c, #121212, #1c1c1c, #000);
-      background-size: 400% 400%;
-      animation: gradient 15s ease infinite;
-      color: #f1f5f9;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
+      transition: background 0.5s, color 0.5s;
     }
 
-    @keyframes gradient {
+    body.dark {
+      background: #0e0e0e;
+      color: #f1f5f9;
+    }
+
+    body.light {
+      background: #f1f5f9;
+      color: #0e0e0e;
+    }
+
+    .background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(-45deg, #1a1a1a, #111, #2b2b2b, #000);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      z-index: -1;
+    }
+
+    @keyframes gradientBG {
       0% {background-position: 0% 50%;}
       50% {background-position: 100% 50%;}
       100% {background-position: 0% 50%;}
     }
 
     .card {
-      background: rgba(0,0,0,0.6);
+      margin: auto;
+      max-width: 700px;
       padding: 2rem;
       border-radius: 20px;
-      box-shadow: 0 0 40px rgba(255, 215, 0, 0.2);
-      max-width: 600px;
-      width: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      box-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
+      color: inherit;
+    }
+
+    .tabs, .section, .language-switch, .footer {
       text-align: center;
     }
 
-    h1 {
-      color: gold;
-      font-size: 2rem;
-      animation: glow 2s infinite alternate;
-    }
-
-    @keyframes glow {
-      from { text-shadow: 0 0 5px gold; }
-      to { text-shadow: 0 0 20px gold; }
-    }
-
-    .tabs { display: flex; justify-content: center; margin: 1rem 0; }
-
-    .tab {
-      padding: 0.5rem 1.5rem;
-      margin: 0 0.5rem;
-      background: #333;
-      border-radius: 8px;
-      cursor: pointer;
-      color: #aaa;
-    }
-
-    .tab.active {
-      background: gold;
-      color: black;
-      font-weight: bold;
-    }
-
-    textarea {
-      width: 100%;
-      height: 160px;
-      border-radius: 10px;
-      padding: 1rem;
-      resize: none;
-      border: none;
-      background: #2d2d2d;
-      color: #f1f5f9;
-      font-family: monospace;
-    }
-
-    .button {
-      margin-top: 1rem;
-      padding: 0.7rem 1.5rem;
-      border: none;
-      border-radius: 12px;
-      background: gold;
-      color: black;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .section { display: none; text-align: right; }
-    .section.active { display: block; }
-
-    #languageToggle {
-      position: absolute;
-      top: 1rem;
-      left: 1rem;
-      background: #222;
-      border-radius: 6px;
-      color: #fff;
-      padding: 0.3rem 1rem;
-      cursor: pointer;
-    }
-
-    footer {
-      text-align: center;
+    .footer {
       margin-top: 2rem;
       font-size: 0.9rem;
-      color: #aaa;
+      opacity: 0.7;
+    }
+
+    .tab, button {
+      font-family: 'Vazir', sans-serif;
+    }
+
+    #howToUse {
+      direction: rtl;
+      text-align: right;
+      background: #222;
+      padding: 1rem;
+      border-radius: 10px;
+      margin-top: 1rem;
+      display: none;
+    }
+
+    .download-buttons a {
+      display: block;
+      margin: 0.5rem 0;
+      color: gold;
+      text-decoration: none;
     }
   </style>
 </head>
-<body>
-  <div id="languageToggle" onclick="toggleLanguage()">EN</div>
-  <div class="card">
-    <h1 id="title">🌟 GoldenShine</h1>
-    <div class="tabs">
-      <div class="tab active" onclick="showTab('config')" id="config-tab">📂 کانفیگ‌ها</div>
-      <div class="tab" onclick="showTab('howto')" id="howto-tab">ℹ️ نحوه وارد کردن</div>
+<body class="dark">
+<div class="background"></div>
+<div class="card">
+  <div id="login">
+    <h1 id="logo">🌟 GoldenShine</h1>
+    <p>برای دسترسی رمز عبور را وارد کنید</p>
+    <input type="password" id="password" placeholder="رمز عبور">
+    <button onclick="checkPassword()">ورود</button>
+    <p id="loginMessage"></p>
+  </div>
+
+  <div id="content" class="hidden">
+    <div class="language-switch">
+      <button onclick="setLanguage('fa')">🇮🇷 فارسی</button>
+      <button onclick="setLanguage('en')">🇺🇸 English</button>
     </div>
 
-    <div class="section active" id="config">
-      <textarea readonly>
+    <div class="tabs">
+      <button class="tab active" onclick="showTab('config')">📂 کانفیگ‌ها</button>
+      <button class="tab" onclick="showTab('proxy')">🌐 پروکسی‌ها</button>
+      <button class="tab" onclick="toggleHowToUse()">📘 نحوه وارد کردن کانفیگ‌ها</button>
+    </div>
+
+    <div id="config" class="section">
+      <textarea id="configText" readonly>
 vmess://eyJhZGQiOiJnb2xkZW4uY29tIiwidiI6IjIiLCJwIjoiNDQzIiwiaWQiOiIxMjMtYWJjIn0=
 trojan://pass@goldenshine.com:443
       </textarea>
-      <button class="button" onclick="copyText()">📋 کپی کردن کانفیگ‌ها</button>
+      <button onclick="copyText('configText')">📋 کپی کانفیگ</button>
     </div>
 
-    <div class="section" id="howto">
-      <div id="howto-fa">
-        <h3>📱 Android:</h3>
-        <p>۱. کانفیگ‌ها را کپی کنید</p>
-        <p>۲. وارد نرم‌افزار مربوطه شوید</p>
-        <p>۳. روی + بزنید و گزینه <strong>import from clipboard</strong> را انتخاب کنید</p>
-        <p>
-          <a href="https://github.com/hiddify/hiddify-next/releases/tag/draft" target="_blank">دانلود Hiddify</a><br>
-          <a href="https://github.com/2dust/v2rayNG/releases" target="_blank">دانلود V2RayNG</a>
-        </p>
-
-        <h3>🍎 iOS:</h3>
-        <p>۱. کانفیگ‌ها را کپی کنید</p>
-        <p>۲. وارد نرم‌افزار شوید</p>
-        <p>۳. روی + بزنید و گزینه <strong>import from clipboard</strong> را انتخاب کنید</p>
-        <p>
-          <a href="https://apps.apple.com/app/id6450534064" target="_blank">دانلود Streisand</a><br>
-          <a href="https://apps.apple.com/us/app/v2box-v2ray-client/id6446814690" target="_blank">دانلود V2Box</a>
-        </p>
-      </div>
-      <div id="howto-en" style="display:none">
-        <h3>📱 Android:</h3>
-        <p>1. Copy the configs</p>
-        <p>2. Open your VPN app</p>
-        <p>3. Tap + and select <strong>import from clipboard</strong></p>
-        <p>
-          <a href="https://github.com/hiddify/hiddify-next/releases/tag/draft" target="_blank">Download Hiddify</a><br>
-          <a href="https://github.com/2dust/v2rayNG/releases" target="_blank">Download V2RayNG</a>
-        </p>
-
-        <h3>🍎 iOS:</h3>
-        <p>1. Copy the configs</p>
-        <p>2. Open your app</p>
-        <p>3. Tap + and select <strong>import from clipboard</strong></p>
-        <p>
-          <a href="https://apps.apple.com/app/id6450534064" target="_blank">Download Streisand</a><br>
-          <a href="https://apps.apple.com/us/app/v2box-v2ray-client/id6446814690" target="_blank">Download V2Box</a>
-        </p>
-      </div>
+    <div id="proxy" class="section hidden">
+      <textarea id="proxyText" readonly>
+https://t.me/proxy?server=goldenshine.ir&port=443&type=mtproto&secret=abcdef123456
+https://t.me/proxy?server=proxy.goldenshine.com&type=socks5&port=1080
+      </textarea>
+      <button onclick="copyText('proxyText')">📋 کپی پروکسی</button>
     </div>
 
-    <footer>
-      طراحی شده توسط تیم <strong>GoldenShine</strong>
-    </footer>
+    <div id="howToUse" class="section">
+      <h3>📱 Android:</h3>
+      <p>۱. کانفیگ‌ها را کپی کنید<br>
+۲. وارد کلاینت (نرم‌افزار) مربوطه شوید<br>
+۳. گزینه + را بزنید سپس گزینه افزودن از طریق کلیپ‌بورد را بزنید</p>
+      <div class="download-buttons">
+        <a href="https://github.com/hiddify/hiddify-next/releases/tag/draft" target="_blank">⬇️ دانلود نرم‌افزار Hiddify</a>
+        <a href="https://github.com/2dust/v2rayNG/releases" target="_blank">⬇️ دانلود نرم‌افزار V2RayNG</a>
+      </div>
+      <h3>📱 iOS:</h3>
+      <p>۱. کانفیگ‌ها را کپی کنید<br>
+۲. وارد کلاینت (نرم‌افزار) مربوطه شوید<br>
+۳. گزینه + را بزنید سپس گزینه import from clipboard را بزنید</p>
+      <div class="download-buttons">
+        <a href="https://apps.apple.com/app/id6450534064" target="_blank">⬇️ دانلود نرم‌افزار Streisand</a>
+        <a href="https://apps.apple.com/us/app/v2box-v2ray-client/id6446814690" target="_blank">⬇️ دانلود نرم‌افزار V2Box</a>
+      </div>
+      <h3>💻 Windows:</h3>
+      <p>۱. نرم‌افزار مورد نظر را نصب کنید<br>
+۲. گزینه import from clipboard را بزنید</p>
+    </div>
   </div>
 
-  <script>
-    function copyText() {
-      const text = document.querySelector('textarea');
-      text.select();
-      document.execCommand('copy');
-      alert('✅ کپی شد!');
-    }
+  <div class="footer">
+    طراحی شده توسط تیم گلدن شاین 🌟
+  </div>
+</div>
 
-    function showTab(tab) {
-      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-      document.getElementById(tab).classList.add('active');
-      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-      document.getElementById(`${tab}-tab`).classList.add('active');
+<script>
+  const correctPassword = "12345";
+  function checkPassword() {
+    const input = document.getElementById("password").value;
+    const message = document.getElementById("loginMessage");
+    if (input === correctPassword) {
+      document.getElementById("login").classList.add("hidden");
+      document.getElementById("content").classList.remove("hidden");
+    } else {
+      message.textContent = "❌ رمز اشتباه است!";
+      message.style.color = "red";
     }
+  }
 
-    function toggleLanguage() {
-      const currentLang = document.documentElement.lang;
-      const toLang = currentLang === 'fa' ? 'en' : 'fa';
-      document.documentElement.lang = toLang;
-      document.documentElement.dir = toLang === 'fa' ? 'rtl' : 'ltr';
+  function copyText(id) {
+    const text = document.getElementById(id);
+    text.select();
+    document.execCommand("copy");
+    alert("✅ با موفقیت کپی شد!");
+  }
 
-      document.getElementById('languageToggle').textContent = toLang === 'fa' ? 'EN' : 'FA';
-      document.getElementById('howto-fa').style.display = toLang === 'fa' ? 'block' : 'none';
-      document.getElementById('howto-en').style.display = toLang === 'en' ? 'block' : 'none';
-      document.getElementById('config-tab').textContent = toLang === 'fa' ? '📂 کانفیگ‌ها' : '📂 Configs';
-      document.getElementById('howto-tab').textContent = toLang === 'fa' ? 'ℹ️ نحوه وارد کردن' : 'ℹ️ How to Import';
-    }
-  </script>
+  function showTab(tabId) {
+    document.querySelectorAll('.section').forEach(e => e.classList.add('hidden'));
+    document.getElementById(tabId).classList.remove('hidden');
+    document.querySelectorAll('.tab').forEach(e => e.classList.remove('active'));
+    event.target.classList.add('active');
+  }
+
+  function toggleHowToUse() {
+    const el = document.getElementById("howToUse");
+    el.style.display = el.style.display === "none" || el.style.display === "" ? "block" : "none";
+  }
+
+  function setLanguage(lang) {
+    document.documentElement.lang = lang;
+    // تنظیمات بیشتر می‌تواند اینجا اضافه شود برای ترجمه پویا در آینده
+  }
+</script>
 </body>
 </html>
+
 
 
 
