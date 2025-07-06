@@ -1,192 +1,52 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="fa" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>GoldenShine | گلدن شاین</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="دسترسی به کانفیگ و پروکسی‌های گلدن شاین با رمز عبور." />
-  <link href="https://cdn.fontcdn.ir/Font/Persian/Vazir.css" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.fontcdn.ir/Font/Persian/Vazir.css" rel="stylesheet">
   <style>
-    * {
-      box-sizing: border-box;
-    }
     body {
       margin: 0;
       font-family: 'Vazir', sans-serif;
-      background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+      background: linear-gradient(-45deg, #1c1c1c, #121212, #1c1c1c, #000);
+      background-size: 400% 400%;
+      animation: gradient 15s ease infinite;
       color: #f1f5f9;
       display: flex;
       align-items: center;
       justify-content: center;
       min-height: 100vh;
-      overflow: hidden;
-      position: relative;
-      transition: background 0.5s, color 0.5s;
     }
 
-    body.light {
-      background: linear-gradient(135deg, #fefefe, #ddd);
-      color: #222;
-    }
-
-    /* پس‌زمینه موجی با لایه‌های متحرک و متفاوت */
-    .waves {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      z-index: -1;
-      overflow: hidden;
-      background: linear-gradient(180deg, #111, #1c1c1c);
-      transition: background 0.5s;
-    }
-    body.light .waves {
-      background: linear-gradient(180deg, #eee, #ccc);
-    }
-
-    .wave {
-      position: absolute;
-      width: 200%;
-      height: 180px;
-      background: rgba(255, 215, 0, 0.1);
-      border-radius: 43% 57% 64% 36% / 46% 38% 62% 54%;
-      filter: drop-shadow(0 0 5px rgba(255,215,0,0.3));
-      animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
-    }
-    body.light .wave {
-      background: rgba(255, 215, 0, 0.15);
-      filter: drop-shadow(0 0 7px rgba(255,215,0,0.6));
-    }
-
-    .wave1 {
-      top: 100px;
-      animation: waveMove 8s infinite;
-      opacity: 0.3;
-      left: -40%;
-    }
-    .wave2 {
-      top: 150px;
-      animation: waveMoveReverse 12s infinite;
-      opacity: 0.2;
-      left: -60%;
-      background: rgba(255, 215, 0, 0.07);
-      border-radius: 37% 63% 55% 45% / 48% 42% 58% 52%;
-    }
-    .wave3 {
-      top: 130px;
-      animation: waveMove 10s infinite;
-      opacity: 0.25;
-      left: -50%;
-      background: rgba(255, 215, 0, 0.09);
-      border-radius: 60% 40% 50% 50% / 50% 50% 60% 40%;
-    }
-
-    @keyframes waveMove {
-      0% {
-        transform: translateX(0) rotate(0deg);
-      }
-      50% {
-        transform: translateX(25%) rotate(10deg);
-      }
-      100% {
-        transform: translateX(0) rotate(0deg);
-      }
-    }
-    @keyframes waveMoveReverse {
-      0% {
-        transform: translateX(0) rotate(0deg);
-      }
-      50% {
-        transform: translateX(-25%) rotate(-12deg);
-      }
-      100% {
-        transform: translateX(0) rotate(0deg);
-      }
+    @keyframes gradient {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
     }
 
     .card {
-      background: rgba(26, 26, 26, 0.9);
+      background: rgba(0,0,0,0.6);
       padding: 2rem;
       border-radius: 20px;
-      box-shadow: 0 0 40px rgba(255, 215, 0, 0.3);
-      max-width: 500px;
+      box-shadow: 0 0 40px rgba(255, 215, 0, 0.2);
+      max-width: 600px;
       width: 100%;
       text-align: center;
-      animation: fadeIn 2s ease-in-out;
-      transition: background 0.5s, color 0.5s;
-      position: relative;
-      z-index: 10;
-    }
-
-    body.light .card {
-      background: #fff;
-      color: #222;
-      box-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
     }
 
     h1 {
       color: gold;
-      margin-bottom: 1rem;
-      font-size: 1.8rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.6rem;
+      font-size: 2rem;
+      animation: glow 2s infinite alternate;
     }
 
-    body.light h1 {
-      color: #b8860b;
+    @keyframes glow {
+      from { text-shadow: 0 0 5px gold; }
+      to { text-shadow: 0 0 20px gold; }
     }
 
-    input[type="password"], textarea {
-      width: 100%;
-      padding: 0.8rem;
-      border-radius: 12px;
-      border: none;
-      margin-top: 1rem;
-      background: #2d2d2d;
-      color: #f1f5f9;
-      font-size: 1rem;
-      transition: background 0.5s, color 0.5s;
-      font-family: monospace;
-    }
-
-    body.light input[type="password"], body.light textarea {
-      background: #eee;
-      color: #222;
-    }
-
-    button {
-      margin-top: 1rem;
-      padding: 0.7rem 1.5rem;
-      border: none;
-      border-radius: 12px;
-      background: gold;
-      color: black;
-      font-weight: bold;
-      font-size: 1.1rem;
-      cursor: pointer;
-      transition: transform 0.3s ease, background 0.5s;
-      font-family: 'Vazir', sans-serif;
-      user-select: none;
-    }
-
-    button:hover {
-      transform: scale(1.05);
-      background: #ffd700cc;
-    }
-
-    .tabs {
-      display: flex;
-      justify-content: center;
-      margin-top: 1rem;
-    }
+    .tabs { display: flex; justify-content: center; margin: 1rem 0; }
 
     .tab {
       padding: 0.5rem 1.5rem;
@@ -195,13 +55,6 @@
       border-radius: 8px;
       cursor: pointer;
       color: #aaa;
-      transition: 0.3s ease;
-      font-family: 'Vazir', sans-serif;
-    }
-
-    body.light .tab {
-      background: #ddd;
-      color: #555;
     }
 
     .tab.active {
@@ -210,307 +63,144 @@
       font-weight: bold;
     }
 
-    .section {
+    textarea {
+      width: 100%;
+      height: 160px;
+      border-radius: 10px;
+      padding: 1rem;
+      resize: none;
+      border: none;
+      background: #2d2d2d;
+      color: #f1f5f9;
+      font-family: monospace;
+    }
+
+    .button {
       margin-top: 1rem;
-      position: relative;
+      padding: 0.7rem 1.5rem;
+      border: none;
+      border-radius: 12px;
+      background: gold;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
     }
 
-    .hidden {
-      display: none;
-    }
+    .section { display: none; text-align: right; }
+    .section.active { display: block; }
 
-    #loginMessage, #copyMessage1, #copyMessage2 {
-      margin-top: 0.5rem;
-      font-size: 0.9rem;
-    }
-
-    .success {
-      color: #22c55e;
-    }
-
-    .error {
-      color: #ef4444;
+    #languageToggle {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background: #222;
+      border-radius: 6px;
+      color: #fff;
+      padding: 0.3rem 1rem;
+      cursor: pointer;
     }
 
     footer {
+      text-align: center;
       margin-top: 2rem;
       font-size: 0.9rem;
-      opacity: 0.6;
-      user-select: none;
-    }
-
-    /* لوگوی متحرک طلایی */
-    .logo {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      background: linear-gradient(45deg, gold, #b8860b);
-      box-shadow: 0 0 10px gold;
-      animation: spin 8s linear infinite;
-      display: inline-block;
-    }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg);}
-      100% { transform: rotate(360deg);}
-    }
-
-    /* دکمه حالت شب/روز */
-    .toggle-theme {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      background: gold;
-      border: none;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      cursor: pointer;
-      box-shadow: 0 0 10px gold;
-      font-size: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.3s ease;
-      user-select: none;
-      z-index: 15;
-    }
-
-    .toggle-theme:hover {
-      background: #ffd700cc;
-    }
-
-    /* مودال آموزش */
-    .modal {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.7);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-      font-family: 'Vazir', sans-serif;
-      padding: 1rem;
-    }
-    .modal.show {
-      opacity: 1;
-      pointer-events: auto;
-    }
-    .modal-content {
-      background: #222;
-      border-radius: 15px;
-      max-width: 480px;
-      width: 100%;
-      padding: 1.5rem;
-      color: #eee;
-      overflow-y: auto;
-      max-height: 80vh;
-      position: relative;
-      box-shadow: 0 0 40px gold;
-    }
-
-    body.light .modal-content {
-      background: #fff;
-      color: #222;
-      box-shadow: 0 0 40px #b8860b;
-    }
-
-    .modal-content h2 {
-      margin-top: 0;
-      color: gold;
-      margin-bottom: 1rem;
-    }
-
-    .modal-content p {
-      line-height: 1.6;
-      margin-bottom: 1rem;
-      font-size: 1rem;
-    }
-
-    .modal-close {
-      position: absolute;
-      top: 10px;
-      right: 15px;
-      font-size: 24px;
-      color: gold;
-      font-weight: bold;
-      cursor: pointer;
-      user-select: none;
-    }
-
-    body.light .modal-close {
-      color: #b8860b;
-    }
-
-    @media (max-width: 500px) {
-      .tab {
-        padding: 0.4rem 1rem;
-        font-size: 0.9rem;
-      }
-
-      h1 {
-        font-size: 1.4rem;
-      }
-
-      button {
-        font-size: 1rem;
-      }
+      color: #aaa;
     }
   </style>
 </head>
 <body>
-
-  <!-- پس زمینه موجی -->
-  <div class="waves">
-    <div class="wave wave1"></div>
-    <div class="wave wave2"></div>
-    <div class="wave wave3"></div>
-  </div>
-
-  <!-- دکمه حالت شب/روز -->
-  <button id="toggleTheme" class="toggle-theme" title="تغییر حالت شب/روز">🌙</button>
-
+  <div id="languageToggle" onclick="toggleLanguage()">EN</div>
   <div class="card">
-    <div id="login">
-      <h1><span class="logo"></span> GoldenShine</h1>
-      <p>برای دسترسی رمز عبور را وارد کنید</p>
-      <input type="password" id="password" placeholder="رمز عبور" />
-      <button onclick="checkPassword()">ورود</button>
-      <p id="loginMessage"></p>
+    <h1 id="title">🌟 GoldenShine</h1>
+    <div class="tabs">
+      <div class="tab active" onclick="showTab('config')" id="config-tab">📂 کانفیگ‌ها</div>
+      <div class="tab" onclick="showTab('howto')" id="howto-tab">ℹ️ نحوه وارد کردن</div>
     </div>
 
-    <div id="content" class="hidden">
-      <h1><span class="logo"></span> GoldenShine</h1>
-
-      <div class="tabs">
-        <div class="tab active" onclick="showTab('config')">📂 کانفیگ‌ها</div>
-        <div class="tab" onclick="showTab('proxy')">🌐 پروکسی‌ها</div>
-      </div>
-
-      <div id="config" class="section">
-        <textarea id="configText" readonly>
+    <div class="section active" id="config">
+      <textarea readonly>
 vmess://eyJhZGQiOiJnb2xkZW4uY29tIiwidiI6IjIiLCJwIjoiNDQzIiwiaWQiOiIxMjMtYWJjIn0=
 trojan://pass@goldenshine.com:443
-        </textarea>
-        <button onclick="copyText('configText', 'copyMessage1')">📋 کپی کردن کانفیگ‌ها</button>
-        <button onclick="showModal()" style="margin-top: 0.5rem;">ℹ️ نحوه وارد کردن کانفیگ‌ها</button>
-        <p id="copyMessage1" class="success"></p>
-      </div>
+      </textarea>
+      <button class="button" onclick="copyText()">📋 کپی کردن کانفیگ‌ها</button>
+    </div>
 
-      <div id="proxy" class="section hidden">
-        <textarea id="proxyText" readonly>
-https://t.me/proxy?server=goldenshine.ir&port=443&type=mtproto&secret=abcdef123456
-https://t.me/proxy?server=proxy.goldenshine.com&type=socks5&port=1080
-        </textarea>
-        <button onclick="copyText('proxyText', 'copyMessage2')">📋 کپی کردن پروکسی‌ها</button>
-        <p id="copyMessage2" class="success"></p>
+    <div class="section" id="howto">
+      <div id="howto-fa">
+        <h3>📱 Android:</h3>
+        <p>۱. کانفیگ‌ها را کپی کنید</p>
+        <p>۲. وارد نرم‌افزار مربوطه شوید</p>
+        <p>۳. روی + بزنید و گزینه <strong>import from clipboard</strong> را انتخاب کنید</p>
+        <p>
+          <a href="https://github.com/hiddify/hiddify-next/releases/tag/draft" target="_blank">دانلود Hiddify</a><br>
+          <a href="https://github.com/2dust/v2rayNG/releases" target="_blank">دانلود V2RayNG</a>
+        </p>
+
+        <h3>🍎 iOS:</h3>
+        <p>۱. کانفیگ‌ها را کپی کنید</p>
+        <p>۲. وارد نرم‌افزار شوید</p>
+        <p>۳. روی + بزنید و گزینه <strong>import from clipboard</strong> را انتخاب کنید</p>
+        <p>
+          <a href="https://apps.apple.com/app/id6450534064" target="_blank">دانلود Streisand</a><br>
+          <a href="https://apps.apple.com/us/app/v2box-v2ray-client/id6446814690" target="_blank">دانلود V2Box</a>
+        </p>
+      </div>
+      <div id="howto-en" style="display:none">
+        <h3>📱 Android:</h3>
+        <p>1. Copy the configs</p>
+        <p>2. Open your VPN app</p>
+        <p>3. Tap + and select <strong>import from clipboard</strong></p>
+        <p>
+          <a href="https://github.com/hiddify/hiddify-next/releases/tag/draft" target="_blank">Download Hiddify</a><br>
+          <a href="https://github.com/2dust/v2rayNG/releases" target="_blank">Download V2RayNG</a>
+        </p>
+
+        <h3>🍎 iOS:</h3>
+        <p>1. Copy the configs</p>
+        <p>2. Open your app</p>
+        <p>3. Tap + and select <strong>import from clipboard</strong></p>
+        <p>
+          <a href="https://apps.apple.com/app/id6450534064" target="_blank">Download Streisand</a><br>
+          <a href="https://apps.apple.com/us/app/v2box-v2ray-client/id6446814690" target="_blank">Download V2Box</a>
+        </p>
       </div>
     </div>
 
-    <footer>طراحی توسط تیم گلدن شاین</footer>
+    <footer>
+      طراحی شده توسط تیم <strong>GoldenShine</strong>
+    </footer>
   </div>
 
-  <!-- مودال آموزش -->
-  <div id="modal" class="modal">
-    <div class="modal-content">
-      <span class="modal-close" onclick="closeModal()" title="بستن">×</span>
-      <h2>نحوه وارد کردن کانفیگ‌ها</h2>
-      <p><strong>iOS:</strong> از اپلیکیشن مربوطه وارد بخش وارد کردن کانفیگ شوید و لینک یا فایل کانفیگ را اضافه کنید.</p>
-      <p><strong>Android:</strong> در اپلیکیشن کانفیگ مورد نظر، گزینه‌ی "Import Config" یا "وارد کردن کانفیگ" را انتخاب و لینک یا فایل را بارگذاری کنید.</p>
-      <p><strong>Windows:</strong> کانفیگ را در نرم‌افزار کلاینت مربوطه (مانند V2RayN یا دیگر برنامه‌ها) وارد کنید.</p>
-    </div>
-  </div>
-
-<script>
-  const correctPassword = "12345";
-
-  function checkPassword() {
-    const input = document.getElementById("password").value.trim();
-    const message = document.getElementById("loginMessage");
-    if (input === correctPassword) {
-      document.getElementById("login").classList.add("hidden");
-      document.getElementById("content").classList.remove("hidden");
-      message.textContent = "";
-    } else {
-      message.textContent = "❌ رمز اشتباه است!";
-      message.className = "error";
+  <script>
+    function copyText() {
+      const text = document.querySelector('textarea');
+      text.select();
+      document.execCommand('copy');
+      alert('✅ کپی شد!');
     }
-  }
 
-  function copyText(id, msgId) {
-    const text = document.getElementById(id);
-    text.select();
-    navigator.clipboard.writeText(text.value).then(() => {
-      const msg = document.getElementById(msgId);
-      msg.textContent = "✅ با موفقیت کپی شد!";
-      setTimeout(() => {
-        msg.textContent = "";
-      }, 2000);
-    });
-  }
-
-  function showTab(tab) {
-    const tabs = document.querySelectorAll(".tab");
-    const sections = ["config", "proxy"];
-
-    tabs.forEach((t) => t.classList.remove("active"));
-    document.querySelector(`.tab[onclick*="${tab}"]`).classList.add("active");
-
-    sections.forEach((s) => {
-      document.getElementById(s).classList.add("hidden");
-    });
-
-    document.getElementById(tab).classList.remove("hidden");
-  }
-
-  // حالت شب/روز
-  const toggleBtn = document.getElementById("toggleTheme");
-  const body = document.body;
-
-  function setTheme(theme) {
-    if (theme === "light") {
-      body.classList.add("light");
-      toggleBtn.textContent = "🌙";
-      localStorage.setItem("theme", "light");
-    } else {
-      body.classList.remove("light");
-      toggleBtn.textContent = "☀️";
-      localStorage.setItem("theme", "dark");
+    function showTab(tab) {
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      document.getElementById(tab).classList.add('active');
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.getElementById(`${tab}-tab`).classList.add('active');
     }
-  }
 
-  toggleBtn.addEventListener("click", () => {
-    if (body.classList.contains("light")) {
-      setTheme("dark");
-    } else {
-      setTheme("light");
+    function toggleLanguage() {
+      const currentLang = document.documentElement.lang;
+      const toLang = currentLang === 'fa' ? 'en' : 'fa';
+      document.documentElement.lang = toLang;
+      document.documentElement.dir = toLang === 'fa' ? 'rtl' : 'ltr';
+
+      document.getElementById('languageToggle').textContent = toLang === 'fa' ? 'EN' : 'FA';
+      document.getElementById('howto-fa').style.display = toLang === 'fa' ? 'block' : 'none';
+      document.getElementById('howto-en').style.display = toLang === 'en' ? 'block' : 'none';
+      document.getElementById('config-tab').textContent = toLang === 'fa' ? '📂 کانفیگ‌ها' : '📂 Configs';
+      document.getElementById('howto-tab').textContent = toLang === 'fa' ? 'ℹ️ نحوه وارد کردن' : 'ℹ️ How to Import';
     }
-  });
-
-  // بارگذاری تم ذخیره شده
-  document.addEventListener("DOMContentLoaded", () => {
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme === "light") {
-      setTheme("light");
-    } else {
-      setTheme("dark");
-    }
-  });
-
-  // مودال آموزش
-  const modal = document.getElementById("modal");
-
-  function showModal() {
-    modal.classList.add("show");
-  }
-  function closeModal() {
-    modal.classList.remove("show");
-  }
-</script>
+  </script>
 </body>
 </html>
+
 
 
