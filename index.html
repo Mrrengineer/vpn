@@ -30,7 +30,6 @@
       color: #222;
     }
 
-    /* پس‌زمینه موجی با لایه‌های متحرک و متفاوت */
     .waves {
       position: absolute;
       width: 100%;
@@ -289,337 +288,340 @@
       right: 20px;
       background: gold;
       border-radius: 12px;
-      border: none;
-      padding: 0.3rem 0.7rem;
-      font-weight: bold;
+      padding: 5px 10px;
       cursor: pointer;
-      font-family: 'Vazir', sans-serif;
+      font-weight: bold;
       user-select: none;
+      font-family: 'Vazir', sans-serif;
+      color: black;
       box-shadow: 0 0 10px gold;
       transition: background 0.5s;
     }
 
-    /* لینک دانلود نرم‌افزار */
-    .downloads {
-      margin-top: 1rem;
-      text-align: center;
-    }
-
-    .downloads button {
-      margin: 0.4rem;
-      background: #222;
-      color: gold;
-      border: 2px solid gold;
-      padding: 0.5rem 1.2rem;
+    .language-select select {
+      border: none;
+      background: transparent;
       font-weight: bold;
-      border-radius: 10px;
-      transition: background 0.3s, color 0.3s;
-      user-select: none;
-      direction: ltr;
-    }
-    .downloads button:hover {
-      background: gold;
+      font-family: 'Vazir', sans-serif;
+      cursor: pointer;
       color: black;
-      border-color: gold;
+      outline: none;
     }
 
   </style>
 </head>
 <body>
+  <button class="toggle-theme" title="تغییر حالت شب/روز" aria-label="Toggle dark/light mode">🌙</button>
 
-<button class="toggle-theme" id="toggleTheme" aria-label="تغییر حالت شب و روز">🌙</button>
-
-<select class="language-select" id="languageSelect" aria-label="انتخاب زبان">
-  <option value="fa" selected>فارسی</option>
-  <option value="en">English</option>
-</select>
-
-<div class="waves" aria-hidden="true">
-  <div class="wave wave1"></div>
-  <div class="wave wave2"></div>
-  <div class="wave wave3"></div>
-</div>
-
-<div class="card" role="main" aria-live="polite">
-  <h1><span class="logo" aria-hidden="true"></span> <span id="title">دسترسی به کانفیگ و پروکسی</span></h1>
-
-  <div id="loginSection">
-    <label for="passwordInput" id="labelPassword">رمز عبور را وارد کنید:</label>
-    <input
-      type="password"
-      id="passwordInput"
-      aria-labelledby="labelPassword"
-      placeholder="رمز عبور"
-      autocomplete="off"
-    />
-    <button id="loginBtn">ورود</button>
-    <div id="loginMessage" role="alert" aria-live="assertive"></div>
+  <div class="language-select" title="انتخاب زبان">
+    <select aria-label="انتخاب زبان">
+      <option value="fa" selected>فارسی</option>
+      <option value="en">English</option>
+    </select>
   </div>
 
-  <div id="contentSection" class="hidden" tabindex="0">
-    <div class="tabs" role="tablist" aria-label="بخش‌ها">
-      <button class="tab active" role="tab" aria-selected="true" aria-controls="configSection" id="tabConfig">کانفیگ‌ها</button>
-      <button class="tab" role="tab" aria-selected="false" aria-controls="proxySection" id="tabProxy">پروکسی‌ها</button>
-      <button class="tab" role="tab" aria-selected="false" aria-controls="tutorialSection" id="tabTutorial">آموزش</button>
-    </div>
+  <div class="waves" aria-hidden="true">
+    <div class="wave wave1"></div>
+    <div class="wave wave2"></div>
+    <div class="wave wave3"></div>
+  </div>
 
-    <section id="configSection" class="section" role="tabpanel" aria-labelledby="tabConfig">
-      <h2>کانفیگ‌های گلدن شاین</h2>
-      <textarea id="configText" rows="7" readonly aria-label="متن کانفیگ‌ها">
-# نمونه کانفیگ GoldenShine
-# برای اتصال کافیست این کانفیگ را در نرم‌افزار مورد نظر کپی کنید.
-# رمز عبور جهت استفاده: your_password_here
+  <div class="card" role="main" aria-live="polite" aria-label="صفحه ورود و نمایش کانفیگ و پروکسی">
+    <h1>
+      <span class="logo" aria-hidden="true"></span>
+      <span id="title">گلدن شاین</span>
+    </h1>
 
-[GoldenShine]
-server = golden.example.com
-port = 443
-uuid = xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-alterId = 0
-security = auto
-network = ws
-ws-path = /goldenshine
-      </textarea>
-      <button id="copyConfigBtn" aria-describedby="copyMessage1">کپی کانفیگ</button>
-      <div id="copyMessage1" role="alert" aria-live="polite"></div>
+    <section id="loginSection" aria-label="ورود با رمز عبور">
+      <label for="passwordInput" id="passwordLabel">رمز عبور را وارد کنید:</label>
+      <input
+        type="password"
+        id="passwordInput"
+        autocomplete="current-password"
+        aria-labelledby="passwordLabel"
+        aria-required="true"
+        placeholder="********"
+        aria-describedby="loginMessage"
+      />
+      <button id="loginBtn" aria-describedby="loginMessage">ورود</button>
+      <div id="loginMessage" role="alert" aria-live="assertive"></div>
+    </section>
 
-      <div class="downloads" aria-label="دانلود نرم‌افزارهای گلدن شاین">
-        <button onclick="window.open('https://example.com/windows','_blank')">Windows</button>
-        <button onclick="window.open('https://example.com/android','_blank')">Android</button>
-        <button onclick="window.open('https://example.com/ios','_blank')">iOS</button>
+    <section id="contentSection" class="hidden" aria-label="محتوای کانفیگ و پروکسی">
+      <div class="tabs" role="tablist" aria-label="انتخاب نوع محتوا">
+        <div class="tab active" role="tab" tabindex="0" aria-selected="true" aria-controls="configTabContent" id="configTab">کانفیگ</div>
+        <div class="tab" role="tab" tabindex="-1" aria-selected="false" aria-controls="proxyTabContent" id="proxyTab">پروکسی</div>
+      </div>
+
+      <div id="configTabContent" class="section" role="tabpanel" aria-labelledby="configTab">
+        <textarea
+          id="configText"
+          readonly
+          rows="8"
+          aria-label="متن کانفیگ"
+        ></textarea>
+        <button id="copyConfigBtn" aria-describedby="copyMessage1">کپی کانفیگ</button>
+        <div id="copyMessage1" role="alert" aria-live="polite"></div>
+      </div>
+
+      <div id="proxyTabContent" class="section hidden" role="tabpanel" aria-labelledby="proxyTab">
+        <textarea
+          id="proxyText"
+          readonly
+          rows="8"
+          aria-label="متن پروکسی"
+        ></textarea>
+        <button id="copyProxyBtn" aria-describedby="copyMessage2">کپی پروکسی</button>
+        <div id="copyMessage2" role="alert" aria-live="polite"></div>
       </div>
     </section>
-
-    <section id="proxySection" class="section hidden" role="tabpanel" aria-labelledby="tabProxy">
-      <h2>پروکسی‌های فعال</h2>
-      <textarea id="proxyText" rows="7" readonly aria-label="متن پروکسی‌ها">
-# پروکسی‌های فعال GoldenShine
-# برای استفاده از پروکسی کافیست در نرم‌افزار وارد کنید.
-
-proxy1.golden.example.com:8080
-proxy2.golden.example.com:8080
-proxy3.golden.example.com:8080
-      </textarea>
-      <button id="copyProxyBtn" aria-describedby="copyMessage2">کپی پروکسی‌ها</button>
-      <div id="copyMessage2" role="alert" aria-live="polite"></div>
-    </section>
-
-    <section id="tutorialSection" class="section hidden" role="tabpanel" aria-labelledby="tabTutorial" style="direction: rtl; font-family: Vazir, Tahoma, sans-serif; text-align: justify;">
-      <h2>آموزش کامل وارد کردن کانفیگ</h2>
-      <p>
-        برای استفاده از کانفیگ‌های گلدن شاین، پس از دریافت رمز عبور و ورود به این صفحه، مراحل زیر را دنبال کنید:
-      </p>
-      <ol>
-        <li>نرم‌افزار مربوط به پروکسی یا VPN خود را باز کنید (برای مثال: V2RayN، Shadowsocks، یا دیگر نرم‌افزارهای پشتیبانی شده).</li>
-        <li>گزینه افزودن کانفیگ جدید را انتخاب کنید.</li>
-        <li>متن کانفیگ ارائه شده در بخش «کانفیگ‌ها» را به صورت کامل و بدون تغییر کپی کنید.</li>
-        <li>کانفیگ کپی شده را در قسمت وارد کردن کانفیگ نرم‌افزار جای‌گذاری کنید.</li>
-        <li>تنظیمات را ذخیره کرده و به سرور وصل شوید.</li>
-        <li>در صورت بروز هرگونه مشکل، از بخش «پروکسی‌ها» آدرس‌های پروکسی را بررسی کنید یا با پشتیبانی تماس بگیرید.</li>
-      </ol>
-      <p>
-        توجه داشته باشید که رمز عبور جهت استفاده از کانفیگ‌ها را محرمانه نگه دارید و به دیگران منتقل نکنید.
-      </p>
-    </section>
   </div>
 
-  <footer aria-label="حق نشر">
-    © 2025 گلدن شاین - GoldenShine
+  <footer aria-label="اطلاعات حق نشر">
+    © ۲۰۲۵ گلدن شاین. تمامی حقوق محفوظ است.
   </footer>
-</div>
 
-<script>
-  // عناصر کلیدی
-  const passwordInput = document.getElementById('passwordInput');
-  const loginBtn = document.getElementById('loginBtn');
-  const loginMessage = document.getElementById('loginMessage');
-  const loginSection = document.getElementById('loginSection');
-  const contentSection = document.getElementById('contentSection');
+  <script>
+    (() => {
+      const passwordInput = document.getElementById('passwordInput');
+      const loginBtn = document.getElementById('loginBtn');
+      const loginMessage = document.getElementById('loginMessage');
+      const loginSection = document.getElementById('loginSection');
+      const contentSection = document.getElementById('contentSection');
+      const configText = document.getElementById('configText');
+      const proxyText = document.getElementById('proxyText');
+      const copyConfigBtn = document.getElementById('copyConfigBtn');
+      const copyProxyBtn = document.getElementById('copyProxyBtn');
+      const copyMessage1 = document.getElementById('copyMessage1');
+      const copyMessage2 = document.getElementById('copyMessage2');
 
-  const copyConfigBtn = document.getElementById('copyConfigBtn');
-  const copyProxyBtn = document.getElementById('copyProxyBtn');
+      const tabs = document.querySelectorAll('.tab');
+      const configTabContent = document.getElementById('configTabContent');
+      const proxyTabContent = document.getElementById('proxyTabContent');
 
-  const copyMessage1 = document.getElementById('copyMessage1');
-  const copyMessage2 = document.getElementById('copyMessage2');
+      const toggleThemeBtn = document.querySelector('.toggle-theme');
+      const languageSelect = document.querySelector('.language-select select');
 
-  const tabs = document.querySelectorAll('.tab');
-  const sections = {
-    config: document.getElementById('configSection'),
-    proxy: document.getElementById('proxySection'),
-    tutorial: document.getElementById('tutorialSection'),
-  };
+      // رمز عبور نمونه (میتوانید اینجا تغییر دهید)
+      const PASSWORD = 'GoldenShine2025';
 
-  const toggleThemeBtn = document.getElementById('toggleTheme');
-  const languageSelect = document.getElementById('languageSelect');
+      // متن کانفیگ و پروکسی (به دلخواه تغییر دهید)
+      const CONFIG_DATA = `
+[Proxy]
+http=127.0.0.1:8080
+https=127.0.0.1:8080
 
-  // رمز عبور صحیح (می‌توانید آن را تغییر دهید)
-  const correctPassword = 'golden2025';
+[Config]
+username=goldenshine
+password=secret123
+server=goldenshine.ir
+port=443
+protocol=wireguard
+      `.trim();
 
-  // متن‌ها بر اساس زبان
-  const texts = {
-    fa: {
-      title: 'دسترسی به کانفیگ و پروکسی',
-      labelPassword: 'رمز عبور را وارد کنید:',
-      loginBtn: 'ورود',
-      loginSuccess: 'ورود موفقیت‌آمیز بود.',
-      loginFail: 'رمز عبور اشتباه است، لطفا دوباره تلاش کنید.',
-      copyConfig: 'کانفیگ کپی شد!',
-      copyProxy: 'پروکسی‌ها کپی شدند!',
-      tabs: ['کانفیگ‌ها', 'پروکسی‌ها', 'آموزش'],
-      tutorialTitle: 'آموزش کامل وارد کردن کانفیگ',
-      tutorialText: `
-        <p>برای استفاده از کانفیگ‌های گلدن شاین، پس از دریافت رمز عبور و ورود به این صفحه، مراحل زیر را دنبال کنید:</p>
-        <ol>
-          <li>نرم‌افزار مربوط به پروکسی یا VPN خود را باز کنید (برای مثال: V2RayN، Shadowsocks، یا دیگر نرم‌افزارهای پشتیبانی شده).</li>
-          <li>گزینه افزودن کانفیگ جدید را انتخاب کنید.</li>
-          <li>متن کانفیگ ارائه شده در بخش «کانفیگ‌ها» را به صورت کامل و بدون تغییر کپی کنید.</li>
-          <li>کانفیگ کپی شده را در قسمت وارد کردن کانفیگ نرم‌افزار جای‌گذاری کنید.</li>
-          <li>تنظیمات را ذخیره کرده و به سرور وصل شوید.</li>
-          <li>در صورت بروز هرگونه مشکل، از بخش «پروکسی‌ها» آدرس‌های پروکسی را بررسی کنید یا با پشتیبانی تماس بگیرید.</li>
-        </ol>
-        <p>توجه داشته باشید که رمز عبور جهت استفاده از کانفیگ‌ها را محرمانه نگه دارید و به دیگران منتقل نکنید.</p>
-      `
-    },
-    en: {
-      title: 'Access to Config & Proxy',
-      labelPassword: 'Enter password:',
-      loginBtn: 'Login',
-      loginSuccess: 'Login successful.',
-      loginFail: 'Incorrect password, please try again.',
-      copyConfig: 'Config copied!',
-      copyProxy: 'Proxies copied!',
-      tabs: ['Configs', 'Proxies', 'Tutorial'],
-      tutorialTitle: 'Complete Tutorial for Importing Config',
-      tutorialText: `
-        <p>To use GoldenShine configs, after entering the password and logging in, follow these steps:</p>
-        <ol>
-          <li>Open your proxy or VPN client (e.g., V2RayN, Shadowsocks, or supported software).</li>
-          <li>Select the option to add a new config.</li>
-          <li>Copy the entire config text from the "Configs" section without changes.</li>
-          <li>Paste the copied config into your software.</li>
-          <li>Save settings and connect to the server.</li>
-          <li>If you encounter issues, check the "Proxies" section or contact support.</li>
-        </ol>
-        <p>Please keep the password confidential and do not share it.</p>
-      `
-    }
-  };
+      const PROXY_DATA = `
+# Proxy List
+proxy1.goldenshine.ir:1080
+proxy2.goldenshine.ir:1080
+proxy3.goldenshine.ir:1080
+      `.trim();
 
-  // تغییر زبان UI
-  function setLanguage(lang) {
-    document.documentElement.lang = lang;
-    if (lang === 'en') {
-      document.body.style.direction = 'ltr';
-      document.getElementById('tutorialSection').style.textAlign = 'left';
-      document.getElementById('tutorialSection').style.direction = 'ltr';
-      passwordInput.style.direction = 'ltr';
-      passwordInput.style.textAlign = 'left';
-    } else {
-      document.body.style.direction = 'rtl';
-      document.getElementById('tutorialSection').style.textAlign = 'justify';
-      document.getElementById('tutorialSection').style.direction = 'rtl';
-      passwordInput.style.direction = 'rtl';
-      passwordInput.style.textAlign = 'left';
-    }
-
-    const t = texts[lang];
-    document.getElementById('title').textContent = t.title;
-    document.getElementById('labelPassword').textContent = t.labelPassword;
-    loginBtn.textContent = t.loginBtn;
-    tabs[0].textContent = t.tabs[0];
-    tabs[1].textContent = t.tabs[1];
-    tabs[2].textContent = t.tabs[2];
-    sections.tutorial.innerHTML = `<h2>${t.tutorialTitle}</h2>${t.tutorialText}`;
-
-    clearMessages();
-  }
-
-  // پاک کردن پیام‌ها
-  function clearMessages() {
-    loginMessage.textContent = '';
-    copyMessage1.textContent = '';
-    copyMessage2.textContent = '';
-  }
-
-  // ورود با رمز عبور
-  loginBtn.addEventListener('click', () => {
-    clearMessages();
-    if (passwordInput.value === correctPassword) {
-      loginMessage.textContent = texts[languageSelect.value].loginSuccess;
-      loginMessage.className = 'success';
-      loginSection.classList.add('hidden');
-      contentSection.classList.remove('hidden');
-      contentSection.focus();
-    } else {
-      loginMessage.textContent = texts[languageSelect.value].loginFail;
-      loginMessage.className = 'error';
-    }
-  });
-
-  // دکمه‌های کپی کانفیگ و پروکسی
-  copyConfigBtn.addEventListener('click', () => {
-    const text = document.getElementById('configText').value;
-    navigator.clipboard.writeText(text).then(() => {
-      copyMessage1.textContent = texts[languageSelect.value].copyConfig;
-      copyMessage1.className = 'success';
-    });
-  });
-
-  copyProxyBtn.addEventListener('click', () => {
-    const text = document.getElementById('proxyText').value;
-    navigator.clipboard.writeText(text).then(() => {
-      copyMessage2.textContent = texts[languageSelect.value].copyProxy;
-      copyMessage2.className = 'success';
-    });
-  });
-
-  // تب‌ها
-  tabs.forEach((tab) => {
-    tab.addEventListener('click', () => {
-      const target = tab.id.replace('tab', '').toLowerCase();
-      tabs.forEach(t => {
-        t.classList.remove('active');
-        t.setAttribute('aria-selected', 'false');
-      });
-      tab.classList.add('active');
-      tab.setAttribute('aria-selected', 'true');
-
-      for (const key in sections) {
-        if (key === target) {
-          sections[key].classList.remove('hidden');
-          sections[key].setAttribute('tabindex', '0');
+      // ورود و بررسی رمز عبور
+      function login() {
+        const val = passwordInput.value.trim();
+        if (val === PASSWORD) {
+          loginMessage.textContent = '';
+          loginSection.classList.add('hidden');
+          contentSection.classList.remove('hidden');
+          passwordInput.value = '';
+          passwordInput.setAttribute('disabled', 'true');
+          loginBtn.setAttribute('disabled', 'true');
+          loadContent();
         } else {
-          sections[key].classList.add('hidden');
-          sections[key].removeAttribute('tabindex');
+          loginMessage.textContent = 'رمز عبور اشتباه است!';
+          loginMessage.className = 'error';
+          passwordInput.focus();
         }
       }
-      clearMessages();
-    });
-  });
 
-  // تغییر حالت شب و روز
-  toggleThemeBtn.addEventListener('click', () => {
-    if (document.body.classList.contains('light')) {
-      document.body.classList.remove('light');
-      toggleThemeBtn.textContent = '🌙';
-      toggleThemeBtn.setAttribute('aria-label', 'تغییر به حالت شب');
-    } else {
-      document.body.classList.add('light');
-      toggleThemeBtn.textContent = '🌞';
-      toggleThemeBtn.setAttribute('aria-label', 'تغییر به حالت روز');
-    }
-  });
+      // بارگذاری محتوا
+      function loadContent() {
+        configText.value = CONFIG_DATA;
+        proxyText.value = PROXY_DATA;
+      }
 
-  // تغییر زبان
-  languageSelect.addEventListener('change', () => {
-    setLanguage(languageSelect.value);
-  });
+      // کپی متن به کلیپ‌بورد با پیغام موفقیت
+      async function copyToClipboard(text, messageElement) {
+        try {
+          await navigator.clipboard.writeText(text);
+          messageElement.textContent = 'کپی با موفقیت انجام شد.';
+          messageElement.className = 'success';
+          setTimeout(() => {
+            messageElement.textContent = '';
+          }, 2500);
+        } catch {
+          messageElement.textContent = 'کپی انجام نشد. لطفاً دستی کپی کنید.';
+          messageElement.className = 'error';
+          setTimeout(() => {
+            messageElement.textContent = '';
+          }, 3000);
+        }
+      }
 
-  // مقدار اولیه زبان
-  setLanguage(languageSelect.value);
-</script>
+      // مدیریت تب‌ها
+      function switchTab(selectedTab) {
+        tabs.forEach(tab => {
+          tab.classList.remove('active');
+          tab.setAttribute('aria-selected', 'false');
+          tab.setAttribute('tabindex', '-1');
+        });
+        selectedTab.classList.add('active');
+        selectedTab.setAttribute('aria-selected', 'true');
+        selectedTab.setAttribute('tabindex', '0');
 
+        if (selectedTab.id === 'configTab') {
+          configTabContent.classList.remove('hidden');
+          proxyTabContent.classList.add('hidden');
+        } else {
+          proxyTabContent.classList.remove('hidden');
+          configTabContent.classList.add('hidden');
+        }
+      }
+
+      // کلید ورود (Enter)
+      passwordInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          login();
+        }
+      });
+
+      loginBtn.addEventListener('click', login);
+
+      copyConfigBtn.addEventListener('click', () => {
+        copyToClipboard(configText.value, copyMessage1);
+      });
+
+      copyProxyBtn.addEventListener('click', () => {
+        copyToClipboard(proxyText.value, copyMessage2);
+      });
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          switchTab(tab);
+        });
+        tab.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            switchTab(tab);
+          }
+        });
+      });
+
+      // حالت شب و روز ذخیره شده در localStorage
+      function loadTheme() {
+        const theme = localStorage.getItem('theme') || 'dark';
+        if (theme === 'light') {
+          document.body.classList.add('light');
+          toggleThemeBtn.textContent = '🌙';
+          toggleThemeBtn.title = 'حالت شب';
+        } else {
+          document.body.classList.remove('light');
+          toggleThemeBtn.textContent = '☀️';
+          toggleThemeBtn.title = 'حالت روز';
+        }
+      }
+
+      toggleThemeBtn.addEventListener('click', () => {
+        document.body.classList.toggle('light');
+        if (document.body.classList.contains('light')) {
+          toggleThemeBtn.textContent = '🌙';
+          toggleThemeBtn.title = 'حالت شب';
+          localStorage.setItem('theme', 'light');
+        } else {
+          toggleThemeBtn.textContent = '☀️';
+          toggleThemeBtn.title = 'حالت روز';
+          localStorage.setItem('theme', 'dark');
+        }
+      });
+
+      // تغییر زبان (فارسی / انگلیسی)
+      const texts = {
+        fa: {
+          title: 'گلدن شاین',
+          passwordLabel: 'رمز عبور را وارد کنید:',
+          loginBtn: 'ورود',
+          loginWrong: 'رمز عبور اشتباه است!',
+          configTab: 'کانفیگ',
+          proxyTab: 'پروکسی',
+          copyConfigBtn: 'کپی کانفیگ',
+          copyProxyBtn: 'کپی پروکسی',
+          loginSectionLabel: 'ورود با رمز عبور',
+          contentSectionLabel: 'محتوای کانفیگ و پروکسی',
+          copySuccess: 'کپی با موفقیت انجام شد.',
+          copyFail: 'کپی انجام نشد. لطفاً دستی کپی کنید.',
+          themeDark: 'حالت شب',
+          themeLight: 'حالت روز',
+          langLabel: 'انتخاب زبان',
+          footer: '© ۲۰۲۵ گلدن شاین. تمامی حقوق محفوظ است.'
+        },
+        en: {
+          title: 'GoldenShine',
+          passwordLabel: 'Enter Password:',
+          loginBtn: 'Login',
+          loginWrong: 'Incorrect password!',
+          configTab: 'Config',
+          proxyTab: 'Proxy',
+          copyConfigBtn: 'Copy Config',
+          copyProxyBtn: 'Copy Proxy',
+          loginSectionLabel: 'Login with password',
+          contentSectionLabel: 'Config and Proxy Content',
+          copySuccess: 'Copied successfully.',
+          copyFail: 'Copy failed. Please copy manually.',
+          themeDark: 'Dark mode',
+          themeLight: 'Light mode',
+          langLabel: 'Select Language',
+          footer: '© 2025 GoldenShine. All rights reserved.'
+        }
+      };
+
+      function switchLanguage(lang) {
+        const t = texts[lang];
+        document.getElementById('title').textContent = t.title;
+        document.getElementById('passwordLabel').textContent = t.passwordLabel;
+        loginBtn.textContent = t.loginBtn;
+        loginMessage.textContent = '';
+        copyConfigBtn.textContent = t.copyConfigBtn;
+        copyProxyBtn.textContent = t.copyProxyBtn;
+        loginSection.setAttribute('aria-label', t.loginSectionLabel);
+        contentSection.setAttribute('aria-label', t.contentSectionLabel);
+        tabs[0].textContent = t.configTab;
+        tabs[1].textContent = t.proxyTab;
+        document.querySelector('.language-select').setAttribute('title', t.langLabel);
+        toggleThemeBtn.title = document.body.classList.contains('light') ? t.themeDark : t.themeLight;
+        document.querySelector('footer').textContent = t.footer;
+
+        // اگر پیام خطا نمایش داده شده بود، به زبان جدید هم بروزرسانی شود
+        if (loginMessage.classList.contains('error')) {
+          loginMessage.textContent = t.loginWrong;
+        }
+        // پیام‌های کپی را خالی کن
+        copyMessage1.textContent = '';
+        copyMessage2.textContent = '';
+      }
+
+      languageSelect.addEventListener('change', e => {
+        switchLanguage(e.target.value);
+      });
+
+      // بارگذاری اولیه
+      loadTheme();
+      switchLanguage(languageSelect.value);
+
+    })();
+  </script>
 </body>
 </html>
+
 
 
 
