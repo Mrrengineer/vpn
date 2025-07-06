@@ -1,194 +1,626 @@
 <!DOCTYPE html>
 <html lang="fa">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>GoldenShine | گلدن شاین</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.fontcdn.ir/Font/Persian/Vazir.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="دسترسی به کانفیگ و پروکسی‌های گلدن شاین با رمز عبور." />
+  <link href="https://cdn.fontcdn.ir/Font/Persian/Vazir.css" rel="stylesheet" />
   <style>
+    * {
+      box-sizing: border-box;
+    }
     body {
       margin: 0;
       font-family: 'Vazir', sans-serif;
-      transition: background 0.5s, color 0.5s;
-    }
-
-    body.dark {
-      background: #0e0e0e;
+      background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
       color: #f1f5f9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      overflow: hidden;
+      position: relative;
+      transition: background 0.5s, color 0.5s;
+      direction: rtl;
     }
 
     body.light {
-      background: #f1f5f9;
-      color: #0e0e0e;
+      background: linear-gradient(135deg, #fefefe, #ddd);
+      color: #222;
     }
 
-    .background {
-      position: fixed;
-      top: 0;
-      left: 0;
+    /* پس‌زمینه موجی با لایه‌های متحرک و متفاوت */
+    .waves {
+      position: absolute;
       width: 100%;
       height: 100%;
-      background: linear-gradient(-45deg, #1a1a1a, #111, #2b2b2b, #000);
-      background-size: 400% 400%;
-      animation: gradientBG 15s ease infinite;
+      top: 0;
+      left: 0;
       z-index: -1;
+      overflow: hidden;
+      background: linear-gradient(180deg, #111, #1c1c1c);
+      transition: background 0.5s;
+    }
+    body.light .waves {
+      background: linear-gradient(180deg, #eee, #ccc);
     }
 
-    @keyframes gradientBG {
-      0% {background-position: 0% 50%;}
-      50% {background-position: 100% 50%;}
-      100% {background-position: 0% 50%;}
+    .wave {
+      position: absolute;
+      width: 200%;
+      height: 180px;
+      background: rgba(255, 215, 0, 0.1);
+      border-radius: 43% 57% 64% 36% / 46% 38% 62% 54%;
+      filter: drop-shadow(0 0 5px rgba(255,215,0,0.3));
+      animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
+    }
+    body.light .wave {
+      background: rgba(255, 215, 0, 0.15);
+      filter: drop-shadow(0 0 7px rgba(255,215,0,0.6));
+    }
+
+    .wave1 {
+      top: 100px;
+      animation: waveMove 8s infinite;
+      opacity: 0.3;
+      left: -40%;
+    }
+    .wave2 {
+      top: 150px;
+      animation: waveMoveReverse 12s infinite;
+      opacity: 0.2;
+      left: -60%;
+      background: rgba(255, 215, 0, 0.07);
+      border-radius: 37% 63% 55% 45% / 48% 42% 58% 52%;
+    }
+    .wave3 {
+      top: 130px;
+      animation: waveMove 10s infinite;
+      opacity: 0.25;
+      left: -50%;
+      background: rgba(255, 215, 0, 0.09);
+      border-radius: 60% 40% 50% 50% / 50% 50% 60% 40%;
+    }
+
+    @keyframes waveMove {
+      0% {
+        transform: translateX(0) rotate(0deg);
+      }
+      50% {
+        transform: translateX(25%) rotate(10deg);
+      }
+      100% {
+        transform: translateX(0) rotate(0deg);
+      }
+    }
+    @keyframes waveMoveReverse {
+      0% {
+        transform: translateX(0) rotate(0deg);
+      }
+      50% {
+        transform: translateX(-25%) rotate(-12deg);
+      }
+      100% {
+        transform: translateX(0) rotate(0deg);
+      }
     }
 
     .card {
-      margin: auto;
-      max-width: 700px;
+      background: rgba(26, 26, 26, 0.9);
       padding: 2rem;
       border-radius: 20px;
-      background: rgba(0, 0, 0, 0.6);
-      box-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
-      color: inherit;
-    }
-
-    .tabs, .section, .language-switch, .footer {
+      box-shadow: 0 0 40px rgba(255, 215, 0, 0.3);
+      max-width: 500px;
+      width: 100%;
       text-align: center;
+      animation: fadeIn 2s ease-in-out;
+      transition: background 0.5s, color 0.5s;
+      position: relative;
+      z-index: 10;
     }
 
-    .footer {
-      margin-top: 2rem;
-      font-size: 0.9rem;
-      opacity: 0.7;
+    body.light .card {
+      background: #fff;
+      color: #222;
+      box-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
     }
 
-    .tab, button {
-      font-family: 'Vazir', sans-serif;
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    #howToUse {
-      direction: rtl;
-      text-align: right;
-      background: #222;
-      padding: 1rem;
-      border-radius: 10px;
+    h1 {
+      color: gold;
+      margin-bottom: 1rem;
+      font-size: 1.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+    }
+
+    body.light h1 {
+      color: #b8860b;
+    }
+
+    input[type="password"], textarea {
+      width: 100%;
+      padding: 0.8rem;
+      border-radius: 12px;
+      border: none;
       margin-top: 1rem;
+      background: #2d2d2d;
+      color: #f1f5f9;
+      font-size: 1rem;
+      transition: background 0.5s, color 0.5s;
+      font-family: monospace;
+      direction: ltr;
+      text-align: left;
+      user-select: all;
+    }
+
+    body.light input[type="password"], body.light textarea {
+      background: #eee;
+      color: #222;
+    }
+
+    button {
+      margin-top: 1rem;
+      padding: 0.7rem 1.5rem;
+      border: none;
+      border-radius: 12px;
+      background: gold;
+      color: black;
+      font-weight: bold;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: transform 0.3s ease, background 0.5s;
+      font-family: 'Vazir', sans-serif;
+      user-select: none;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      background: #ffd700cc;
+    }
+
+    .tabs {
+      display: flex;
+      justify-content: center;
+      margin-top: 1rem;
+      gap: 0.5rem;
+    }
+
+    .tab {
+      padding: 0.5rem 1.5rem;
+      background: #333;
+      border-radius: 8px;
+      cursor: pointer;
+      color: #aaa;
+      transition: 0.3s ease;
+      font-family: 'Vazir', sans-serif;
+      user-select: none;
+    }
+
+    body.light .tab {
+      background: #ddd;
+      color: #555;
+    }
+
+    .tab.active {
+      background: gold;
+      color: black;
+      font-weight: bold;
+    }
+
+    .section {
+      margin-top: 1rem;
+      position: relative;
+      text-align: right;
+      direction: rtl;
+    }
+
+    .hidden {
       display: none;
     }
 
-    .download-buttons a {
-      display: block;
-      margin: 0.5rem 0;
-      color: gold;
-      text-decoration: none;
+    #loginMessage, #copyMessage1, #copyMessage2 {
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
     }
+
+    .success {
+      color: #22c55e;
+    }
+
+    .error {
+      color: #ef4444;
+    }
+
+    footer {
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      opacity: 0.6;
+      user-select: none;
+    }
+
+    /* لوگوی متحرک طلایی */
+    .logo {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, gold, #b8860b);
+      box-shadow: 0 0 10px gold;
+      animation: spin 8s linear infinite;
+      display: inline-block;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg);}
+      100% { transform: rotate(360deg);}
+    }
+
+    /* دکمه حالت شب/روز */
+    .toggle-theme {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: gold;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      font-size: 1.3rem;
+      user-select: none;
+      transition: background 0.5s;
+      box-shadow: 0 0 10px gold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* انتخاب زبان */
+    .language-select {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: gold;
+      border-radius: 12px;
+      border: none;
+      padding: 0.3rem 0.7rem;
+      font-weight: bold;
+      cursor: pointer;
+      font-family: 'Vazir', sans-serif;
+      user-select: none;
+      box-shadow: 0 0 10px gold;
+      transition: background 0.5s;
+    }
+
+    /* لینک دانلود نرم‌افزار */
+    .downloads {
+      margin-top: 1rem;
+      text-align: center;
+    }
+
+    .downloads button {
+      margin: 0.4rem;
+      background: #222;
+      color: gold;
+      border: 2px solid gold;
+      padding: 0.5rem 1.2rem;
+      font-weight: bold;
+      border-radius: 10px;
+      transition: background 0.3s, color 0.3s;
+      user-select: none;
+      direction: ltr;
+    }
+    .downloads button:hover {
+      background: gold;
+      color: black;
+      border-color: gold;
+    }
+
   </style>
 </head>
-<body class="dark">
-<div class="background"></div>
-<div class="card">
-  <div id="login">
-    <h1 id="logo">🌟 GoldenShine</h1>
-    <p>برای دسترسی رمز عبور را وارد کنید</p>
-    <input type="password" id="password" placeholder="رمز عبور">
-    <button onclick="checkPassword()">ورود</button>
-    <p id="loginMessage"></p>
+<body>
+
+<button class="toggle-theme" id="toggleTheme" aria-label="تغییر حالت شب و روز">🌙</button>
+
+<select class="language-select" id="languageSelect" aria-label="انتخاب زبان">
+  <option value="fa" selected>فارسی</option>
+  <option value="en">English</option>
+</select>
+
+<div class="waves" aria-hidden="true">
+  <div class="wave wave1"></div>
+  <div class="wave wave2"></div>
+  <div class="wave wave3"></div>
+</div>
+
+<div class="card" role="main" aria-live="polite">
+  <h1><span class="logo" aria-hidden="true"></span> <span id="title">دسترسی به کانفیگ و پروکسی</span></h1>
+
+  <div id="loginSection">
+    <label for="passwordInput" id="labelPassword">رمز عبور را وارد کنید:</label>
+    <input
+      type="password"
+      id="passwordInput"
+      aria-labelledby="labelPassword"
+      placeholder="رمز عبور"
+      autocomplete="off"
+    />
+    <button id="loginBtn">ورود</button>
+    <div id="loginMessage" role="alert" aria-live="assertive"></div>
   </div>
 
-  <div id="content" class="hidden">
-    <div class="language-switch">
-      <button onclick="setLanguage('fa')">🇮🇷 فارسی</button>
-      <button onclick="setLanguage('en')">🇺🇸 English</button>
+  <div id="contentSection" class="hidden" tabindex="0">
+    <div class="tabs" role="tablist" aria-label="بخش‌ها">
+      <button class="tab active" role="tab" aria-selected="true" aria-controls="configSection" id="tabConfig">کانفیگ‌ها</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="proxySection" id="tabProxy">پروکسی‌ها</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="tutorialSection" id="tabTutorial">آموزش</button>
     </div>
 
-    <div class="tabs">
-      <button class="tab active" onclick="showTab('config')">📂 کانفیگ‌ها</button>
-      <button class="tab" onclick="showTab('proxy')">🌐 پروکسی‌ها</button>
-      <button class="tab" onclick="toggleHowToUse()">📘 نحوه وارد کردن کانفیگ‌ها</button>
-    </div>
+    <section id="configSection" class="section" role="tabpanel" aria-labelledby="tabConfig">
+      <h2>کانفیگ‌های گلدن شاین</h2>
+      <textarea id="configText" rows="7" readonly aria-label="متن کانفیگ‌ها">
+# نمونه کانفیگ GoldenShine
+# برای اتصال کافیست این کانفیگ را در نرم‌افزار مورد نظر کپی کنید.
+# رمز عبور جهت استفاده: your_password_here
 
-    <div id="config" class="section">
-      <textarea id="configText" readonly>
-vmess://eyJhZGQiOiJnb2xkZW4uY29tIiwidiI6IjIiLCJwIjoiNDQzIiwiaWQiOiIxMjMtYWJjIn0=
-trojan://pass@goldenshine.com:443
+[GoldenShine]
+server = golden.example.com
+port = 443
+uuid = xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+alterId = 0
+security = auto
+network = ws
+ws-path = /goldenshine
       </textarea>
-      <button onclick="copyText('configText')">📋 کپی کانفیگ</button>
-    </div>
+      <button id="copyConfigBtn" aria-describedby="copyMessage1">کپی کانفیگ</button>
+      <div id="copyMessage1" role="alert" aria-live="polite"></div>
 
-    <div id="proxy" class="section hidden">
-      <textarea id="proxyText" readonly>
-https://t.me/proxy?server=goldenshine.ir&port=443&type=mtproto&secret=abcdef123456
-https://t.me/proxy?server=proxy.goldenshine.com&type=socks5&port=1080
+      <div class="downloads" aria-label="دانلود نرم‌افزارهای گلدن شاین">
+        <button onclick="window.open('https://example.com/windows','_blank')">Windows</button>
+        <button onclick="window.open('https://example.com/android','_blank')">Android</button>
+        <button onclick="window.open('https://example.com/ios','_blank')">iOS</button>
+      </div>
+    </section>
+
+    <section id="proxySection" class="section hidden" role="tabpanel" aria-labelledby="tabProxy">
+      <h2>پروکسی‌های فعال</h2>
+      <textarea id="proxyText" rows="7" readonly aria-label="متن پروکسی‌ها">
+# پروکسی‌های فعال GoldenShine
+# برای استفاده از پروکسی کافیست در نرم‌افزار وارد کنید.
+
+proxy1.golden.example.com:8080
+proxy2.golden.example.com:8080
+proxy3.golden.example.com:8080
       </textarea>
-      <button onclick="copyText('proxyText')">📋 کپی پروکسی</button>
-    </div>
+      <button id="copyProxyBtn" aria-describedby="copyMessage2">کپی پروکسی‌ها</button>
+      <div id="copyMessage2" role="alert" aria-live="polite"></div>
+    </section>
 
-    <div id="howToUse" class="section">
-      <h3>📱 Android:</h3>
-      <p>۱. کانفیگ‌ها را کپی کنید<br>
-۲. وارد کلاینت (نرم‌افزار) مربوطه شوید<br>
-۳. گزینه + را بزنید سپس گزینه افزودن از طریق کلیپ‌بورد را بزنید</p>
-      <div class="download-buttons">
-        <a href="https://github.com/hiddify/hiddify-next/releases/tag/draft" target="_blank">⬇️ دانلود نرم‌افزار Hiddify</a>
-        <a href="https://github.com/2dust/v2rayNG/releases" target="_blank">⬇️ دانلود نرم‌افزار V2RayNG</a>
-      </div>
-      <h3>📱 iOS:</h3>
-      <p>۱. کانفیگ‌ها را کپی کنید<br>
-۲. وارد کلاینت (نرم‌افزار) مربوطه شوید<br>
-۳. گزینه + را بزنید سپس گزینه import from clipboard را بزنید</p>
-      <div class="download-buttons">
-        <a href="https://apps.apple.com/app/id6450534064" target="_blank">⬇️ دانلود نرم‌افزار Streisand</a>
-        <a href="https://apps.apple.com/us/app/v2box-v2ray-client/id6446814690" target="_blank">⬇️ دانلود نرم‌افزار V2Box</a>
-      </div>
-      <h3>💻 Windows:</h3>
-      <p>۱. نرم‌افزار مورد نظر را نصب کنید<br>
-۲. گزینه import from clipboard را بزنید</p>
-    </div>
+    <section id="tutorialSection" class="section hidden" role="tabpanel" aria-labelledby="tabTutorial" style="direction: rtl; font-family: Vazir, Tahoma, sans-serif; text-align: justify;">
+      <h2>آموزش کامل وارد کردن کانفیگ</h2>
+      <p>
+        برای استفاده از کانفیگ‌های گلدن شاین، پس از دریافت رمز عبور و ورود به این صفحه، مراحل زیر را دنبال کنید:
+      </p>
+      <ol>
+        <li>نرم‌افزار مربوط به پروکسی یا VPN خود را باز کنید (برای مثال: V2RayN، Shadowsocks، یا دیگر نرم‌افزارهای پشتیبانی شده).</li>
+        <li>گزینه افزودن کانفیگ جدید را انتخاب کنید.</li>
+        <li>متن کانفیگ ارائه شده در بخش «کانفیگ‌ها» را به صورت کامل و بدون تغییر کپی کنید.</li>
+        <li>کانفیگ کپی شده را در قسمت وارد کردن کانفیگ نرم‌افزار جای‌گذاری کنید.</li>
+        <li>تنظیمات را ذخیره کرده و به سرور وصل شوید.</li>
+        <li>در صورت بروز هرگونه مشکل، از بخش «پروکسی‌ها» آدرس‌های پروکسی را بررسی کنید یا با پشتیبانی تماس بگیرید.</li>
+      </ol>
+      <p>
+        توجه داشته باشید که رمز عبور جهت استفاده از کانفیگ‌ها را محرمانه نگه دارید و به دیگران منتقل نکنید.
+      </p>
+    </section>
   </div>
 
-  <div class="footer">
-    طراحی شده توسط تیم گلدن شاین 🌟
-  </div>
+  <footer aria-label="حق نشر">
+    © 2025 گلدن شاین - GoldenShine
+  </footer>
 </div>
 
 <script>
-  const correctPassword = "12345";
-  function checkPassword() {
-    const input = document.getElementById("password").value;
-    const message = document.getElementById("loginMessage");
-    if (input === correctPassword) {
-      document.getElementById("login").classList.add("hidden");
-      document.getElementById("content").classList.remove("hidden");
-    } else {
-      message.textContent = "❌ رمز اشتباه است!";
-      message.style.color = "red";
+  // عناصر کلیدی
+  const passwordInput = document.getElementById('passwordInput');
+  const loginBtn = document.getElementById('loginBtn');
+  const loginMessage = document.getElementById('loginMessage');
+  const loginSection = document.getElementById('loginSection');
+  const contentSection = document.getElementById('contentSection');
+
+  const copyConfigBtn = document.getElementById('copyConfigBtn');
+  const copyProxyBtn = document.getElementById('copyProxyBtn');
+
+  const copyMessage1 = document.getElementById('copyMessage1');
+  const copyMessage2 = document.getElementById('copyMessage2');
+
+  const tabs = document.querySelectorAll('.tab');
+  const sections = {
+    config: document.getElementById('configSection'),
+    proxy: document.getElementById('proxySection'),
+    tutorial: document.getElementById('tutorialSection'),
+  };
+
+  const toggleThemeBtn = document.getElementById('toggleTheme');
+  const languageSelect = document.getElementById('languageSelect');
+
+  // رمز عبور صحیح (می‌توانید آن را تغییر دهید)
+  const correctPassword = 'golden2025';
+
+  // متن‌ها بر اساس زبان
+  const texts = {
+    fa: {
+      title: 'دسترسی به کانفیگ و پروکسی',
+      labelPassword: 'رمز عبور را وارد کنید:',
+      loginBtn: 'ورود',
+      loginSuccess: 'ورود موفقیت‌آمیز بود.',
+      loginFail: 'رمز عبور اشتباه است، لطفا دوباره تلاش کنید.',
+      copyConfig: 'کانفیگ کپی شد!',
+      copyProxy: 'پروکسی‌ها کپی شدند!',
+      tabs: ['کانفیگ‌ها', 'پروکسی‌ها', 'آموزش'],
+      tutorialTitle: 'آموزش کامل وارد کردن کانفیگ',
+      tutorialText: `
+        <p>برای استفاده از کانفیگ‌های گلدن شاین، پس از دریافت رمز عبور و ورود به این صفحه، مراحل زیر را دنبال کنید:</p>
+        <ol>
+          <li>نرم‌افزار مربوط به پروکسی یا VPN خود را باز کنید (برای مثال: V2RayN، Shadowsocks، یا دیگر نرم‌افزارهای پشتیبانی شده).</li>
+          <li>گزینه افزودن کانفیگ جدید را انتخاب کنید.</li>
+          <li>متن کانفیگ ارائه شده در بخش «کانفیگ‌ها» را به صورت کامل و بدون تغییر کپی کنید.</li>
+          <li>کانفیگ کپی شده را در قسمت وارد کردن کانفیگ نرم‌افزار جای‌گذاری کنید.</li>
+          <li>تنظیمات را ذخیره کرده و به سرور وصل شوید.</li>
+          <li>در صورت بروز هرگونه مشکل، از بخش «پروکسی‌ها» آدرس‌های پروکسی را بررسی کنید یا با پشتیبانی تماس بگیرید.</li>
+        </ol>
+        <p>توجه داشته باشید که رمز عبور جهت استفاده از کانفیگ‌ها را محرمانه نگه دارید و به دیگران منتقل نکنید.</p>
+      `
+    },
+    en: {
+      title: 'Access to Config & Proxy',
+      labelPassword: 'Enter password:',
+      loginBtn: 'Login',
+      loginSuccess: 'Login successful.',
+      loginFail: 'Incorrect password, please try again.',
+      copyConfig: 'Config copied!',
+      copyProxy: 'Proxies copied!',
+      tabs: ['Configs', 'Proxies', 'Tutorial'],
+      tutorialTitle: 'Complete Tutorial for Importing Config',
+      tutorialText: `
+        <p>To use GoldenShine configs, after entering the password and logging in, follow these steps:</p>
+        <ol>
+          <li>Open your proxy or VPN client (e.g., V2RayN, Shadowsocks, or supported software).</li>
+          <li>Select the option to add a new config.</li>
+          <li>Copy the entire config text from the "Configs" section without changes.</li>
+          <li>Paste the copied config into your software.</li>
+          <li>Save settings and connect to the server.</li>
+          <li>If you encounter issues, check the "Proxies" section or contact support.</li>
+        </ol>
+        <p>Please keep the password confidential and do not share it.</p>
+      `
     }
-  }
+  };
 
-  function copyText(id) {
-    const text = document.getElementById(id);
-    text.select();
-    document.execCommand("copy");
-    alert("✅ با موفقیت کپی شد!");
-  }
-
-  function showTab(tabId) {
-    document.querySelectorAll('.section').forEach(e => e.classList.add('hidden'));
-    document.getElementById(tabId).classList.remove('hidden');
-    document.querySelectorAll('.tab').forEach(e => e.classList.remove('active'));
-    event.target.classList.add('active');
-  }
-
-  function toggleHowToUse() {
-    const el = document.getElementById("howToUse");
-    el.style.display = el.style.display === "none" || el.style.display === "" ? "block" : "none";
-  }
-
+  // تغییر زبان UI
   function setLanguage(lang) {
     document.documentElement.lang = lang;
-    // تنظیمات بیشتر می‌تواند اینجا اضافه شود برای ترجمه پویا در آینده
+    if (lang === 'en') {
+      document.body.style.direction = 'ltr';
+      document.getElementById('tutorialSection').style.textAlign = 'left';
+      document.getElementById('tutorialSection').style.direction = 'ltr';
+      passwordInput.style.direction = 'ltr';
+      passwordInput.style.textAlign = 'left';
+    } else {
+      document.body.style.direction = 'rtl';
+      document.getElementById('tutorialSection').style.textAlign = 'justify';
+      document.getElementById('tutorialSection').style.direction = 'rtl';
+      passwordInput.style.direction = 'rtl';
+      passwordInput.style.textAlign = 'left';
+    }
+
+    const t = texts[lang];
+    document.getElementById('title').textContent = t.title;
+    document.getElementById('labelPassword').textContent = t.labelPassword;
+    loginBtn.textContent = t.loginBtn;
+    tabs[0].textContent = t.tabs[0];
+    tabs[1].textContent = t.tabs[1];
+    tabs[2].textContent = t.tabs[2];
+    sections.tutorial.innerHTML = `<h2>${t.tutorialTitle}</h2>${t.tutorialText}`;
+
+    clearMessages();
   }
+
+  // پاک کردن پیام‌ها
+  function clearMessages() {
+    loginMessage.textContent = '';
+    copyMessage1.textContent = '';
+    copyMessage2.textContent = '';
+  }
+
+  // ورود با رمز عبور
+  loginBtn.addEventListener('click', () => {
+    clearMessages();
+    if (passwordInput.value === correctPassword) {
+      loginMessage.textContent = texts[languageSelect.value].loginSuccess;
+      loginMessage.className = 'success';
+      loginSection.classList.add('hidden');
+      contentSection.classList.remove('hidden');
+      contentSection.focus();
+    } else {
+      loginMessage.textContent = texts[languageSelect.value].loginFail;
+      loginMessage.className = 'error';
+    }
+  });
+
+  // دکمه‌های کپی کانفیگ و پروکسی
+  copyConfigBtn.addEventListener('click', () => {
+    const text = document.getElementById('configText').value;
+    navigator.clipboard.writeText(text).then(() => {
+      copyMessage1.textContent = texts[languageSelect.value].copyConfig;
+      copyMessage1.className = 'success';
+    });
+  });
+
+  copyProxyBtn.addEventListener('click', () => {
+    const text = document.getElementById('proxyText').value;
+    navigator.clipboard.writeText(text).then(() => {
+      copyMessage2.textContent = texts[languageSelect.value].copyProxy;
+      copyMessage2.className = 'success';
+    });
+  });
+
+  // تب‌ها
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      const target = tab.id.replace('tab', '').toLowerCase();
+      tabs.forEach(t => {
+        t.classList.remove('active');
+        t.setAttribute('aria-selected', 'false');
+      });
+      tab.classList.add('active');
+      tab.setAttribute('aria-selected', 'true');
+
+      for (const key in sections) {
+        if (key === target) {
+          sections[key].classList.remove('hidden');
+          sections[key].setAttribute('tabindex', '0');
+        } else {
+          sections[key].classList.add('hidden');
+          sections[key].removeAttribute('tabindex');
+        }
+      }
+      clearMessages();
+    });
+  });
+
+  // تغییر حالت شب و روز
+  toggleThemeBtn.addEventListener('click', () => {
+    if (document.body.classList.contains('light')) {
+      document.body.classList.remove('light');
+      toggleThemeBtn.textContent = '🌙';
+      toggleThemeBtn.setAttribute('aria-label', 'تغییر به حالت شب');
+    } else {
+      document.body.classList.add('light');
+      toggleThemeBtn.textContent = '🌞';
+      toggleThemeBtn.setAttribute('aria-label', 'تغییر به حالت روز');
+    }
+  });
+
+  // تغییر زبان
+  languageSelect.addEventListener('change', () => {
+    setLanguage(languageSelect.value);
+  });
+
+  // مقدار اولیه زبان
+  setLanguage(languageSelect.value);
 </script>
+
 </body>
 </html>
+
 
 
 
