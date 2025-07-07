@@ -22,32 +22,21 @@
       padding: 15px;
       transition: background 0.5s, color 0.5s;
       direction: rtl;
-
-      /* پس زمینه ملایم‌تر و انیمیشنی‌تر */
       background: linear-gradient(270deg, #1a1a1a, #3c3a36, #1a1a1a);
       background-size: 600% 600%;
       animation: backgroundGradient 20s ease infinite;
     }
     @keyframes backgroundGradient {
-      0% {
-        background-position: 0% 50%;
-      }
-      50% {
-        background-position: 100% 50%;
-      }
-      100% {
-        background-position: 0% 50%;
-      }
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
-
     body.light {
       background: linear-gradient(270deg, #ffe66d, #fabf6f, #ffe66d);
       background-size: 600% 600%;
       animation: backgroundGradient 20s ease infinite;
       color: #222;
     }
-
-    /* کارت اصلی */
     .card {
       background: rgba(0, 0, 0, 0.85);
       border-radius: 20px;
@@ -65,8 +54,6 @@
       color: #222;
       box-shadow: 0 0 15px #e6c150;
     }
-
-    /* لوگوی دایره‌ای متحرک */
     .logo {
       display: inline-block;
       vertical-align: middle;
@@ -79,21 +66,10 @@
       box-shadow: 0 0 10px gold;
     }
     @keyframes shine {
-      0% {
-        filter: brightness(1);
-        transform: rotate(0deg);
-      }
-      50% {
-        filter: brightness(1.8);
-        transform: rotate(180deg);
-      }
-      100% {
-        filter: brightness(1);
-        transform: rotate(360deg);
-      }
+      0% { filter: brightness(1); transform: rotate(0deg); }
+      50% { filter: brightness(1.8); transform: rotate(180deg); }
+      100% { filter: brightness(1); transform: rotate(360deg); }
     }
-
-    /* عنوان */
     h1 {
       font-size: 2.4rem;
       font-weight: 900;
@@ -109,7 +85,6 @@
       color: #b27500;
       text-shadow: 0 0 5px rgba(178, 117, 0, 0.5);
     }
-
     h2 {
       font-size: 1.8rem;
       color: gold;
@@ -119,15 +94,12 @@
       padding-bottom: 10px;
       border-bottom: 2px solid gold;
     }
-    
     h3 {
       font-size: 1.4rem;
       color: #ffcc00;
       margin-top: 25px;
       margin-bottom: 15px;
     }
-    
-    /* بخش معرفی */
     .intro {
       background: rgba(0, 0, 0, 0.3);
       border-radius: 15px;
@@ -140,8 +112,6 @@
     .intro p {
       margin-bottom: 15px;
     }
-    
-    /* استایل‌های جدید برای ویژگی‌های سرویس با انیمیشن‌های پیشرفته */
     .features {
       display: flex;
       flex-wrap: wrap;
@@ -149,7 +119,6 @@
       margin: 20px 0;
       perspective: 1000px;
     }
-    
     .feature {
       background: rgba(0, 0, 0, 0.4);
       border-radius: 15px;
@@ -165,7 +134,6 @@
       overflow: hidden;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     }
-    
     .feature::before {
       content: '';
       position: absolute;
@@ -182,18 +150,15 @@
       transform: rotate(45deg);
       animation: shineEffect 3s infinite;
     }
-    
     @keyframes shineEffect {
       0% { transform: translateX(-100%) rotate(45deg); }
       100% { transform: translateX(100%) rotate(45deg); }
     }
-    
     .feature:hover {
       transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
       border-color: gold;
       box-shadow: 0 15px 30px rgba(255, 215, 0, 0.2);
     }
-    
     .feature-icon {
       font-size: 2.5rem;
       margin-bottom: 15px;
@@ -202,20 +167,17 @@
       transition: all 0.3s ease;
       animation: pulse 2s infinite;
     }
-    
     @keyframes pulse {
       0% { transform: scale(1); }
       50% { transform: scale(1.1); }
       100% { transform: scale(1); }
     }
-    
     .feature h3 {
       margin-top: 0;
       color: #ffcc00;
       position: relative;
       display: inline-block;
     }
-    
     .feature h3::after {
       content: '';
       position: absolute;
@@ -226,20 +188,15 @@
       background: gold;
       transition: width 0.3s ease;
     }
-    
     .feature:hover h3::after {
       width: 100%;
     }
-    
     .feature p {
       transition: all 0.3s ease;
     }
-    
     .feature:hover p {
       color: #fff;
     }
-
-    /* ورودی و دکمه ورود */
     #loginSection {
       margin-bottom: 25px;
       background: rgba(0, 0, 0, 0.5);
@@ -275,7 +232,6 @@
       color: #ccc;
       cursor: not-allowed;
     }
-
     button {
       margin-top: 15px;
       background: gold;
@@ -300,7 +256,6 @@
       cursor: not-allowed;
       box-shadow: none;
     }
-
     .error {
       color: #f44336;
       margin-top: 8px;
@@ -311,8 +266,6 @@
       margin-top: 8px;
       font-weight: 600;
     }
-
-    /* بخش محتوا بعد از ورود */
     #contentSection {
       display: flex;
       flex-direction: column;
@@ -320,8 +273,6 @@
     #contentSection.hidden {
       display: none;
     }
-
-    /* تب‌ها */
     .tabs {
       display: flex;
       margin-bottom: 15px;
@@ -359,8 +310,6 @@
       color: black;
       box-shadow: 0 0 12px #b8860b;
     }
-
-    /* بخش هر تب */
     .section {
       background: #222;
       border-radius: 14px;
@@ -380,8 +329,6 @@
     .hidden {
       display: none;
     }
-
-    /* textarea فقط خواندنی */
     textarea {
       width: 100%;
       resize: vertical;
@@ -401,8 +348,6 @@
       color: #222;
       border: 1px solid #d4af37;
     }
-
-    /* دکمه‌های کپی */
     #copyConfigBtn, #copyProxyBtn {
       margin-top: 10px;
       width: auto;
@@ -424,29 +369,17 @@
       color: white;
       box-shadow: 0 0 10px #b8860b;
     }
-
-    /* دکمه‌های کپی در حالت غیر فعال */
     #copyConfigBtn:disabled, #copyProxyBtn:disabled {
       background: #999;
       color: #444;
       cursor: not-allowed;
       box-shadow: none;
     }
-
-    /* لودینگ انیمیشن روی دکمه ورود */
     @keyframes loadingDots {
-      0%, 20% {
-        content: '.';
-      }
-      40% {
-        content: '..';
-      }
-      60% {
-        content: '...';
-      }
-      80%, 100% {
-        content: '';
-      }
+      0%, 20% { content: '.'; }
+      40% { content: '..'; }
+      60% { content: '...'; }
+      80%, 100% { content: ''; }
     }
     button.loading::after {
       content: '';
@@ -455,8 +388,6 @@
       margin-left: 5px;
       font-weight: 700;
     }
-
-    /* دکمه حالت شب/روز */
     #toggleThemeBtn {
       position: fixed;
       top: 10px;
@@ -482,8 +413,6 @@
       color: #fff;
       box-shadow: 0 0 12px #b8860b;
     }
-
-    /* دکمه انتخاب زبان */
     #languageSelect {
       position: fixed;
       top: 10px;
@@ -508,35 +437,18 @@
       color: #fff;
       box-shadow: 0 0 12px #b8860b;
     }
-
-    /* ریسپانسیو */
     @media (max-width: 768px) {
       .card {
         max-width: 100%;
         padding: 25px 15px;
       }
-      h1 {
-        font-size: 2rem;
-      }
-      h2 {
-        font-size: 1.6rem;
-      }
-      h3 {
-        font-size: 1.2rem;
-      }
-      .features {
-        flex-direction: column;
-      }
-      .feature {
-        width: 100%;
-        margin: 10px 0;
-      }
-      button, #copyConfigBtn, #copyProxyBtn {
-        font-size: 1rem;
-      }
+      h1 { font-size: 2rem; }
+      h2 { font-size: 1.6rem; }
+      h3 { font-size: 1.2rem; }
+      .features { flex-direction: column; }
+      .feature { width: 100%; margin: 10px 0; }
+      button, #copyConfigBtn, #copyProxyBtn { font-size: 1rem; }
     }
-
-    /* استایل‌های جدید برای آموزش و دانلود */
     .instructions {
       margin-top: 15px;
       padding: 12px;
@@ -577,46 +489,30 @@
       transition: background 0.3s;
       box-shadow: 0 0 8px rgba(74, 144, 226, 0.5);
     }
-    .download-btn:hover {
-      background: #357abf;
-    }
-    body.light .download-btn {
-      background: #1a73e8;
-      color: white;
-    }
+    .download-btn:hover { background: #357abf; }
+    body.light .download-btn { background: #1a73e8; color: white; }
     .ios-btn {
       background: #a154f2;
       box-shadow: 0 0 8px rgba(161, 84, 242, 0.5);
     }
-    .ios-btn:hover {
-      background: #8a3ffc;
-    }
-    body.light .ios-btn {
-      background: #8a3ffc;
-    }
+    .ios-btn:hover { background: #8a3ffc; }
+    body.light .ios-btn { background: #8a3ffc; }
   </style>
 </head>
 <body>
-  <!-- دکمه حالت شب/روز -->
   <button id="toggleThemeBtn" aria-label="تغییر حالت شب/روز" title="تغییر حالت شب/روز">🌙</button>
-
-  <!-- انتخاب زبان -->
   <select id="languageSelect" aria-label="انتخاب زبان" title="انتخاب زبان">
     <option value="fa" selected>فارسی</option>
     <option value="en">English</option>
   </select>
-
   <div class="card" role="main" aria-live="polite">
     <h1>
       گلدن شاین
       <span class="logo" aria-hidden="true" role="img" aria-label="لوگوی گلدن شاین"></span>
     </h1>
-
-    <!-- بخش معرفی گلدن شاین -->
     <section class="intro">
       <h2>سرویس کانفیگ و پروکسی پرسرعت گلدن شاین</h2>
       <p>گلدن شاین ارائه‌دهنده بهترین و باکیفیت‌ترین سرویس‌های کانفیگ و پروکسی برای دسترسی به اینترنت بدون محدودیت است. با استفاده از سرویس‌های ما، به راحتی می‌توانید به تمامی محتوای اینترنت دسترسی داشته باشید و از سرعت بالا و امنیت کامل لذت ببرید.</p>
-      
       <div class="features">
         <div class="feature">
           <div class="feature-icon">⚡</div>
@@ -635,8 +531,6 @@
         </div>
       </div>
     </section>
-
-    <!-- بخش ورود -->
     <section id="loginSection">
       <h3>دسترسی به کانفیگ‌ها و پروکسی‌ها</h3>
       <label for="passwordInput" id="passwordLabel">رمز عبور را وارد کنید:</label>
@@ -651,28 +545,21 @@
       <button id="loginBtn" aria-live="polite" aria-pressed="false">ورود</button>
       <div id="loginError" class="error" role="alert" aria-live="assertive" style="display:none;"></div>
     </section>
-
-    <!-- بخش محتوا پس از ورود -->
     <section id="contentSection" class="hidden" tabindex="0" aria-label="محتوای پس از ورود">
-
       <div class="tabs" role="tablist" aria-label="انتخاب تب‌ها">
         <button class="tab active" role="tab" aria-selected="true" aria-controls="configSection" id="tabConfig" tabindex="0">کانفیگ</button>
         <button class="tab" role="tab" aria-selected="false" aria-controls="proxySection" id="tabProxy" tabindex="-1">پروکسی</button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="donationSection" id="tabDonation" tabindex="-1">اهدایی‌ها</button>
       </div>
-
       <div id="configSection" class="section" role="tabpanel" aria-labelledby="tabConfig">
         <textarea id="configText" readonly aria-readonly="true" rows="6"></textarea>
         <button id="copyConfigBtn" aria-label="کپی کانفیگ">کپی کانفیگ</button>
-        
-        <!-- دکمه آموزش نحوه وارد کردن کانفیگ ها -->
         <button id="howToImportBtn" style="margin-top: 10px;">آموزش نحوه وارد کردن کانفیگ ها</button>
         <div id="howToImportInstructions" class="instructions" style="display: none;">
           <p>۱.کانفیگ ها رو کپی کنید</p>
           <p>۲.وارد کلاینت (نرم افزار ) مربوطه شوید .</p>
           <p>۳. گزینه + رو بزنید سپس گزینه افزودن از طریف کلیپ بورد یا import from clipboard رو بزنید تا کانفیگ ها اضافه شوند .</p>
         </div>
-        
-        <!-- دکمه های دانلود نرم افزار -->
         <div class="download-container">
           <h3 class="download-title">دانلود نرم افزار</h3>
           <div class="download-buttons">
@@ -683,17 +570,18 @@
           </div>
         </div>
       </div>
-
       <div id="proxySection" class="section hidden" role="tabpanel" aria-labelledby="tabProxy">
         <textarea id="proxyText" readonly aria-readonly="true" rows="6"></textarea>
         <button id="copyProxyBtn" aria-label="کپی پروکسی">کپی پروکسی</button>
       </div>
+      <div id="donationSection" class="section hidden" role="tabpanel" aria-labelledby="tabDonation">
+        <p>با اهدا کردن کانفیگ‌های خود ما را حمایت کنید</p>
+      </div>
     </section>
   </div>
-
   <script>
     (() => {
-      const correctPassword = '654321'; // رمز عبور صحیح
+      const correctPassword = '654321';
       const loginBtn = document.getElementById('loginBtn');
       const passwordInput = document.getElementById('passwordInput');
       const loginError = document.getElementById('loginError');
@@ -702,6 +590,7 @@
       const tabs = document.querySelectorAll('.tab');
       const configSection = document.getElementById('configSection');
       const proxySection = document.getElementById('proxySection');
+      const donationSection = document.getElementById('donationSection');
       const configText = document.getElementById('configText');
       const proxyText = document.getElementById('proxyText');
       const copyConfigBtn = document.getElementById('copyConfigBtn');
@@ -710,8 +599,6 @@
       const languageSelect = document.getElementById('languageSelect');
       const howToImportBtn = document.getElementById('howToImportBtn');
       const howToImportInstructions = document.getElementById('howToImportInstructions');
-
-      // نمونه متن‌ها (می‌توانید این‌ها را به صورت داینامیک جایگزین کنید)
       const configContent = `vless://012bcb20-421c-434c-8fd0-2c4d564a103e@www.speedtest.net:2096?encryption=none&security=tls&sni=638872445251926601.kish-prx-dnraaaf.info&type=ws&alpn=h3h2&host=638872445251926601.kish-prx-dnraaaf.info&path=/cazskiws#goldenshine⚡️☄️
 vless://01a17885-1d37-4a8a-a3c9-e449f0a2fd04@104.16.198.192:8080?path=%2F%3Fed%3D2048&security=none&encryption=none&host=2U.96G7b3q3z8.ZuLAiR.OrG.&type=ws#goldenshine⚡️☄️
 vless://02187b5c-f759-4221-a86c-17c96ab719b9@144.202.99.243:443?type=xhttp&path=%2Fhui&host=&mode=stream-one&security=none#goldenshine⚡️☄️
@@ -773,131 +660,72 @@ vless://ae1573c6-febf-43e3-bf79-d270558c560b@135.181.201.193:33154?security=none
 vless://aec1e0c5-71c8-453d-a468-adda091af2a5@104.16.198.192:80?path=%2F%3Fed%3D2048&security=none&encryption=none&host=kNowleDgEAble-eXerciSe.ONEEAt.Co.&type=ws#goldenshine⚡️☄️
 vless://b25c9401-2854-49da-86f0-fe0f06ad256a@91.99.170.29:443?security=&encryption=none&host=zula.ir&headerType=http&type=tcp#goldenshine⚡️☄️
 vless://bd739eed-20b6-47a2-82cd-8c9c11f752c6@162.216.16.199:443?type=xhttp&path=%2Fsdf&host=&mode=stream-one&security=none#goldenshine⚡️☄️`;
-
-      const proxyContent = `
+      const proxyContent = `MMD, [7/7/2025 5:24 PM]
 https://t.me/proxy?server=87.248.132.72&port=200&secret=7gAA8A8Pd1VV____9QBuLmktLXd3dy5nby0t
-
 https://t.me/proxy?server=87.248.132.96&port=200&secret=7gAA8A8Pd1VV____9QBuLmktLXcuZ28tLS0%3D
-
 https://t.me/proxy?server=87.248.132.53&port=200&secret=7gAA8A8Pd1VV____9QBuLmktLXcuZ28tLS0%3D
-
 https://t.me/proxy?server=87.248.132.42&port=200&secret=eed77db43ee3721f0fcb40a4ff63b5cd276D656469612E737465616D706F77657265642E636F6D
-
 https://t.me/proxy?server=87.248.132.33&port=200&secret=eed77db43ee3721f0fcb40a4ff63b5cd276D656469612E737465616D706F77657265642E636F6D
-
 https://t.me/proxy?server=87.248.132.199&port=200&secret=7gAA8A8Pd1VV____9QBuLmktLXcuZ28tLS0%3D
-
 https://t.me/proxy?server=87.248.132.177&port=200&secret=ee0000f00f0f775555fffffff5006e2e69646F776E6C6F61642E77696E646F77737570646174652E636F6D
-
 https://t.me/proxy?server=87.248.132.44&port=200&secret=ee0000f00f0f775555fffffff5006e2e69646F776E6C6F61642E77696E646F77737570646174652E636F6D
-
 https://t.me/proxy?server=87.248.132.55&port=200&secret=ee0000f00f0f775555fffffff5006e2e69646F776E6C6F61642E77696E646F77737570646174652E636F6D
-
 https://t.me/proxy?server=87.248.132.71&port=200&secret=7gAA8A8Pd1VV____9QBuLmktLXd3dy5nby0t
-
 https://t.me/proxy?server=87.248.132.94&port=200&secret=eeNEgYdJvXrFGRMCIMJdCQtY2RueWVrdGFuZXQuY29tZmFyYWthdi5jb212YW4ubmFqdmEuY29tAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-
 https://t.me/proxy?server=87.248.132.95&port=200&secret=eeNEgYdJvXrFGRMCIMJdCQtY2RueWVrdGFuZXQuY29tZmFyYWthdi5jb212YW4ubmFqdmEuY29tAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-
 https://t.me/proxy?server=87.248.132.84&port=200&secret=eeNEgYdJvXrFGRMCIMJdCQtY2RueWVrdGFuZXQuY29tZmFyYWthdi5jb212YW4ubmFqdmEuY29tAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-
-https://t.me/proxy?server=87.248.132.88&port=200&secret=eeNEgYdJvXrFGRMCIMJdCQtY2RueWVrdGFuZXQuY29tZmFyYWthdi5jb212YW4ubmFqdmEuY29tAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-
-https://t.me/proxy?server=87.248.132.85&port=200&secret=eeNEgYdJvXrFGRMCIMJdCQtY2RueWVrdGFuZXQuY29tZmFyYWthdi5jb212YW4ubmFqdmEuY29tAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-
+https://t.me/proxy?server=87.248.132.88&port=200&secret=eeNEgYdJvXrFGRMCIMJdCQtY2RueWVrdGFuZXQuY29tZmFyYWthvi5jb212YW4ubmFqdmEuY29tAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+https://t.me/proxy?server=87.248.132.85&port=200&secret=eeNEgYdJvXrFGRMCIMJdCQtY2RueWVrdGFuZXQuY29tZmFyYWthvi5jb212YW4ubmFqdmEuY29tAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+MMD, [7/7/2025 5:25 PM]
 tg://proxy?server=87.248.132.38&port=85&secret=ee0000f00f0f775555fffffff5006e2e69646F776E6C6F61642E77696E646F77737570646174652E636F6D
-
 https://t.me/proxy?server=87.248.132.72&port=200&secret=7gAA8A8Pd1VV____9QBuLmktLXd3dy5nby0t
-
 https://t.me/proxy?server=87.248.132.96&port=200&secret=7gAA8A8Pd1VV____9QBuLmktLXcuZ28tLS0%3D
-
+MMD, [7/7/2025 5:26 PM]
 https://t.me/proxy?server=4.meli.meli.zban-mas.info&port=8888&secret=7gAA8A8Pd1VV____9QBuLmltZWRpYS5zdGVhbXBvd2VyZWQuY29t
-
 https://t.me/proxy?server=3.meli.meli.zban-mas.info&port=8888&secret=7gAA8A8Pd1VV____9QBuLmltZWRpYS5zdGVhbXBvd2VyZWQuY29t
-
 https://t.me/proxy?server=2.meli.meli.zban-mas.info&port=8888&secret=7gAA8A8Pd1VV____9QBuLmltZWRpYS5zdGVhbXBvd2VyZWQuY29t
-
 https://t.me/proxy?server=1.meli.meli.zban-mas.info&port=8888&secret=7gAA8A8Pd1VV____9QBuLmltZWRpYS5zdGVhbXBvd2VyZWQuY29t
-
 https://t.me/proxy?server=2.meli.zban-mas.info&port=8888&secret=7gAA8A8Pd1VV____9QBuLmltZWRpYS5zdGVhbXBvd2VyZWQuY29t
-
 https://t.me/proxy?server=3.meli.zban-mas.info&port=8888&secret=7gAA8A8Pd1VV____9QBuLmltZWRpYS5zdGVhbXBvd2VyZWQuY29t
-
 https://t.me/proxy?server=4.meli.zban-mas.info&port=8888&secret=7gAA8A8Pd1VV____9QBuLmltZWRpYS5zdGVhbXBvd2VyZWQuY29t
-
 https://t.me/proxy?server=2.meli.zban-mas.info&port=8888&secret=7gAA8A8Pd1VV____9QBuLmltZWRpYS5zdGVhbXBvd2VyZWQuY29t
-
+MMD, [7/7/2025 5:28 PM]
 https://t.me/proxy?server=146.103.104.178&port=8888&secret=7gAA8A8Pd1VV____9QBuLmltZWRpYS5zdGVhbXBvd2VyZWQuY29t
-
 https://t.me/proxy?server=146.103.97.142&port=8888&secret=7gAA8A8Pd1VV____9QBuLmltZWRpYS5zdGVhbXBvd2VyZWQuY29t
-
 https://t.me/proxy?server=78.40.193.180&port=8888&secret=7gAA8A8Pd1VV____9QBuLmltZWRpYS5zdGVhbXBvd2VyZWQuY29t
-
 https://t.me/proxy?server=78.40.193.73&port=8888&secret=7gAA8A8Pd1VV____9QBuLmltZWRpYS5zdGVhbXBvd2VyZWQuY29t
-
 https://t.me/proxy?server=5.meli.meli.zban-mas.info&port=8888&secret=7gAA8A8Pd1VV____9QBuLmltZWRpYS5zdGVhbXBvd2VyZWQuY29t
-
 https://t.me/proxy?server=6.meli.meli.zban-mas.info&port=8888&secret=7gAA8A8Pd1VV____9QBuLmltZWRpYS5zdGVhbXBvd2VyZWQuY29t
-
 https://t.me/proxy?server=8.meli.meli.zban-mas.info&port=8888&secret=7gAA8A8Pd1VV____9QBuLmltZWRpYS5zdGVhbXBvd2VyZWQuY29t
-
 https://t.me/proxy?server=6.meli.zban-mas.info&port=8888&secret=7gAA8A8Pd1VV____9QBuLmltZWRpYS5zdGVhbXBvd2VyZWQuY29t
-
 https://t.me/proxy?server=7.meli.meli.zban-mas.info&port=8888&secret=7gAA8A8Pd1VV____9QBuLmltZWRpYS5zdGVhbXBvd2VyZWQuY29t
-
 https://t.me/proxy?server=11.meli.zban-mas.info&port=8888&secret=7gAA8A8Pd1VV____9QBuLmltZWRpYS5zdGVhbXBvd2VyZWQuY29t
-
 https://t.me/proxy?server=13.meli.zban-mas.info&port=8888&secret=7gAA8A8Pd1VV____9QBuLmltZWRpYS5zdGVhbXBvd2VyZWQuY29t
-
 https://t.me/proxy?server=4.meli.meli.zban-mas.info&port=8888&secret=7gAA8A8Pd1VV____9QBuLmltZWRpYS5zdGVhbXBvd2VyZWQuY29t
-
+MMD, [7/7/2025 5:30 PM]
 https://t.me/proxy?server=sadra.mygrade.ir&port=443&secret=ee1603010200010001fc030386e24c3add6d656469612e737465616d706f77657265642e636f6d
-
 https://t.me/proxy?server=syczleck.itemag.ir&port=443&secret=7hYDAQIAAQAB_AMDhuJMOt1tZWRpYS5zdGVhbXBvd2VyZWQuY29t
-
 https://t.me/proxy?server=aval.fsaremi.info&port=443&secret=ee1603010200010001fc030386e24c3add6d656469612e737465616d706f77657265642e636f6d
-
 https://t.me/proxy?server=wait.fiziotr.info&port=443&secret=7hYDAQIAAQAB_AMDhuJMOt1tZWRpYS5zdGVhbXBvd2VyZWQuY29t
-
 https://t.me/proxy?server=halftime.parsintalk.ir&port=443&secret=ee1603010200010001fc030386e24c3add6d656469612e737465616d706f77657265642e636f6d
-
 https://t.me/proxy?server=syczleck.itemag.ir&port=443&secret=ee1603010200010001fc030386e24c3add6d656469612e737465616d706f77657265642e636f6d
-
 https://t.me/proxy?server=sadra.mygrade.ir&port=443&secret=7hYDAQIAAQAB_AMDhuJMOt1tZWRpYS5zdGVhbXBvd2VyZWQuY29t
-
 https://t.me/proxy?server=algortim.sayaair.ir&port=443&secret=7hYDAQIAAQAB_AMDhuJMOt1tZWRpYS5zdGVhbXBvd2VyZWQuY29t
-
 https://t.me/proxy?server=halftime.parsintalk.ir&port=443&secret=7hYDAQIAAQAB_AMDhuJMOt1tZWRpYS5zdGVhbXBvd2VyZWQuY29t
-
 https://t.me/proxy?server=sebro.sheshko.info&port=443&secret=ee1603010200010001fc030386e24c3add6d656469612e737465616d706f77657265642e636f6d
-
 https://t.me/proxy?server=response.cinere.info&port=443&secret=7hYDAQIAAQAB_AMDhuJMOt1tZWRpYS5zdGVhbXBvd2VyZWQuY29t
-
 https://t.me/proxy?server=algortim.sayaair.ir&port=443&secret=ee1603010200010001fc030386e24c3add6d656469612e737465616d706f77657265642e636f6d
-
 https://t.me/proxy?server=wait.fiziotr.info&port=443&secret=ee1603010200010001fc030386e24c3add6d656469612e737465616d706f77657265642e636f6d
-
 https://t.me/proxy?server=aval.fsaremi.info&port=443&secret=7hYDAQIAAQAB_AMDhuJMOt1tZWRpYS5zdGVhbXBvd2VyZWQuY29t
-
 https://t.me/proxy?server=146.103.99.112&port=8888&secret=7gAA8A8Pd1VV____9QBuLmltZWRpYS5zdGVhbXBvd2VyZWQuY29t
-
 https://t.me/proxy?server=146.103.104.178&port=8888&secret=7gAA8A8Pd1VV____9QBuLmltZWRpYS5zdGVhbXBvd2VyZWQuY29t
-
 https://t.me/proxy?server=146.103.97.142&port=8888&secret=7gAA8A8Pd1VV____9QBuLmltZWRpYS5zdGVhbXBvd2VyZWQuY29t
-
 https://t.me/proxy?server=78.40.193.180&port=8888&secret=7gAA8A8Pd1VV____9QBuLmltZWRpYS5zdGVhbXBvd2VyZWQuY29t
-
 https://t.me/proxy?server=78.40.193.73&port=8888&secret=7gAA8A8Pd1VV____9QBuLmltZWRpYS5zdGVhbXBvd2VyZWQuY29t
-
 https://t.me/proxy?server=5.meli.meli.zban-mas.info&port=8888&secret=7gAA8A8Pd1VV____9QBuLmltZWRpYS5zdGVhbXBvd2VyZWQuY29t
-
 https://t.me/proxy?server=6.meli.meli.zban-mas.info&port=8888&secret=7gAA8A8Pd1VV____9QBuLmltZWRpYS5zdGVhbXBvd2VyZWQuY29t`;
-
-      // بارگذاری متن‌ها
       configText.value = configContent;
       proxyText.value = proxyContent;
-
-      // ورود
       function setLoading(loading) {
         if (loading) {
           loginBtn.disabled = true;
@@ -913,7 +741,6 @@ https://t.me/proxy?server=6.meli.meli.zban-mas.info&port=8888&secret=7gAA8A8Pd1V
           loginBtn.removeAttribute('aria-busy');
         }
       }
-
       loginBtn.addEventListener('click', () => {
         loginError.style.display = 'none';
         const entered = passwordInput.value.trim();
@@ -922,9 +749,7 @@ https://t.me/proxy?server=6.meli.meli.zban-mas.info&port=8888&secret=7gAA8A8Pd1V
           loginError.style.display = 'block';
           return;
         }
-
         setLoading(true);
-
         setTimeout(() => {
           setLoading(false);
           if (entered === correctPassword) {
@@ -943,8 +768,6 @@ https://t.me/proxy?server=6.meli.meli.zban-mas.info&port=8888&secret=7gAA8A8Pd1V
           }
         }, 1500);
       });
-
-      // فعال/غیرفعال تب‌ها
       tabs.forEach(tab => {
         tab.addEventListener('click', () => {
           tabs.forEach(t => {
@@ -959,8 +782,6 @@ https://t.me/proxy?server=6.meli.meli.zban-mas.info&port=8888&secret=7gAA8A8Pd1V
           tab.tabIndex = 0;
           tab.focus();
         });
-
-        // پشتیبانی کیبورد
         tab.addEventListener('keydown', (e) => {
           let idx = Array.from(tabs).indexOf(e.target);
           if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
@@ -974,8 +795,6 @@ https://t.me/proxy?server=6.meli.meli.zban-mas.info&port=8888&secret=7gAA8A8Pd1V
           }
         });
       });
-
-      // کپی به کلیپ‌بورد
       function copyText(text, button) {
         navigator.clipboard.writeText(text).then(() => {
           const originalText = button.textContent;
@@ -989,15 +808,12 @@ https://t.me/proxy?server=6.meli.meli.zban-mas.info&port=8888&secret=7gAA8A8Pd1V
           alert(languageSelect.value === 'fa' ? 'کپی انجام نشد.' : 'Copy failed.');
         });
       }
-
       copyConfigBtn.addEventListener('click', () => {
         copyText(configText.value, copyConfigBtn);
       });
       copyProxyBtn.addEventListener('click', () => {
         copyText(proxyText.value, copyProxyBtn);
       });
-
-      // تغییر حالت شب/روز
       function updateThemeButton() {
         if (document.body.classList.contains('light')) {
           toggleThemeBtn.textContent = '🌙';
@@ -1014,19 +830,17 @@ https://t.me/proxy?server=6.meli.meli.zban-mas.info&port=8888&secret=7gAA8A8Pd1V
         updateThemeButton();
       });
       updateThemeButton();
-
-      // تغییر زبان
       function updateLanguage() {
         const lang = languageSelect.value;
         if (lang === 'fa') {
           document.documentElement.lang = 'fa';
           document.body.dir = 'rtl';
-          // متن‌های ثابت
           document.getElementById('passwordLabel').textContent = 'رمز عبور را وارد کنید:';
           loginBtn.textContent = 'ورود';
           loginError.style.display = 'none';
           document.getElementById('tabConfig').textContent = 'کانفیگ';
           document.getElementById('tabProxy').textContent = 'پروکسی';
+          document.getElementById('tabDonation').textContent = 'اهدایی‌ها';
           copyConfigBtn.textContent = 'کپی کانفیگ';
           copyProxyBtn.textContent = 'کپی پروکسی';
           howToImportBtn.textContent = 'آموزش نحوه وارد کردن کانفیگ ها';
@@ -1040,6 +854,7 @@ https://t.me/proxy?server=6.meli.meli.zban-mas.info&port=8888&secret=7gAA8A8Pd1V
           document.querySelector('.feature:nth-child(3) h3').textContent = 'دسترسی جهانی';
           document.querySelector('.feature:nth-child(3) p').textContent = 'دسترسی به تمامی سایتها و سرویس‌های بین‌المللی بدون محدودیت';
           document.querySelector('#loginSection h3').textContent = 'دسترسی به کانفیگ‌ها و پروکسی‌ها';
+          document.querySelector('#donationSection p').textContent = 'با اهدا کردن کانفیگ‌های خود ما را حمایت کنید';
           toggleThemeBtn.title = document.body.classList.contains('light') ? 'حالت روز' : 'حالت شب';
           toggleThemeBtn.setAttribute('aria-label', document.body.classList.contains('light') ? 'تغییر به حالت روز' : 'تغییر به حالت شب');
           languageSelect.title = 'انتخاب زبان';
@@ -1051,45 +866,47 @@ https://t.me/proxy?server=6.meli.meli.zban-mas.info&port=8888&secret=7gAA8A8Pd1V
           loginError.style.display = 'none';
           document.getElementById('tabConfig').textContent = 'Config';
           document.getElementById('tabProxy').textContent = 'Proxy';
+          document.getElementById('tabDonation').textContent = 'Donations';
           copyConfigBtn.textContent = 'Copy Config';
           copyProxyBtn.textContent = 'Copy Proxy';
-          howToImportBtn.textContent = 'How to import configs';
+          howToImportBtn.textContent = 'How to Import Configs';
           document.querySelector('h1').innerHTML = 'Golden Shine <span class="logo" aria-hidden="true" role="img" aria-label="Golden Shine Logo"></span>';
-          document.querySelector('h2').textContent = 'Golden Shine - High-Speed Config and Proxy Service';
-          document.querySelector('.intro p').innerHTML = 'Golden Shine provides the best and highest quality config and proxy services for unrestricted internet access. Using our services, you can easily access all internet content and enjoy high speed and complete security.';
+          document.querySelector('h2').textContent = 'Golden Shine High-Speed Config & Proxy Service';
+          document.querySelector('.intro p').innerHTML = 'Golden Shine provides the best and highest quality config and proxy services for unrestricted internet access. With our services, you can easily access all internet content and enjoy high speed and complete security.';
           document.querySelector('.feature:nth-child(1) h3').textContent = 'High Speed';
-          document.querySelector('.feature:nth-child(1) p').textContent = 'Optimized high-speed servers for lag-free internet experience';
+          document.querySelector('.feature:nth-child(1) p').textContent = 'High-speed and optimized servers for a lag-free internet experience';
           document.querySelector('.feature:nth-child(2) h3').textContent = 'Complete Security';
-          document.querySelector('.feature:nth-child(2) p').textContent = 'Advanced encryption to protect your privacy and information security';
+          document.querySelector('.feature:nth-child(2) p').textContent = 'Advanced encryption to protect your privacy and data security';
           document.querySelector('.feature:nth-child(3) h3').textContent = 'Global Access';
           document.querySelector('.feature:nth-child(3) p').textContent = 'Access to all international websites and services without restrictions';
-          document.querySelector('#loginSection h3').textContent = 'Access to Configs and Proxies';
-          document.querySelector('footer p:first-child').textContent = 'Golden Shine - Provider of high-speed config and proxy services';
-          document.querySelector('footer p:last-child').textContent = '© 2023 Golden Shine - All rights reserved';
+          document.querySelector('#loginSection h3').textContent = 'Access Configs and Proxies';
+          document.querySelector('#donationSection p').textContent = 'Support us by donating your configs';
           toggleThemeBtn.title = document.body.classList.contains('light') ? 'Light Mode' : 'Dark Mode';
           toggleThemeBtn.setAttribute('aria-label', document.body.classList.contains('light') ? 'Switch to light mode' : 'Switch to dark mode');
-          languageSelect.title = 'Select language';
+          languageSelect.title = 'Select Language';
         }
       }
-      languageSelect.addEventListener('change', () => {
-        updateLanguage();
-      });
+      languageSelect.addEventListener('change', updateLanguage);
       updateLanguage();
-
-      // اجازه بده اینتر هم ورود کنه
-      passwordInput.addEventListener('keydown', e => {
-        if (e.key === 'Enter') {
-          loginBtn.click();
-        }
-      });
-      
-      // نمایش آموزش نحوه وارد کردن کانفیگ
       howToImportBtn.addEventListener('click', () => {
-        if (howToImportInstructions.style.display === 'none') {
-          howToImportInstructions.style.display = 'block';
-        } else {
-          howToImportInstructions.style.display = 'none';
-        }
+        howToImportInstructions.style.display = howToImportInstructions.style.display === 'none' ? 'block' : 'none';
+        howToImportBtn.textContent = languageSelect.value === 'fa' 
+          ? (howToImportInstructions.style.display === 'none' ? 'آموزش نحوه وارد کردن کانفیگ ها' : 'بستن آموزش')
+          : (howToImportInstructions.style.display === 'none' ? 'How to Import Configs' : 'Close Instructions');
+      });
+      // Initialize accessibility attributes for donation tab
+      document.getElementById('tabDonation').addEventListener('click', () => {
+        tabs.forEach(t => {
+          t.classList.remove('active');
+          t.setAttribute('aria-selected', 'false');
+          document.getElementById(t.getAttribute('aria-controls')).classList.add('hidden');
+          t.tabIndex = -1;
+        });
+        document.getElementById('tabDonation').classList.add('active');
+        document.getElementById('tabDonation').setAttribute('aria-selected', 'true');
+        donationSection.classList.remove('hidden');
+        document.getElementById('tabDonation').tabIndex = 0;
+        document.getElementById('tabDonation').focus();
       });
     })();
   </script>
