@@ -141,11 +141,13 @@
       margin-bottom: 15px;
     }
     
+    /* استایل‌های جدید برای ویژگی‌های سرویس با انیمیشن‌های پیشرفته */
     .features {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-around;
       margin: 20px 0;
+      perspective: 1000px;
     }
     
     .feature {
@@ -157,23 +159,84 @@
       margin: 10px;
       text-align: center;
       border: 1px solid rgba(255, 215, 0, 0.2);
-      transition: transform 0.3s;
+      transition: all 0.5s ease;
+      transform-style: preserve-3d;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+    
+    .feature::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        to bottom right,
+        rgba(255, 215, 0, 0.1),
+        rgba(255, 215, 0, 0),
+        rgba(255, 215, 0, 0.1)
+      );
+      transform: rotate(45deg);
+      animation: shineEffect 3s infinite;
+    }
+    
+    @keyframes shineEffect {
+      0% { transform: translateX(-100%) rotate(45deg); }
+      100% { transform: translateX(100%) rotate(45deg); }
     }
     
     .feature:hover {
-      transform: translateY(-5px);
+      transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
       border-color: gold;
+      box-shadow: 0 15px 30px rgba(255, 215, 0, 0.2);
     }
     
     .feature-icon {
       font-size: 2.5rem;
       margin-bottom: 15px;
       color: gold;
+      display: inline-block;
+      transition: all 0.3s ease;
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
     }
     
     .feature h3 {
       margin-top: 0;
       color: #ffcc00;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .feature h3::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: gold;
+      transition: width 0.3s ease;
+    }
+    
+    .feature:hover h3::after {
+      width: 100%;
+    }
+    
+    .feature p {
+      transition: all 0.3s ease;
+    }
+    
+    .feature:hover p {
+      color: #fff;
     }
 
     /* ورودی و دکمه ورود */
@@ -446,26 +509,6 @@
       box-shadow: 0 0 12px #b8860b;
     }
 
-    /* فوتر */
-    footer {
-      margin-top: 40px;
-      text-align: center;
-      padding: 20px;
-      color: #aaa;
-      font-size: 0.9rem;
-      width: 100%;
-    }
-    
-    footer a {
-      color: gold;
-      text-decoration: none;
-      margin: 0 10px;
-    }
-    
-    footer a:hover {
-      text-decoration: underline;
-    }
-
     /* ریسپانسیو */
     @media (max-width: 768px) {
       .card {
@@ -648,13 +691,9 @@
     </section>
   </div>
 
-  <footer>
-    <p>گلدن شاین GOLDENSHINE☄️ - ارائه دهنده سرویس‌های کانفیگ و پروکسی پرسرعت</p>
-  </footer>
-
   <script>
     (() => {
-      const correctPassword = '13791379'; // رمز عبور صحیح
+      const correctPassword = 'ghd2023goldenshine'; // رمز عبور صحیح
       const loginBtn = document.getElementById('loginBtn');
       const passwordInput = document.getElementById('passwordInput');
       const loginError = document.getElementById('loginError');
@@ -673,67 +712,16 @@
       const howToImportInstructions = document.getElementById('howToImportInstructions');
 
       // نمونه متن‌ها (می‌توانید این‌ها را به صورت داینامیک جایگزین کنید)
-      const configContent = `vless://012bcb20-421c-434c-8fd0-2c4d564a103e@www.speedtest.net:2096?encryption=none&security=tls&sni=638872445251926601.kish-prx-dnraaaf.info&type=ws&alpn=h3h2&host=638872445251926601.kish-prx-dnraaaf.info&path=/cazskiws#goldenshine⚡️☄️
-vless://01a17885-1d37-4a8a-a3c9-e449f0a2fd04@104.16.198.192:8080?path=%2F%3Fed%3D2048&security=none&encryption=none&host=2U.96G7b3q3z8.ZuLAiR.OrG.&type=ws#goldenshine⚡️☄️
-vless://02187b5c-f759-4221-a86c-17c96ab719b9@144.202.99.243:443?type=xhttp&path=%2Fhui&host=&mode=stream-one&security=none#goldenshine⚡️☄️
-vless://0ae0f03b-42a8-4d2e-8e14-d24a3053b667@104.16.198.192:8080?path=%2F%3Fed%3D2048&security=none&encryption=none&host=XF.4I9AE8bFxo.zulAiR.oRG.&type=ws#goldenshine⚡️☄️
-vless://0eb83f3e-7b95-427a-8952-abedfca1869f@104.16.198.192:8080?path=%2F%3Fed%3D2048&security=none&encryption=none&host=QW.VU6d72nt9y.zULaiR.orG.&type=ws#goldenshine⚡️☄️
-vless://107088af-d5a1-4612-8641-a83e0e13c81e@www.speedtest.net:2096?encryption=none&security=tls&sni=638872443451943398.kish-prx-dnraaaf.info&type=ws&alpn=h3h2&host=638872443451943398.kish-prx-dnraaaf.info&path=/oiakdrws#goldenshine⚡️☄️
-vless://15398933-070d-4ea2-9697-5fcd79793c97@91.99.142.148:443?type=tcp&path=%2F&host=zula.ir&headerType=http&security=none#goldenshine⚡️☄️
-vless://15398933-070d-4ea2-9697-5fcd79793c97@91.99.188.96:443?type=tcp&path=%2F&host=zula.ir&headerType=http&security=none#goldenshine⚡️☄️
-vless://153ee04c-dcc1-4ef8-a146-8fb31cec1f48@91.99.205.56:443?security=&encryption=none&host=zula.ir&headerType=http&type=tcp#goldenshine⚡️☄️
-vless://16a6dbdc-0976-4dc3-bfde-84f334961e5e@www.speedtest.net:2096?encryption=none&security=tls&sni=638872445251916679.kish-prx-dnraaaf.info&type=ws&alpn=h3h2&host=638872445251916679.kish-prx-dnraaaf.info&path=/ncwlcqws#goldenshine⚡️☄️
-vless://1b368bf6-5aac-413c-a77c-229fb984d5ae@www.meter.net:443?type=ws&encryption=none&security=tls&host=mAXNetvIpAp-cLOuD76.netKh3.siTe&path=/linkws?ed=2560&sni=mAXNetvIpAp-cLOuD76.netKh3.siTe#goldenshine⚡️☄️
-vless://2831b7d5-2cdd-4684-b44e-8ea6d27e8495@Fv.samiion73.ir:13469?type=tcp&security=reality&pbk=ZHQfz5WHmc4qKTjhTw14EU2yaW-TokHCeR9NiJek_2s&fp=chrome&sni=chatgpt.com&sid=f49785945765b595&spx=%2F#goldenshine⚡️☄️
-vless://2831b7d5-2cdd-4684-b44e-8ea6d27e8495@Fv.samiion73.ir:13469?type=tcp&security=reality&pbk=ZHQfz5WHmc4qKTjhTw14EU2yaW-TokHCeR9NiJek_2s&fp=chrome&sni=chatgpt.com&sid=f49785945765b595&spx=%2F#goldenshine⚡️☄️
-vless://2eaef053-5fd6-4def-b234-d760690355ff@91.99.134.156:51615?type=tcp&path=%2F&host=zula.ir&headerType=http&security=none#goldenshine⚡️☄️
-vless://2eaef053-5fd6-4def-b234-d760690355ff@91.99.178.3:51615?security=&encryption=none&host=zula.ir&headerType=http&type=tcp#goldenshine⚡️☄️
-vless://306e217d-e75e-45b2-8a78-da78f13e3e2d@107.191.36.183:443?type=xhttp&path=%2Frfghj&host=&mode=stream-one&security=none#goldenshine⚡️☄️
-vless://3678c6db-91dc-4b5d-9158-0cef407cef52@91.99.224.10:443?type=tcp&path=%2F&host=zula.ir&headerType=http&security=none#goldenshine⚡️☄️
-vless://4bcffd13-9b58-4aa6-9aa9-880e075a94d9@104.16.198.192:80?path=%2F%3Fed%3D2048&security=none&encryption=none&host=ugly-COMPeTiTIOn.onEeaT.CO.&type=ws#goldenshine⚡️☄️
-vless://4d91916f-a7fd-419b-8b90-640bb8d1b9f4@www.speedtest.net:443?path=/jpePYzwY4AyV9UQ8/MTQwLjIzOC4yMTIuOTU=?ed%3D2560&security=tls&alpn=http/1.1&encryption=none&host=titantablomanahamrah.ir&fp=randomized&type=ws&sni=TITanTabLOmaNAHaMRaH.IR#goldenshine⚡️☄️
-vless://4d91916f-a7fd-419b-8b90-640bb8d1b9f9@104.17.147.22:443?path=/InTnUH0wTWnY4AaX/MTU4LjE4MC4xMi4xMTc=?ed%3D2560&security=tls&alpn=http/1.1&encryption=none&host=myphotomoments.ir&fp=randomized&type=ws&sni=MypHOtomoments.iR#goldenshine⚡️☄️
-vless://4d91916f-a7fd-419b-8b90-640bb8d1b9f9@www.speedtest.net:443?path=/bBE12ZhP3Iein3e5/MTY4LjEzOC40Ni42Nw==?ed%3D2560&security=tls&alpn=http/1.1&encryption=none&host=myphotomoments.ir&fp=randomized&type=ws&sni=MypHOtomoments.iR#goldenshine⚡️☄️22
-vless://4d91916f-a7fd-419b-8b90-640bb8d1b9f9@www.speedtest.net:443?path=/ldgoce3ZXB4kJ1Cl/NDcuNzYuMjE4LjE2Mw==?ed%3D2560&security=tls&alpn=http/1.1&encryption=none&host=myphotomoments.ir&fp=randomized&type=ws&sni=MypHOtomoments.iR#goldenshine⚡️☄️23
-vless://4e0a435a-65d6-4e4e-a4ed-dfa8bdd732f5@www.speedtest.net:443?mode=stream-one&path=%2Ftas&security=tls&alpn=h2&encryption=none&host=akbar.tas-bazi.com&fp=firefox&type=xhttp&sni=akbar.tas-bazi.com#goldenshine⚡️☄️24
-vless://4e0a435a-65d6-4e4e-a4ed-dfa8bdd732f5@www.speedtest.net:443?mode=stream-one&path=%2Ftas&security=tls&alpn=h2&encryption=none&host=auto.tas-bazi.com&fp=firefox&type=xhttp&sni=auto.tas-bazi.com#goldenshine⚡️☄️25
-vless://4e0a435a-65d6-4e4e-a4ed-dfa8bdd732f5@www.speedtest.net:443?type=xhttp&path=%2Ftas&host=auto.tas-bazi.com&mode=stream-one&security=tls&fp=firefox&alpn=h2&sni=auto.tas-bazi.com#goldenshine⚡️☄️26
-vless://4e0a435a-65d6-4e4e-a4ed-dfa8bdd732f5@www.speedtest.net:443?type=xhttp&path=%2Ftas&host=zamane.tas-bazi.com&mode=stream-one&security=tls&fp=firefox&alpn=h2&sni=zamane.tas-bazi.com#goldenshine⚡️☄️27
-vless://53c5f9dd-cbe4-4410-9f7c-930f4ab39e24@www.speedtest.net:2096?encryption=none&security=tls&sni=638872398562285185.zagreb-prx-dnraaad.info&type=ws&alpn=h3h2&host=638872398562285185.zagreb-prx-dnraaad.info&path=/hzjvinws#goldenshine⚡️☄️28
-vless://57ac40b6-c9cd-4d4f-935c-545b65d8df39@91.99.146.13:443?type=tcp&path=%2F&host=zula.ir&headerType=http&security=none#goldenshine⚡️☄️29
-vless://5a574369-c681-4336-8b47-58c2cd3b8cb1@www.speedtest.net:443?type=ws&encryption=none&security=tls&host=MaxnetvipAp-CloUD-16.netkh3.site&path=/ws?ed=2560&sni=MaxnetvipAp-CloUD-16.netkh3.site#goldenshine⚡️☄️30
-vless://627712cf-d0e1-4545-81fb-241e7fda0284@3bd9.55dca.e048.f10-fef1f.yfjcs.com:443/?type=tcp&encryption=none&flow=xtls-rprx-vision&security=tls&sni=yfsg-1.xn--4gq62f52gppi29k.com&fp=ios&packetEncoding=xudp#goldenshine⚡️☄️31
-vless://68b48eeb-5770-4eb3-9b77-deeb77a41ccf@www.speedtest.net:80?path=/Telegram@V2ray_Alpha/?ed%3D2560&security=none&encryption=none&host=varzesh3.varzesh.dpdns.org&fp=random&type=ws&sni=varzesh3.varzesh.dpdns.org#goldenshine⚡️☄️32
-vless://7197f7d0-0fd2-40d4-83ad-d2755a4f91b3@137.220.38.164:443?type=xhttp&path=%2Fijuhgf&host=&mode=stream-one&security=none#goldenshine⚡️☄️33
-vless://7a66b8ef-9713-4b69-b839-6bb45070af35@91.99.180.37:443?type=tcp&path=%2F&host=zula.ir&headerType=http&security=none#goldenshine⚡️☄️34
-vless://7b6eca4c-44ae-40c6-973a-4e3b29d30803@91.99.165.57:443?type=tcp&path=%2F&host=zula.ir&headerType=http&security=none#goldenshine⚡️☄️35
-vless://7d29daed-b57f-4855-818b-3b4b4839b2f6@www.speedtest.net:2096?encryption=none&security=tls&sni=638872398562287387.zagreb-prx-dnraaad.info&type=ws&alpn=h3h2&host=638872398562287387.zagreb-prx-dnraaad.info&path=/sfbjbgws#goldenshine⚡️☄️36
-vless://813d7c7e-d2ea-460f-9bf7-e6fa6a073b67@104.16.198.192:8080?path=%2F%3Fed%3D2048&security=none&encryption=none&host=TW.kKpopH4Zmc.ZUlaIr.orG.&type=ws#goldenshine⚡️☄️37
-vless://8754cb79-5f11-4511-aa26-825a1e777eb7@xpanel-ir.panelfreedom.com:2092?security=none&encryption=none&host=parsabr.com&headerType=http&type=tcp#goldenshine⚡️☄️38
-vless://9c6a11da-1f88-4910-8e0a-2f1a175e428f@www.speedtest.net:2096?encryption=none&security=tls&sni=638872443451926434.kish-prx-dnraaaf.info&type=ws&alpn=h3h2&host=638872443451926434.kish-prx-dnraaaf.info&path=/gybaakws#goldenshine⚡️☄️39
-vless://ae1573c6-febf-43e3-bf79-d270558c560b@135.181.201.193:33154?security=none&encryption=none&headerType=none&type=tcp#goldenshine⚡️☄️40
-vless://4d91916f-a7fd-419b-8b90-640bb8d1b9f9@www.speedtest.net:443?path=/bBE12ZhP3Iein3e5/MTY4LjEzOC40Ni42Nw==?ed%3D2560&security=tls&alpn=http/1.1&encryption=none&host=myphotomoments.ir&fp=randomized&type=ws&sni=MypHOtomoments.iR#goldenshine⚡️☄️
-vless://4d91916f-a7fd-419b-8b90-640bb8d1b9f9@www.speedtest.net:443?path=/ldgoce3ZXB4kJ1Cl/NDcuNzYuMjE4LjE2Mw==?ed%3D2560&security=tls&alpn=http/1.1&encryption=none&host=myphotomoments.ir&fp=randomized&type=ws&sni=MypHOtomoments.iR#goldenshine⚡️☄️
-vless://4e0a435a-65d6-4e4e-a4ed-dfa8bdd732f5@www.speedtest.net:443?mode=stream-one&path=%2Ftas&security=tls&alpn=h2&encryption=none&host=akbar.tas-bazi.com&fp=firefox&type=xhttp&sni=akbar.tas-bazi.com#goldenshine⚡️☄️
-vless://4e0a435a-65d6-4e4e-a4ed-dfa8bdd732f5@www.speedtest.net:443?mode=stream-one&path=%2Ftas&security=tls&alpn=h2&encryption=none&host=auto.tas-bazi.com&fp=firefox&type=xhttp&sni=auto.tas-bazi.com#goldenshine⚡️☄️
-vless://4e0a435a-65d6-4e4e-a4ed-dfa8bdd732f5@www.speedtest.net:443?type=xhttp&path=%2Ftas&host=auto.tas-bazi.com&mode=stream-one&security=tls&fp=firefox&alpn=h2&sni=auto.tas-bazi.com#goldenshine⚡️☄️
-vless://4e0a435a-65d6-4e4e-a4ed-dfa8bdd732f5@www.speedtest.net:443?type=xhttp&path=%2Ftas&host=zamane.tas-bazi.com&mode=stream-one&security=tls&fp=firefox&alpn=h2&sni=zamane.tas-bazi.com#goldenshine⚡️☄️
-vless://53c5f9dd-cbe4-4410-9f7c-930f4ab39e24@www.speedtest.net:2096?encryption=none&security=tls&sni=638872398562285185.zagreb-prx-dnraaad.info&type=ws&alpn=h3h2&host=638872398562285185.zagreb-prx-dnraaad.info&path=/hzjvinws#goldenshine⚡️☄️
-vless://57ac40b6-c9cd-4d4f-935c-545b65d8df39@91.99.146.13:443?type=tcp&path=%2F&host=zula.ir&headerType=http&security=none#goldenshine⚡️☄️
-vless://5a574369-c681-4336-8b47-58c2cd3b8cb1@www.speedtest.net:443?type=ws&encryption=none&security=tls&host=MaxnetvipAp-CloUD-16.netkh3.site&path=/ws?ed=2560&sni=MaxnetvipAp-CloUD-16.netkh3.site#goldenshine⚡️☄️
-vless://627712cf-d0e1-4545-81fb-241e7fda0284@3bd9.55dca.e048.f10-fef1f.yfjcs.com:443/?type=tcp&encryption=none&flow=xtls-rprx-vision&security=tls&sni=yfsg-1.xn--4gq62f52gppi29k.com&fp=ios&packetEncoding=xudp#goldenshine⚡️☄️
-vless://68b48eeb-5770-4eb3-9b77-deeb77a41ccf@www.speedtest.net:80?path=/Telegram@V2ray_Alpha/?ed%3D2560&security=none&encryption=none&host=varzesh3.varzesh.dpdns.org&fp=random&type=ws&sni=varzesh3.varzesh.dpdns.org#goldenshine⚡️☄️
-vless://7197f7d0-0fd2-40d4-83ad-d2755a4f91b3@137.220.38.164:443?type=xhttp&path=%2Fijuhgf&host=&mode=stream-one&security=none#goldenshine⚡️☄️
-vless://7a66b8ef-9713-4b69-b839-6bb45070af35@91.99.180.37:443?type=tcp&path=%2F&host=zula.ir&headerType=http&security=none#goldenshine⚡️☄️
-vless://7b6eca4c-44ae-40c6-973a-4e3b29d30803@91.99.165.57:443?type=tcp&path=%2F&host=zula.ir&headerType=http&security=none#goldenshine⚡️☄️
-vless://7d29daed-b57f-4855-818b-3b4b4839b2f6@www.speedtest.net:2096?encryption=none&security=tls&sni=638872398562287387.zagreb-prx-dnraaad.info&type=ws&alpn=h3h2&host=638872398562287387.zagreb-prx-dnraaad.info&path=/sfbjbgws#goldenshine⚡️☄️
-vless://813d7c7e-d2ea-460f-9bf7-e6fa6a073b67@104.16.198.192:8080?path=%2F%3Fed%3D2048&security=none&encryption=none&host=TW.kKpopH4Zmc.ZUlaIr.orG.&type=ws#goldenshine⚡️☄️
-vless://8754cb79-5f11-4511-aa26-825a1e777eb7@xpanel-ir.panelfreedom.com:2092?security=none&encryption=none&host=parsabr.com&headerType=http&type=tcp#goldenshine⚡️☄️
-vless://9c6a11da-1f88-4910-8e0a-2f1a175e428f@www.speedtest.net:2096?encryption=none&security=tls&sni=638872443451926434.kish-prx-dnraaaf.info&type=ws&alpn=h3h2&host=638872443451926434.kish-prx-dnraaaf.info&path=/gybaakws#goldenshine⚡️☄️
-vless://ae1573c6-febf-43e3-bf79-d270558c560b@135.181.201.193:33154?security=none&encryption=none&headerType=none&type=tcp#goldenshine⚡️☄️
-vless://aec1e0c5-71c8-453d-a468-adda091af2a5@104.16.198.192:80?path=%2F%3Fed%3D2048&security=none&encryption=none&host=kNowleDgEAble-eXerciSe.ONEEAt.Co.&type=ws#goldenshine⚡️☄️
-vless://b25c9401-2854-49da-86f0-fe0f06ad256a@91.99.170.29:443?security=&encryption=none&host=zula.ir&headerType=http&type=tcp#goldenshine⚡️☄️
-vless://bd739eed-20b6-47a2-82cd-8c9c11f752c6@162.216.16.199:443?type=xhttp&path=%2Fsdf&host=&mode=stream-one&security=none#goldenshine⚡️☄️`;
+      const configContent = `[Interface]
+PrivateKey = YOUR_PRIVATE_KEY
+Address = 10.0.0.2/24
+DNS = 1.1.1.1
+
+[Peer]
+PublicKey = SERVER_PUBLIC_KEY
+AllowedIPs = 0.0.0.0/0, ::/0
+Endpoint = your.server.com:51820
+PersistentKeepalive = 25`;
 
       const proxyContent = `socks5://127.0.0.1:1080
 http://proxy.example.com:8080
@@ -886,8 +874,6 @@ https://secureproxy.example.com:443`;
           document.querySelector('.feature:nth-child(3) h3').textContent = 'دسترسی جهانی';
           document.querySelector('.feature:nth-child(3) p').textContent = 'دسترسی به تمامی سایتها و سرویس‌های بین‌المللی بدون محدودیت';
           document.querySelector('#loginSection h3').textContent = 'دسترسی به کانفیگ‌ها و پروکسی‌ها';
-          document.querySelector('footer p:first-child').textContent = 'گلدن شاین - ارائه دهنده سرویس‌های کانفیگ و پروکسی پرسرعت';
-          document.querySelector('footer p:last-child').textContent = '© 2023 گلدن شاین - تمامی حقوق محفوظ است';
           toggleThemeBtn.title = document.body.classList.contains('light') ? 'حالت روز' : 'حالت شب';
           toggleThemeBtn.setAttribute('aria-label', document.body.classList.contains('light') ? 'تغییر به حالت روز' : 'تغییر به حالت شب');
           languageSelect.title = 'انتخاب زبان';
